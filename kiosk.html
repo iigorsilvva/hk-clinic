@@ -640,11 +640,30 @@ window.confirmSch=async function(){
 };
 
 buildMenu();buildRelax();
-setTimeout(function(){
-  document.getElementById('sp').classList.add('out');
-  setTimeout(function(){document.getElementById('sp').style.display='none';go('s-main');},700);
-},2800);
 
 </script>
+
+<script>
+// Splash runs independently - never blocked by Firebase
+window.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    var sp = document.getElementById('sp');
+    if(sp) sp.classList.add('out');
+    setTimeout(function() {
+      var sp2 = document.getElementById('sp');
+      if(sp2) sp2.style.display = 'none';
+      // go() might not be defined yet if module failed - define fallback
+      if(typeof window.go === 'function') {
+        window.go('s-main');
+      } else {
+        document.querySelectorAll('.scr').forEach(function(s){s.classList.remove('on');});
+        var main = document.getElementById('s-main');
+        if(main) main.classList.add('on');
+      }
+    }, 700);
+  }, 2500);
+});
+</script>
+
 </body>
 </html>
