@@ -1,0 +1,1384 @@
+from pathlib import Path
+
+html = r"""<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinFlow Premium</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root{
+      --bg:#f4f1ff;
+      --bg-2:#ece7ff;
+      --sidebar:#120824;
+      --sidebar-2:#1a0d34;
+      --card:#ffffff;
+      --card-soft:#faf8ff;
+      --text:#181126;
+      --muted:#746c87;
+      --line:#ece6fb;
+      --purple:#7f3dff;
+      --purple-2:#9f73ff;
+      --purple-3:#ede3ff;
+      --green:#16a34a;
+      --green-soft:#eaf9ef;
+      --red:#e11d48;
+      --red-soft:#fff0f4;
+      --yellow:#b7791f;
+      --yellow-soft:#fff7e8;
+      --blue:#2563eb;
+      --blue-soft:#eef4ff;
+      --shadow:0 20px 45px rgba(73, 32, 145, .10);
+      --shadow-soft:0 10px 28px rgba(73, 32, 145, .08);
+      --radius:24px;
+      --radius-sm:18px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, #ffffff 0%, #f6f2ff 34%, #f1ecff 100%);
+      color:var(--text);
+    }
+
+    .app{
+      min-height:100vh;
+      display:grid;
+      grid-template-columns: 290px 1fr;
+    }
+
+    .sidebar{
+      background:linear-gradient(180deg, var(--sidebar) 0%, var(--sidebar-2) 100%);
+      color:#fff;
+      padding:26px 20px;
+      display:flex;
+      flex-direction:column;
+      gap:26px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .sidebar::before,
+    .sidebar::after{
+      content:"";
+      position:absolute;
+      border-radius:999px;
+      filter:blur(6px);
+      opacity:.15;
+    }
+
+    .sidebar::before{
+      width:180px;height:180px;
+      background:#8b5cf6;
+      top:-50px;right:-70px;
+    }
+    .sidebar::after{
+      width:140px;height:140px;
+      background:#3b82f6;
+      bottom:30px;left:-50px;
+    }
+
+    .brand{
+      position:relative;
+      z-index:1;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:8px 8px 4px;
+    }
+
+    .brand-icon{
+      width:54px;height:54px;border-radius:18px;
+      background:linear-gradient(135deg, #b58cff, #7f3dff 60%, #5b21b6);
+      display:grid;place-items:center;
+      box-shadow:0 16px 30px rgba(127,61,255,.32);
+      font-weight:800;
+      letter-spacing:.08em;
+    }
+
+    .brand h1{margin:0;font-size:1.15rem}
+    .brand p{margin:4px 0 0;color:rgba(255,255,255,.68);font-size:.92rem}
+
+    .menu-title{
+      color:rgba(255,255,255,.62);
+      font-size:.92rem;
+      padding:0 8px;
+      position:relative;z-index:1;
+    }
+
+    .nav{
+      display:grid;
+      gap:12px;
+      position:relative;z-index:1;
+    }
+
+    .nav button{
+      border:none;
+      width:100%;
+      text-align:left;
+      padding:18px 18px;
+      border-radius:22px;
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      font-size:1rem;
+      font-weight:700;
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.08);
+      transition:.2s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .nav button:hover{transform:translateY(-1px);background:rgba(255,255,255,.12)}
+    .nav button.active{
+      background:linear-gradient(135deg, rgba(127,61,255,.95), rgba(159,115,255,.95));
+      box-shadow:0 14px 26px rgba(127,61,255,.26);
+      border-color:transparent;
+    }
+
+    .sidebar-card{
+      margin-top:auto;
+      position:relative;z-index:1;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:24px;
+      padding:18px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .sidebar-card h3{margin:0 0 8px;font-size:1rem}
+    .sidebar-card p{margin:0;color:rgba(255,255,255,.70);line-height:1.5;font-size:.92rem}
+
+    .main{
+      padding:24px;
+      display:grid;
+      gap:20px;
+    }
+
+    .topbar{
+      background:rgba(255,255,255,.72);
+      backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,.7);
+      border-radius:28px;
+      padding:20px 22px;
+      box-shadow:var(--shadow-soft);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .topbar h2{margin:0;font-size:1.55rem;letter-spacing:-.03em}
+    .topbar p{margin:6px 0 0;color:var(--muted)}
+    .top-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+    button, .file-label{
+      font:inherit;
+      border:none;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+
+    .btn{
+      padding:12px 16px;
+      border-radius:16px;
+      font-weight:700;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg, var(--purple), var(--purple-2));
+      color:#fff;
+      box-shadow:0 14px 24px rgba(127,61,255,.22);
+    }
+    .btn-primary:hover{transform:translateY(-1px)}
+    .btn-soft{
+      background:#fff;
+      color:var(--text);
+      border:1px solid var(--line);
+    }
+    .btn-danger{
+      background:#fff1f4;
+      color:var(--red);
+      border:1px solid #ffd5de;
+    }
+
+    input[type=file]{display:none}
+
+    .panel{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .grid-4{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .metric{
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(180deg, #fff 0%, #fbf9ff 100%);
+    }
+    .metric::after{
+      content:"";
+      position:absolute;
+      right:-20px;top:-20px;
+      width:100px;height:100px;border-radius:50%;
+      background:radial-gradient(circle, rgba(127,61,255,.10), transparent 65%);
+    }
+    .metric .label{color:var(--muted);font-weight:700;font-size:.92rem}
+    .metric .value{margin-top:10px;font-size:1.85rem;font-weight:800;letter-spacing:-.04em}
+    .metric .chip{
+      margin-top:12px;display:inline-flex;align-items:center;gap:8px;
+      padding:9px 12px;border-radius:999px;font-size:.84rem;font-weight:800;
+    }
+    .chip.purple{background:var(--purple-3);color:var(--purple)}
+    .chip.green{background:var(--green-soft);color:var(--green)}
+    .chip.red{background:var(--red-soft);color:var(--red)}
+    .chip.yellow{background:var(--yellow-soft);color:var(--yellow)}
+
+    .grid-main{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:16px;
+      align-items:start;
+    }
+
+    .section-head{
+      display:flex;justify-content:space-between;align-items:center;gap:12px;
+      margin-bottom:18px;flex-wrap:wrap;
+    }
+    .section-head h3{margin:0;font-size:1.12rem}
+    .section-head p{margin:4px 0 0;color:var(--muted)}
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+    .field{display:grid;gap:7px}
+    .field label{font-size:.92rem;font-weight:800;color:#2f2444}
+    .field input,.field select,.field textarea{
+      width:100%;
+      padding:13px 14px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--text);
+      font:inherit;
+      outline:none;
+      transition:.18s ease;
+    }
+    .field textarea{min-height:88px;resize:vertical}
+    .field input:focus,.field select:focus,.field textarea:focus{
+      border-color:#c8b6ff;
+      box-shadow:0 0 0 4px rgba(127,61,255,.10);
+    }
+
+    .actions-row{
+      display:flex;gap:10px;flex-wrap:wrap;margin-top:8px
+    }
+
+    .tabs{
+      display:flex;gap:10px;flex-wrap:wrap
+    }
+    .tab-filter{
+      padding:10px 14px;border-radius:999px;background:#f7f3ff;border:1px solid #ece3ff;
+      color:#5b34b2;font-weight:800;
+    }
+    .tab-filter.active{background:linear-gradient(135deg,var(--purple),var(--purple-2));color:#fff;border-color:transparent}
+
+    .filters{
+      display:grid;
+      grid-template-columns:1.2fr .8fr .8fr .8fr .8fr;
+      gap:12px;
+      margin-bottom:16px;
+    }
+
+    .table-wrap{
+      overflow:auto;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:#fff;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:1160px;
+    }
+    th,td{
+      padding:14px 14px;
+      border-bottom:1px solid var(--line);
+      text-align:left;
+      vertical-align:middle;
+    }
+    th{
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color:var(--muted);
+      background:#fcfbff;
+    }
+    td strong{font-size:.95rem}
+    .sub{
+      color:var(--muted);
+      font-size:.84rem;
+      line-height:1.4;
+    }
+
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 11px;border-radius:999px;font-size:.8rem;font-weight:800;
+      white-space:nowrap;
+    }
+    .pill.entrada{background:var(--green-soft);color:var(--green)}
+    .pill.saida{background:var(--red-soft);color:var(--red)}
+    .pill.conta{background:#f2efff;color:#5b34b2}
+    .pill.pagamento{background:var(--blue-soft);color:var(--blue)}
+    .pill.paga{background:var(--green-soft);color:var(--green)}
+    .pill.pendente{background:var(--yellow-soft);color:var(--yellow)}
+    .pill.vencida{background:var(--red-soft);color:var(--red)}
+
+    .hidden{display:none!important}
+    .empty{
+      text-align:center;
+      padding:26px 18px;
+      color:var(--muted);
+    }
+
+    .chart-wrap{
+      background:linear-gradient(180deg, #fff 0%, #fbf9ff 100%);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:16px;
+    }
+
+    .compare-card{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+    .compare-box{
+      padding:16px;border-radius:20px;background:var(--card-soft);border:1px solid var(--line)
+    }
+    .compare-box span{display:block}
+    .compare-box .t{color:var(--muted);font-size:.86rem;font-weight:800}
+    .compare-box .v{margin-top:8px;font-size:1.35rem;font-weight:800;letter-spacing:-.03em}
+
+    .footer-note{color:var(--muted);font-size:.9rem;margin-top:8px}
+
+    .login-screen{
+      position:fixed;inset:0;z-index:10000;
+      background:linear-gradient(135deg, #120824 0%, #241049 60%, #4c1d95 100%);
+      display:flex;align-items:center;justify-content:center;
+      padding:18px;
+    }
+    .login-shell{
+      width:min(980px, 100%);
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .login-left{
+      background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:34px;
+      padding:32px;
+      color:#fff;
+      box-shadow:0 30px 70px rgba(0,0,0,.22);
+      backdrop-filter: blur(12px);
+      position:relative;
+      overflow:hidden;
+    }
+    .login-left::before{
+      content:"";position:absolute;inset:auto -80px -80px auto;
+      width:220px;height:220px;border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,.26), transparent 60%);
+    }
+    .login-kicker{
+      display:inline-flex;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.10);
+      font-weight:800;font-size:.84rem
+    }
+    .login-left h2{font-size:2.3rem;line-height:1.05;margin:18px 0 12px;letter-spacing:-.05em}
+    .login-left p{color:rgba(255,255,255,.75);max-width:430px;line-height:1.6}
+    .login-points{margin-top:28px;display:grid;gap:12px}
+    .login-points div{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      padding:14px 16px;border-radius:18px;
+      font-weight:700;
+    }
+
+    .login-card{
+      background:#fff;
+      border-radius:34px;
+      padding:32px;
+      box-shadow:0 30px 70px rgba(0,0,0,.22);
+      display:grid;
+      align-content:center;
+      gap:16px;
+    }
+    .login-card h3{margin:0;font-size:1.5rem}
+    .login-card p{margin:0;color:var(--muted)}
+    .login-card .field input{background:#fbf9ff}
+    .login-row{display:grid;gap:12px}
+    .login-mini{font-size:.86rem;color:var(--muted)}
+    .login-brand{
+      display:flex;align-items:center;gap:12px;margin-bottom:4px
+    }
+    .login-brand-badge{
+      width:46px;height:46px;border-radius:15px;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--purple),var(--purple-2));color:#fff;font-weight:900;
+      box-shadow:0 12px 24px rgba(127,61,255,.25);
+    }
+
+    .print-only{display:none}
+
+    @media print{
+      body{background:#fff}
+      .sidebar,.top-actions,.actions-row,.filters,.login-screen{display:none!important}
+      .app{grid-template-columns:1fr}
+      .main{padding:0}
+      .panel,.topbar,.chart-wrap{box-shadow:none;border:1px solid #ddd}
+      .print-only{display:block}
+    }
+
+    @media (max-width: 1180px){
+      .grid-4{grid-template-columns:repeat(2,1fr)}
+      .grid-main{grid-template-columns:1fr}
+      .filters{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media (max-width: 900px){
+      .app{grid-template-columns:1fr}
+      .sidebar{padding-bottom:18px}
+      .login-shell{grid-template-columns:1fr}
+    }
+
+    @media (max-width: 680px){
+      .main{padding:16px}
+      .topbar,.panel{padding:18px}
+      .grid-4,.form-grid,.filters,.compare-card{grid-template-columns:1fr}
+      .top-actions,.actions-row,.tabs{width:100%}
+      .btn,.file-label{width:100%}
+      .login-left,.login-card{padding:22px}
+      .login-left h2{font-size:1.8rem}
+    }
+  </style>
+</head>
+<body>
+  <div id="loginScreen" class="login-screen">
+    <div class="login-shell">
+      <section class="login-left">
+        <span class="login-kicker">Versão premium</span>
+        <h2>Seu financeiro com visual de banco digital.</h2>
+        <p>Controle entradas, saídas, contas mensais, status de pagamento, comparativo entre meses e gráficos elegantes em um painel clean e profissional.</p>
+        <div class="login-points">
+          <div>Dashboard premium com visual elevado</div>
+          <div>Comparativo mês atual x mês anterior</div>
+          <div>Contas pagas entram automaticamente nos lançamentos</div>
+        </div>
+      </section>
+
+      <section class="login-card">
+        <div class="login-brand">
+          <div class="login-brand-badge">FF</div>
+          <div>
+            <strong>FinFlow Premium</strong><br>
+            <span class="login-mini">Acesso ao sistema</span>
+          </div>
+        </div>
+        <div>
+          <h3>Entrar</h3>
+          <p>Use seu email e senha para acessar o painel.</p>
+        </div>
+        <div class="login-row">
+          <div class="field">
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail" type="email" placeholder="seuemail@exemplo.com">
+          </div>
+          <div class="field">
+            <label for="loginPassword">Senha</label>
+            <input id="loginPassword" type="password" placeholder="Digite sua senha">
+          </div>
+          <button class="btn btn-primary" id="loginBtn">Entrar no sistema</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">FF</div>
+        <div>
+          <h1>FinFlow Premium</h1>
+          <p>Gestão financeira premium</p>
+        </div>
+      </div>
+
+      <div class="menu-title">Menu</div>
+
+      <nav class="nav">
+        <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+        <button class="nav-btn" data-section="lancamentos">Lançamentos</button>
+        <button class="nav-btn" data-section="graficos">Gráficos</button>
+        <button class="nav-btn" data-section="contas">Contas</button>
+      </nav>
+
+      <div class="sidebar-card">
+        <h3>Resumo inteligente</h3>
+        <p>Marque uma conta como paga e o sistema envia essa saída automaticamente para os lançamentos e gráficos.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="topbar">
+        <div>
+          <h2>Painel financeiro premium</h2>
+          <p>Design elevado, visão mensal, comparação entre meses e controle total das contas.</p>
+        </div>
+        <div class="top-actions">
+          <button class="btn btn-soft" id="exportCsvBtn">Exportar Excel</button>
+          <button class="btn btn-soft" id="exportPdfBtn">Exportar PDF</button>
+          <button class="btn btn-soft" id="exportJsonBtn">Exportar JSON</button>
+          <label class="btn btn-soft file-label" for="importFile">Importar JSON</label>
+          <input type="file" id="importFile" accept="application/json">
+          <button class="btn btn-primary" id="demoBtn">Carregar exemplo</button>
+          <button class="btn btn-danger" id="resetBtn">Limpar tudo</button>
+        </div>
+      </section>
+
+      <section id="section-dashboard" class="section-view">
+        <div class="grid-4">
+          <div class="panel metric">
+            <div class="label">Saldo atual</div>
+            <div class="value" id="metricSaldo">R$ 0,00</div>
+            <span class="chip purple">Visão geral</span>
+          </div>
+          <div class="panel metric">
+            <div class="label">Entradas do mês</div>
+            <div class="value" id="metricEntradas">R$ 0,00</div>
+            <span class="chip green">Positivo</span>
+          </div>
+          <div class="panel metric">
+            <div class="label">Saídas do mês</div>
+            <div class="value" id="metricSaidas">R$ 0,00</div>
+            <span class="chip red">Negativo</span>
+          </div>
+          <div class="panel metric">
+            <div class="label">Contas pendentes</div>
+            <div class="value" id="metricPendentes">0</div>
+            <span class="chip yellow">Acompanhar</span>
+          </div>
+        </div>
+
+        <div class="grid-main">
+          <section class="panel">
+            <div class="section-head">
+              <div>
+                <h3>Novo lançamento</h3>
+                <p>Cadastre entradas e saídas com forma de pagamento, conta, categoria e observações.</p>
+              </div>
+            </div>
+
+            <form id="transactionForm">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="descricao">Descrição</label>
+                  <input id="descricao" type="text" placeholder="Ex.: Salário, aluguel, supermercado" required>
+                </div>
+                <div class="field">
+                  <label for="valor">Valor</label>
+                  <input id="valor" type="number" step="0.01" min="0" placeholder="0,00" required>
+                </div>
+                <div class="field">
+                  <label for="tipo">Tipo</label>
+                  <select id="tipo" required>
+                    <option value="entrada">Entrada</option>
+                    <option value="saida">Saída</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="categoria">Categoria</label>
+                  <select id="categoria" required>
+                    <option value="Moradia">Moradia</option>
+                    <option value="Alimentação">Alimentação</option>
+                    <option value="Transporte">Transporte</option>
+                    <option value="Saúde">Saúde</option>
+                    <option value="Lazer">Lazer</option>
+                    <option value="Salário">Salário</option>
+                    <option value="Serviços">Serviços</option>
+                    <option value="Investimento">Investimento</option>
+                    <option value="Outros">Outros</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="metodo">Forma de pagamento</label>
+                  <select id="metodo" required>
+                    <option value="Dinheiro">Dinheiro</option>
+                    <option value="Cartão">Cartão</option>
+                    <option value="PIX">PIX</option>
+                    <option value="Cheque">Cheque</option>
+                    <option value="Transferência">Transferência</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="conta">Conta</label>
+                  <select id="conta" required>
+                    <option value="Conta Pessoal">Conta Pessoal</option>
+                    <option value="Conta Conjunta">Conta Conjunta</option>
+                    <option value="Casa">Casa</option>
+                    <option value="Reserva">Reserva</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="responsavel">Responsável</label>
+                  <input id="responsavel" type="text" placeholder="Ex.: Igor, casal, família">
+                </div>
+                <div class="field">
+                  <label for="data">Data</label>
+                  <input id="data" type="date" required>
+                </div>
+              </div>
+              <div class="field">
+                <label for="obs">Observações</label>
+                <textarea id="obs" placeholder="Observações adicionais"></textarea>
+              </div>
+              <div class="actions-row">
+                <button class="btn btn-primary" type="submit">Salvar lançamento</button>
+              </div>
+              <div class="footer-note">Os dados ficam salvos no navegador do usuário.</div>
+            </form>
+          </section>
+
+          <section class="panel">
+            <div class="section-head">
+              <div>
+                <h3>Comparação mensal</h3>
+                <p>Mês atual versus mês anterior, com saldo, entradas e saídas.</p>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="compareChart" height="240"></canvas>
+            </div>
+            <div class="compare-card">
+              <div class="compare-box">
+                <span class="t">Saldo mês atual</span>
+                <span class="v" id="currentMonthSaldo">R$ 0,00</span>
+              </div>
+              <div class="compare-box">
+                <span class="t">Saldo mês anterior</span>
+                <span class="v" id="previousMonthSaldo">R$ 0,00</span>
+              </div>
+              <div class="compare-box">
+                <span class="t">Diferença</span>
+                <span class="v" id="monthDiff">R$ 0,00</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section id="section-lancamentos" class="section-view hidden">
+        <section class="panel">
+          <div class="section-head">
+            <div>
+              <h3>Todos os lançamentos</h3>
+              <p>Visualize tudo o que foi lançado, com filtro por mês, tipo, conta e forma de pagamento.</p>
+            </div>
+            <div class="tabs" id="monthTabs"></div>
+          </div>
+
+          <div class="filters">
+            <div class="field">
+              <label for="searchInput">Buscar</label>
+              <input id="searchInput" type="text" placeholder="Buscar por descrição ou responsável">
+            </div>
+            <div class="field">
+              <label for="filterTipo">Tipo</label>
+              <select id="filterTipo">
+                <option value="todos">Todos</option>
+                <option value="entrada">Entrada</option>
+                <option value="saida">Saída</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="filterConta">Conta</label>
+              <select id="filterConta"><option value="todos">Todas</option></select>
+            </div>
+            <div class="field">
+              <label for="filterMetodo">Forma</label>
+              <select id="filterMetodo">
+                <option value="todos">Todas</option>
+                <option value="Dinheiro">Dinheiro</option>
+                <option value="Cartão">Cartão</option>
+                <option value="PIX">PIX</option>
+                <option value="Cheque">Cheque</option>
+                <option value="Transferência">Transferência</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="filterMonth">Mês</label>
+              <select id="filterMonth"><option value="todos">Todos</option></select>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Descrição</th>
+                  <th>Tipo</th>
+                  <th>Categoria</th>
+                  <th>Forma</th>
+                  <th>Conta</th>
+                  <th>Responsável</th>
+                  <th>Valor</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody id="transactionsBody"></tbody>
+            </table>
+          </div>
+          <div id="transactionsEmpty" class="empty hidden">Nenhum lançamento encontrado.</div>
+        </section>
+      </section>
+
+      <section id="section-graficos" class="section-view hidden">
+        <div class="grid-main">
+          <section class="panel">
+            <div class="section-head">
+              <div>
+                <h3>Gráficos por mês</h3>
+                <p>Escolha um mês e veja gastos, entradas e distribuição de saídas por categoria.</p>
+              </div>
+              <div class="field" style="min-width:220px">
+                <label for="chartMonthSelect">Mês do gráfico</label>
+                <select id="chartMonthSelect"></select>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="monthChart" height="260"></canvas>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="section-head">
+              <div>
+                <h3>Gastos do mês</h3>
+                <p>Visual premium das despesas por categoria no mês selecionado.</p>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="categoryChart" height="260"></canvas>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section id="section-contas" class="section-view hidden">
+        <div class="grid-main">
+          <section class="panel">
+            <div class="section-head">
+              <div>
+                <h3>Nova conta a pagar</h3>
+                <p>Cadastre a conta mensal e marque como paga, pendente ou vencida.</p>
+              </div>
+            </div>
+
+            <form id="billForm">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="billDescricao">Descrição da conta</label>
+                  <input id="billDescricao" type="text" placeholder="Ex.: Água, internet, aluguel" required>
+                </div>
+                <div class="field">
+                  <label for="billValor">Valor</label>
+                  <input id="billValor" type="number" step="0.01" min="0" placeholder="0,00" required>
+                </div>
+                <div class="field">
+                  <label for="billCategoria">Categoria</label>
+                  <select id="billCategoria">
+                    <option value="Moradia">Moradia</option>
+                    <option value="Serviços">Serviços</option>
+                    <option value="Saúde">Saúde</option>
+                    <option value="Alimentação">Alimentação</option>
+                    <option value="Transporte">Transporte</option>
+                    <option value="Outros">Outros</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="billMetodo">Forma de pagamento</label>
+                  <select id="billMetodo">
+                    <option value="PIX">PIX</option>
+                    <option value="Cartão">Cartão</option>
+                    <option value="Dinheiro">Dinheiro</option>
+                    <option value="Cheque">Cheque</option>
+                    <option value="Transferência">Transferência</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="billConta">Conta</label>
+                  <select id="billConta">
+                    <option value="Casa">Casa</option>
+                    <option value="Conta Pessoal">Conta Pessoal</option>
+                    <option value="Conta Conjunta">Conta Conjunta</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="billResponsavel">Responsável</label>
+                  <input id="billResponsavel" type="text" placeholder="Ex.: Igor, casal">
+                </div>
+                <div class="field">
+                  <label for="billData">Vencimento</label>
+                  <input id="billData" type="date" required>
+                </div>
+                <div class="field">
+                  <label for="billStatus">Status</label>
+                  <select id="billStatus">
+                    <option value="pendente">Pendente</option>
+                    <option value="paga">Paga</option>
+                    <option value="vencida">Vencida</option>
+                  </select>
+                </div>
+              </div>
+              <div class="actions-row">
+                <button class="btn btn-primary" type="submit">Salvar conta</button>
+              </div>
+            </form>
+          </section>
+
+          <section class="panel">
+            <div class="section-head">
+              <div>
+                <h3>Status rápido</h3>
+                <p>Controle contas em aberto e acompanhe quantas já foram pagas.</p>
+              </div>
+            </div>
+            <div class="grid-4" style="grid-template-columns:repeat(3,1fr)">
+              <div class="compare-box">
+                <span class="t">Pagas</span>
+                <span class="v" id="billsPaid">0</span>
+              </div>
+              <div class="compare-box">
+                <span class="t">Pendentes</span>
+                <span class="v" id="billsPending">0</span>
+              </div>
+              <div class="compare-box">
+                <span class="t">Vencidas</span>
+                <span class="v" id="billsOverdue">0</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="section-head">
+            <div>
+              <h3>Contas do mês</h3>
+              <p>Ao dar baixa em “Paga”, a despesa entra automaticamente nos lançamentos e nos gráficos.</p>
+            </div>
+          </div>
+
+          <div class="filters" style="grid-template-columns:1.2fr .9fr .9fr .9fr">
+            <div class="field">
+              <label for="billSearchInput">Buscar conta</label>
+              <input id="billSearchInput" type="text" placeholder="Buscar por descrição ou responsável">
+            </div>
+            <div class="field">
+              <label for="billStatusFilter">Status</label>
+              <select id="billStatusFilter">
+                <option value="todos">Todos</option>
+                <option value="paga">Paga</option>
+                <option value="pendente">Pendente</option>
+                <option value="vencida">Vencida</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="billMonthFilter">Mês</label>
+              <select id="billMonthFilter"><option value="todos">Todos</option></select>
+            </div>
+            <div class="field">
+              <label for="billContaFilter">Conta</label>
+              <select id="billContaFilter"><option value="todos">Todas</option></select>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Vencimento</th>
+                  <th>Descrição</th>
+                  <th>Status</th>
+                  <th>Categoria</th>
+                  <th>Forma</th>
+                  <th>Conta</th>
+                  <th>Responsável</th>
+                  <th>Valor</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody id="billsBody"></tbody>
+            </table>
+          </div>
+          <div id="billsEmpty" class="empty hidden">Nenhuma conta encontrada.</div>
+        </section>
+      </section>
+
+      <div class="print-only">
+        <h2>FinFlow Premium</h2>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const STORAGE = {
+      user: 'finflow_user_v1',
+      transactions: 'finflow_transactions_v1',
+      bills: 'finflow_bills_v1'
+    };
+
+    const currency = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+
+    let transactions = safeParse(localStorage.getItem(STORAGE.transactions), []);
+    let bills = safeParse(localStorage.getItem(STORAGE.bills), []);
+    let compareChart, monthChart, categoryChart;
+    let activeSection = 'dashboard';
+
+    const els = {
+      loginScreen: document.getElementById('loginScreen'),
+      loginEmail: document.getElementById('loginEmail'),
+      loginPassword: document.getElementById('loginPassword'),
+      loginBtn: document.getElementById('loginBtn'),
+
+      transactionForm: document.getElementById('transactionForm'),
+      billForm: document.getElementById('billForm'),
+
+      transactionsBody: document.getElementById('transactionsBody'),
+      transactionsEmpty: document.getElementById('transactionsEmpty'),
+      billsBody: document.getElementById('billsBody'),
+      billsEmpty: document.getElementById('billsEmpty'),
+
+      metricSaldo: document.getElementById('metricSaldo'),
+      metricEntradas: document.getElementById('metricEntradas'),
+      metricSaidas: document.getElementById('metricSaidas'),
+      metricPendentes: document.getElementById('metricPendentes'),
+
+      currentMonthSaldo: document.getElementById('currentMonthSaldo'),
+      previousMonthSaldo: document.getElementById('previousMonthSaldo'),
+      monthDiff: document.getElementById('monthDiff'),
+
+      billsPaid: document.getElementById('billsPaid'),
+      billsPending: document.getElementById('billsPending'),
+      billsOverdue: document.getElementById('billsOverdue'),
+
+      searchInput: document.getElementById('searchInput'),
+      filterTipo: document.getElementById('filterTipo'),
+      filterConta: document.getElementById('filterConta'),
+      filterMetodo: document.getElementById('filterMetodo'),
+      filterMonth: document.getElementById('filterMonth'),
+
+      billSearchInput: document.getElementById('billSearchInput'),
+      billStatusFilter: document.getElementById('billStatusFilter'),
+      billMonthFilter: document.getElementById('billMonthFilter'),
+      billContaFilter: document.getElementById('billContaFilter'),
+
+      chartMonthSelect: document.getElementById('chartMonthSelect'),
+      monthTabs: document.getElementById('monthTabs'),
+
+      exportCsvBtn: document.getElementById('exportCsvBtn'),
+      exportPdfBtn: document.getElementById('exportPdfBtn'),
+      exportJsonBtn: document.getElementById('exportJsonBtn'),
+      importFile: document.getElementById('importFile'),
+      demoBtn: document.getElementById('demoBtn'),
+      resetBtn: document.getElementById('resetBtn')
+    };
+
+    document.getElementById('data').valueAsDate = new Date();
+    document.getElementById('billData').valueAsDate = new Date();
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => showSection(btn.dataset.section));
+    });
+
+    els.loginBtn.addEventListener('click', handleLogin);
+
+    els.transactionForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const item = {
+        id: crypto.randomUUID(),
+        descricao: val('descricao'),
+        valor: Number(val('valor')),
+        tipo: val('tipo'),
+        categoria: val('categoria'),
+        metodo: val('metodo'),
+        conta: val('conta'),
+        responsavel: val('responsavel') || 'Não informado',
+        data: val('data'),
+        obs: val('obs')
+      };
+
+      if (!item.descricao || !item.valor || item.valor <= 0 || !item.data) {
+        alert('Preencha descrição, valor e data corretamente.');
+        return;
+      }
+
+      transactions.unshift(item);
+      persist();
+      els.transactionForm.reset();
+      document.getElementById('data').valueAsDate = new Date();
+      renderAll();
+      showSection('lancamentos');
+    });
+
+    els.billForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const bill = {
+        id: crypto.randomUUID(),
+        descricao: val('billDescricao'),
+        valor: Number(val('billValor')),
+        categoria: val('billCategoria'),
+        metodo: val('billMetodo'),
+        conta: val('billConta'),
+        responsavel: val('billResponsavel') || 'Não informado',
+        data: val('billData'),
+        status: val('billStatus'),
+        linkedTransactionId: null
+      };
+
+      if (!bill.descricao || !bill.valor || bill.valor <= 0 || !bill.data) {
+        alert('Preencha descrição, valor e vencimento corretamente.');
+        return;
+      }
+
+      bills.unshift(bill);
+
+      if (bill.status === 'paga') {
+        createTransactionFromBill(bill);
+      }
+
+      persist();
+      els.billForm.reset();
+      document.getElementById('billData').valueAsDate = new Date();
+      renderAll();
+    });
+
+    [els.searchInput, els.filterTipo, els.filterConta, els.filterMetodo, els.filterMonth].forEach(el => {
+      el.addEventListener('input', renderTransactionsTable);
+      el.addEventListener('change', renderTransactionsTable);
+    });
+
+    [els.billSearchInput, els.billStatusFilter, els.billMonthFilter, els.billContaFilter].forEach(el => {
+      el.addEventListener('input', renderBillsTable);
+      el.addEventListener('change', renderBillsTable);
+    });
+
+    els.chartMonthSelect.addEventListener('change', renderGraphsSection);
+
+    els.exportCsvBtn.addEventListener('click', exportCsv);
+    els.exportPdfBtn.addEventListener('click', () => window.print());
+    els.exportJsonBtn.addEventListener('click', exportJson);
+    els.importFile.addEventListener('change', importJson);
+    els.demoBtn.addEventListener('click', loadDemo);
+    els.resetBtn.addEventListener('click', resetAll);
+
+    autoLogin();
+    renderAll();
+
+    function autoLogin() {
+      const saved = safeParse(localStorage.getItem(STORAGE.user), null);
+      if (saved && saved.email) {
+        els.loginScreen.classList.add('hidden');
+      }
+    }
+
+    function handleLogin() {
+      const email = els.loginEmail.value.trim();
+      const password = els.loginPassword.value.trim();
+      if (!email || !password) {
+        alert('Preencha email e senha.');
+        return;
+      }
+      localStorage.setItem(STORAGE.user, JSON.stringify({ email }));
+      els.loginScreen.classList.add('hidden');
+    }
+
+    function showSection(section) {
+      activeSection = section;
+      document.querySelectorAll('.section-view').forEach(sec => sec.classList.add('hidden'));
+      document.getElementById('section-' + section).classList.remove('hidden');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.section === section);
+      });
+
+      if (section === 'graficos') renderGraphsSection();
+      if (section === 'lancamentos') renderTransactionsTable();
+      if (section === 'contas') renderBillsTable();
+    }
+
+    function val(id) {
+      return document.getElementById(id).value.trim();
+    }
+
+    function safeParse(raw, fallback) {
+      try { return raw ? JSON.parse(raw) : fallback; } catch { return fallback; }
+    }
+
+    function persist() {
+      localStorage.setItem(STORAGE.transactions, JSON.stringify(transactions));
+      localStorage.setItem(STORAGE.bills, JSON.stringify(bills));
+    }
+
+    function formatDate(value) {
+      if (!value) return '-';
+      const [y, m, d] = value.split('-');
+      return `${d}/${m}/${y}`;
+    }
+
+    function getMonthKey(dateStr) {
+      const d = new Date(dateStr + 'T00:00:00');
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      return `${y}-${m}`;
+    }
+
+    function monthLabel(key) {
+      const [y, m] = key.split('-');
+      const dt = new Date(Number(y), Number(m)-1, 1);
+      return dt.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+    }
+
+    function getAllMonthKeys() {
+      const keys = new Set();
+      transactions.forEach(t => keys.add(getMonthKey(t.data)));
+      bills.forEach(b => keys.add(getMonthKey(b.data)));
+      if (!keys.size) keys.add(getMonthKey(new Date().toISOString().slice(0,10)));
+      return Array.from(keys).sort().reverse();
+    }
+
+    function fillSelectWithMonths(selectEl, includeTodos=true) {
+      const current = selectEl.value;
+      const options = getAllMonthKeys();
+      selectEl.innerHTML = includeTodos ? '<option value="todos">Todos</option>' : '';
+      options.forEach(k => {
+        const o = document.createElement('option');
+        o.value = k;
+        o.textContent = monthLabel(k);
+        selectEl.appendChild(o);
+      });
+      if (!includeTodos && options.length && !options.includes(current)) {
+        selectEl.value = options[0];
+      } else if (includeTodos && current && Array.from(selectEl.options).some(o => o.value === current)) {
+        selectEl.value = current;
+      } else if (!includeTodos && options.length) {
+        selectEl.value = options[0];
+      }
+    }
+
+    function renderMonthTabs() {
+      const months = getAllMonthKeys().slice(0, 6);
+      const activeMonth = els.filterMonth.value !== 'todos' ? els.filterMonth.value : (months[0] || 'todos');
+      els.monthTabs.innerHTML = '';
+      months.forEach(k => {
+        const btn = document.createElement('button');
+        btn.className = 'tab-filter' + (k === activeMonth ? ' active' : '');
+        btn.textContent = monthLabel(k);
+        btn.addEventListener('click', () => {
+          els.filterMonth.value = k;
+          renderMonthTabs();
+          renderTransactionsTable();
+        });
+        els.monthTabs.appendChild(btn);
+      });
+    }
+
+    function renderContaFilters() {
+      const contas = new Set([...transactions.map(t => t.conta), ...bills.map(b => b.conta)]);
+      const arr = Array.from(contas).sort();
+      syncOptionList(els.filterConta, arr, true);
+      syncOptionList(els.billContaFilter, arr, true);
+    }
+
+    function syncOptionList(select, items, includeTodos) {
+      const current = select.value;
+      select.innerHTML = includeTodos ? '<option value="todos">Todas</option>' : '';
+      items.forEach(item => {
+        const o = document.createElement('option');
+        o.value = item;
+        o.textContent = item;
+        select.appendChild(o);
+      });
+      if ([...select.options].some(o => o.value === current)) select.value = current;
+    }
+
+    function getFilteredTransactions() {
+      const q = els.searchInput.value.trim().toLowerCase();
+      return transactions.filter(t => {
+        const matchText = !q || t.descricao.toLowerCase().includes(q) || (t.responsavel || '').toLowerCase().includes(q);
+        const matchTipo = els.filterTipo.value === 'todos' || t.tipo === els.filterTipo.value;
+        const matchConta = els.filterConta.value === 'todos' || t.conta === els.filterConta.value;
+        const matchMetodo = els.filterMetodo.value === 'todos' || t.metodo === els.filterMetodo.value;
+        const matchMonth = els.filterMonth.value === 'todos' || getMonthKey(t.data) === els.filterMonth.value;
+        return matchText && matchTipo && matchConta && matchMetodo && matchMonth;
+      });
+    }
+
+    function getFilteredBills() {
+      const q = els.billSearchInput.value.trim().toLowerCase();
+      return bills.filter(b => {
+        const matchText = !q || b.descricao.toLowerCase().includes(q) || (b.responsavel || '').toLowerCase().includes(q);
+        const matchStatus = els.billStatusFilter.value === 'todos' || b.status === els.billStatusFilter.value;
+        const matchMonth = els.billMonthFilter.value === 'todos' || getMonthKey(b.data) === els.billMonthFilter.value;
+        const matchConta = els.billContaFilter.value === 'todos' || b.conta === els.billContaFilter.value;
+        return matchText && matchStatus && matchMonth && matchConta;
+      });
+    }
+
+    function renderMetrics() {
+      const currentKey = getMonthKey(new Date().toISOString().slice(0,10));
+      const currentTransactions = transactions.filter(t => getMonthKey(t.data) === currentKey);
+      const entradas = sum(currentTransactions.filter(t => t.tipo === 'entrada').map(t => t.valor));
+      const saidas = sum(currentTransactions.filter(t => t.tipo === 'saida').map(t => t.valor));
+      const saldo = entradas - saidas;
+      const pendentes = bills.filter(b => b.status === 'pendente').length;
+
+      els.metricSaldo.textContent = currency.format(saldo);
+      els.metricEntradas.textContent = currency.format(entradas);
+      els.metricSaidas.textContent = currency.format(saidas);
+      els.metricPendentes.textContent = String(pendentes);
+    }
+
+    function renderComparison() {
+      const current = new Date();
+      const currKey = getMonthKey(current.toISOString().slice(0,10));
+      const prevDate = new Date(current.getFullYear(), current.getMonth()-1, 1);
+      const prevKey = getMonthKey(prevDate.toISOString().slice(0,10));
+
+      const curr = monthTotals(currKey);
+      const prev = monthTotals(prevKey);
+
+      els.currentMonthSaldo.textContent = currency.format(curr.saldo);
+      els.previousMonthSaldo.textContent = currency.format(prev.saldo);
+      els.monthDiff.textContent = currency.format(curr.saldo - prev.saldo);
+
+      if (compareChart) compareChart.destroy();
+      compareChart = new Chart(document.getElementById('compareChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Entradas', 'Saídas', 'Saldo'],
+          datasets: [
+            {
+              label: 'Mês atual',
+              data: [curr.entradas, curr.saidas, curr.saldo],
+              borderRadius: 12,
+              backgroundColor: 'rgba(127, 61, 255, .82)'
+            },
+            {
+              label: 'Mês anterior',
+              data: [prev.entradas, prev.saidas, prev.saldo],
+              borderRadius: 12,
+              backgroundColor: 'rgba(181, 140, 255, .62)'
+            }
+          ]
+        },
+        options: baseChartOptions(false)
+      });
+    }
+
+    function monthTotals(key) {
+      const filtered = transactions.filter(t => getMonthKey(t.data) === key);
+      const entradas = sum(filtered.filter(t => t.tipo === 'entrada').map(t => t.valor));
+      const saidas = sum(filtered.filter(t => t.tipo === 'saida').map(t => t.valor));
+      return { entradas, saidas, saldo: entradas - saidas };
+    }
+
+    function renderTransactionsTable() {
+      const data = getFilteredTransactions();
+      els.transactionsBody.innerHTML = '';
+      els.transactionsEmpty.classList.toggle('hidden', !!data.length);
+
+      data.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${formatDate(item.data)}</td>
+          <td>
+            <strong>${escapeHtml(item.descricao)}</strong>
+            ${item.obs ? `<div class="sub">${escapeHtml(item.obs)}</div>` : ''}
+          </td>
+          <td><span class="pill ${item.tipo}">${item.tipo === 'entrada' ? 'Entrada' : 'Saída'}</span></td>
+          <td>${escapeHtml(item.categoria)}</td>
+          <td><span class="pill pagamento">${escapeHtml(item.metodo)}</span></td>
+          <td><span class="pill conta">${escapeHtml(item.conta)}</span></td>
+          <td>${escapeHtml(item.responsavel || 'Não informado')}</td>
+          <td><strong>${currency.format(Number(item.valor))}</strong></td>
+          <td><button class="btn btn-soft" onclick="removeTransaction('${item.id}')">Excluir</button></td>
+        `;
+        els.transactionsBody.appendChild(tr);
+      });
+    }
+
+    function renderBillsSummary() {
+      els.billsPaid.textContent = String(bills.filter(b => b.status === 'paga').length);
+      els.billsPending.textContent = String(bills.filter(b => b.status === 'pendente').length);
+      els.billsOverdue.textContent = String(bills.filter(b => b.status === 'vencida').length);
+    }
+
+    function renderBillsTable() {
+      const data = getFilteredBills();
+      els.billsBody.innerHTML = '';
+      els.billsEmpty.classList.toggle('hidden', !!data.length);
+
+      data.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${formatDate(item.data)}</td>
+          <td><strong>${escapeHtml(item.descricao)}</strong></td>
+          <td><span class="pill ${item.status}">${capitalize(item.status)}</span></td>
+          <td>${escapeHtml(item.categoria)}</td>
+          <td><span class="pill pagamento">${escapeHtml(item.metodo)}</span></td>
+          <td><span class="pill conta">${escapeHtml(item.conta)}</span></td>
+          <td>${escapeHtml(item.responsavel || 'Não informado')}</td>
+          <td><strong>${currency.format(Number(item.valor))}</strong></td>
+          <td>${billActionButtons(item)}</td>
+        `;
+        els.billsBody.appendChild(tr);
+      });
+
+      renderBillsSummary();
+    }
+
+    function billActionButtons(item) {
+      let html = '';
+      if (item.status !== 'paga') {
+        html += `<button class="btn btn-primary" onclick="markBillPaid('${item.id}')">Dar baixa</button> `;
+      }
+      if (item.status !== 'pendente') {
+        html += `<button class="btn btn-soft" onclick="updateBillStatus('${item.id}','pendente')">Pendente</button> `;
+      }
+      if (item.status !== 'vencida') {
+        html += `<button class="btn btn-soft" onclick="updateBillStatus('${item.id}','vencida')">Vencida</button> `;
+      }
+      html += `<button class="btn btn-soft" onclick="removeBill('${item.id}')">Excluir</button>`;
+      return html;
+    }
+
+    function renderGraphsSection() {
+      fillSelectWithMonths(els.chartMonthSelect, false);
+      const key = els.chartMonthSelect.value || getAllMonthKeys()[0];
+      const monthData = transactions.filter(t => getMonthKey(t.data) === key);
+      const entradas = sum(monthData.filter(t => t.tipo === 'entrada').map(t => t.valor));
+      const saidas = sum(monthData.filter(t => t.tipo === 'saida').map(t => t.valor));
+
+      if (monthChart) monthChart
