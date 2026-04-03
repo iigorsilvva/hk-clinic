@@ -2,13 +2,12 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
 <meta name="apple-mobile-web-app-title" content="HK Clinic"/>
 <title>HK Clinic</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;}
+<style>*{box-sizing:border-box;margin:0;padding:0;}
 body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
 .app{max-width:390px;margin:0 auto;background:#fff;min-height:100vh;}
 #sp{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;transition:opacity .7s ease;}
@@ -29,17 +28,17 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 .hdr-ph{width:32px;}
 .main-hero{display:flex;flex-direction:column;align-items:center;padding:40px 24px 28px;text-align:center;}
 .hero-logo{width:108px;height:108px;border-radius:50%;object-fit:cover;margin-bottom:20px;}
-.hero-clinic{font-size:13px;letter-spacing:.3em;color:#1a1a1a;font-weight:300;margin-bottom:4px;text-transform:uppercase;}
+.hero-clinic{font-size:13px;letter-spacing:.3em;color:#1a1a1a;font-weight:300;text-transform:uppercase;}
 .hero-line{width:20px;height:.5px;background:#b8a878;margin:12px auto 16px;}
 .hero-tag{font-size:9px;letter-spacing:.18em;color:#b8b4ae;text-transform:uppercase;margin-bottom:32px;}
 .nav-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;margin-bottom:12px;}
-.ntile{padding:24px 12px 20px;background:#f5f3f0;border:.5px solid #e8e5e0;border-radius:14px;cursor:pointer;text-align:center;transition:background .15s;}
+.ntile{padding:24px 12px 20px;background:#f5f3f0;border:.5px solid #e8e5e0;border-radius:14px;cursor:pointer;text-align:center;}
 .ntile:active{background:#edeae5;}
 .ntile-ico{margin-bottom:12px;display:flex;justify-content:center;}
 .ntile-lbl{font-size:15px;color:#1a1a1a;font-weight:400;letter-spacing:.04em;}
 .ntile-sub{font-size:9px;color:#b8b4ae;margin-top:4px;letter-spacing:.1em;text-transform:uppercase;}
 .nav-wide{width:100%;margin-bottom:10px;}
-.ntile-wide{padding:16px 18px;background:#f5f3f0;border:.5px solid #e8e5e0;border-radius:14px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:background .15s;}
+.ntile-wide{padding:16px 18px;background:#f5f3f0;border:.5px solid #e8e5e0;border-radius:14px;cursor:pointer;display:flex;align-items:center;gap:14px;}
 .ntile-wide:active{background:#edeae5;}
 .ntile-wide-ico{width:38px;height:38px;border-radius:50%;background:#fff;border:.5px solid #e0ddd8;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .ntile-wide-info{text-align:left;flex:1;}
@@ -52,9 +51,9 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 .c-slide{flex-shrink:0;width:220px;height:148px;border-radius:14px;overflow:hidden;border:.5px solid #e8e5e0;}
 .c-slide img{width:100%;height:100%;object-fit:cover;}
 .menu-body{padding:8px 20px 0;}
-.cat-h{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#b8b4ae;padding:20px 0 10px;}
-.cat-h:first-child{padding-top:8px;}
-.mitem{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:.5px solid #f2efeb;}
+.cat-h{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#b8b4ae;padding:18px 0 8px;}
+.cat-h:first-child{padding-top:6px;}
+.mitem{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:.5px solid #f2efeb;}
 .mitem:last-child{border-bottom:none;}
 .mico{width:44px;height:44px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;}
 .minfo{flex:1;}.mn{font-size:13px;color:#1a1a1a;}.md{font-size:11px;color:#b8b4ae;margin-top:1px;}
@@ -78,7 +77,7 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 .rc-arr{color:#c8c4be;font-size:18px;}
 .svc-img{height:180px;display:flex;align-items:center;justify-content:center;}
 .svc-body{padding:22px 20px 28px;}
-.svc-t{font-size:21px;font-weight:300;letter-spacing:.06em;color:#1a1a1a;margin-bottom:10px;font-family:Georgia,serif;}
+.svc-t{font-size:21px;font-weight:300;color:#1a1a1a;margin-bottom:10px;font-family:Georgia,serif;}
 .svc-p{font-size:13px;color:#888;line-height:1.8;margin-bottom:22px;}
 .svc-feats{margin-bottom:26px;}
 .svc-f{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:.5px solid #f2efeb;font-size:13px;color:#555;}
@@ -104,7 +103,7 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 .conf-btn:disabled{background:#e0ddd8;color:#b0ada8;}
 .succ{text-align:center;padding:72px 32px 48px;}
 .succ-ring{width:72px;height:72px;border-radius:50%;border:.5px solid #d0cdc8;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;}
-.succ-t{font-size:20px;font-weight:300;letter-spacing:.1em;color:#1a1a1a;margin-bottom:10px;font-family:Georgia,serif;}
+.succ-t{font-size:20px;font-weight:300;color:#1a1a1a;margin-bottom:10px;font-family:Georgia,serif;}
 .succ-m{font-size:13px;color:#888;line-height:1.75;margin-bottom:36px;}
 .succ-note{font-size:11px;color:#c8c4be;margin-top:14px;}
 .succ-back{padding:14px 36px;border:.5px solid #dddad5;border-radius:10px;background:#f5f3f0;cursor:pointer;font-size:13px;color:#1a1a1a;}
@@ -119,18 +118,18 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 .wifi-body{padding:24px 20px;}
 .wifi-qr-wrap{background:#f7f5f2;border-radius:16px;padding:24px;text-align:center;margin-bottom:24px;}
 .wifi-qr{width:200px;height:200px;border-radius:10px;object-fit:cover;margin-bottom:14px;}
-.wifi-hint{font-size:12px;color:#b8b4ae;letter-spacing:.04em;}
+.wifi-hint{font-size:12px;color:#b8b4ae;}
 .wifi-card{background:#f7f5f2;border-radius:12px;padding:16px;margin-bottom:22px;}
-.wifi-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:8px 0;border-bottom:.5px solid #edeae5;}
+.wifi-row{display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:.5px solid #edeae5;}
 .wifi-row:last-child{border-bottom:none;}
-.wifi-row .k{color:#888;}.wifi-row .v{color:#1a1a1a;font-weight:500;letter-spacing:.04em;}
+.wifi-row .k{color:#888;}.wifi-row .v{color:#1a1a1a;font-weight:500;}
 .wifi-steps{display:flex;flex-direction:column;gap:10px;}
 .wifi-step{display:flex;align-items:flex-start;gap:12px;}
 .step-n{width:24px;height:24px;border-radius:50%;background:#3a3937;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
 .step-t{font-size:13px;color:#555;line-height:1.6;}
 .conc-body{text-align:center;padding:56px 32px 48px;}
 .conc-ring{width:80px;height:80px;border-radius:50%;background:#f5f3f0;border:.5px solid #e0ddd8;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;}
-.conc-t{font-size:20px;font-weight:300;color:#1a1a1a;margin-bottom:10px;font-family:Georgia,serif;letter-spacing:.08em;}
+.conc-t{font-size:20px;font-weight:300;color:#1a1a1a;margin-bottom:10px;font-family:Georgia,serif;}
 .conc-m{font-size:13px;color:#888;line-height:1.75;margin-bottom:32px;}
 .conc-btn{width:100%;padding:15px;background:#3a3937;color:#fff;border:none;border-radius:11px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;margin-bottom:10px;}
 .conc-btn:active{background:#2a2927;}
@@ -138,54 +137,23 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 .psic-body{padding:0 20px 32px;}
 .psic-hero{background:#f5f0e8;height:120px;display:flex;align-items:center;justify-content:center;}
 .psic-avatar{width:80px;height:80px;border-radius:50%;background:#d8c898;border:3px solid #fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:300;color:#8a7040;font-family:Georgia,serif;}
-.psic-name{font-size:18px;font-weight:300;color:#1a1a1a;letter-spacing:.06em;margin:20px 0 4px;font-family:Georgia,serif;}
+.psic-name{font-size:18px;font-weight:300;color:#1a1a1a;margin:20px 0 4px;font-family:Georgia,serif;}
 .psic-title{font-size:11px;color:#b8a878;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px;}
 .psic-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px;}
-.psic-tag{font-size:10px;padding:5px 12px;border-radius:20px;background:#f5f0e8;color:#8a7040;border:.5px solid #e0d8c0;letter-spacing:.04em;}
+.psic-tag{font-size:10px;padding:5px 12px;border-radius:20px;background:#f5f0e8;color:#8a7040;border:.5px solid #e0d8c0;}
 .psic-desc{font-size:13px;color:#777;line-height:1.8;margin-bottom:28px;}
 .psic-form-h{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#b8b4ae;margin-bottom:14px;}
-.psic-send{width:100%;padding:15px;background:#b8a878;color:#fff;border:none;border-radius:11px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;margin-top:4px;}
-.psic-send:active{background:#a09060;}
-.psic-send:disabled{background:#e0ddd8;color:#b0ada8;}
-</style>
+.psic-send{width:100%;padding:15px;background:#b8a878;color:#fff;border:none;border-radius:11px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;}
+.psic-send:disabled{background:#e0ddd8;color:#b0ada8;}</style>
 </head>
 <body>
 <div class="app">
-
-
-<div id="svg-massagem" style="display:none">
-  <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="36" cy="36" rx="26" ry="16" stroke="#b8a898" stroke-width="1.2"/>
-    <path d="M20 30 Q36 22 52 30" stroke="#c8b8a8" stroke-width="1" fill="none"/>
-    <path d="M20 36 Q36 28 52 36" stroke="#c8b8a8" stroke-width="1" fill="none"/>
-    <path d="M20 42 Q36 34 52 42" stroke="#c8b8a8" stroke-width="1" fill="none"/>
-  </svg>
+<div style="display:none">
+<div id="svg-massagem"><svg width="72" height="72" viewBox="0 0 72 72" fill="none"><ellipse cx="36" cy="36" rx="26" ry="16" stroke="#b8a898" stroke-width="1.2"/><path d="M20 30 Q36 22 52 30" stroke="#c8b8a8" stroke-width="1" fill="none"/><path d="M20 36 Q36 28 52 36" stroke="#c8b8a8" stroke-width="1" fill="none"/><path d="M20 42 Q36 34 52 42" stroke="#c8b8a8" stroke-width="1" fill="none"/></svg></div>
+<div id="svg-posop"><svg width="72" height="72" viewBox="0 0 72 72" fill="none"><rect x="26" y="14" width="20" height="44" rx="10" stroke="#8AAABE" stroke-width="1.2" fill="none"/><path d="M36 26L36 46" stroke="#9ABACE" stroke-width="1" stroke-linecap="round"/><path d="M28 36L44 36" stroke="#9ABACE" stroke-width="1" stroke-linecap="round"/></svg></div>
+<div id="svg-agenda"><svg width="72" height="72" viewBox="0 0 72 72" fill="none"><rect x="16" y="20" width="40" height="36" rx="5" stroke="#b8a878" stroke-width="1.2" fill="none"/><path d="M16 30L56 30" stroke="#c8b888" stroke-width="1"/><path d="M28 14L28 26" stroke="#b8a878" stroke-width="1.4" stroke-linecap="round"/><path d="M44 14L44 26" stroke="#b8a878" stroke-width="1.4" stroke-linecap="round"/><rect x="24" y="38" width="8" height="8" rx="2" fill="#c8b888"/><rect x="38" y="38" width="8" height="8" rx="2" fill="#c8b888"/></svg></div>
+<div id="svg-info"><svg width="72" height="72" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="22" stroke="#A8A49E" stroke-width="1.2" fill="none"/><circle cx="36" cy="28" r="2" fill="#A8A49E"/><path d="M36 34L36 48" stroke="#A8A49E" stroke-width="1.6" stroke-linecap="round"/></svg></div>
 </div>
-<div id="svg-posop" style="display:none">
-  <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="26" y="14" width="20" height="44" rx="10" stroke="#8AAABE" stroke-width="1.2" fill="none"/>
-    <path d="M36 26 L36 46" stroke="#9ABACE" stroke-width="1" stroke-linecap="round"/>
-    <path d="M28 36 L44 36" stroke="#9ABACE" stroke-width="1" stroke-linecap="round"/>
-  </svg>
-</div>
-<div id="svg-agenda" style="display:none">
-  <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="16" y="20" width="40" height="36" rx="5" stroke="#b8a878" stroke-width="1.2" fill="none"/>
-    <path d="M16 30 L56 30" stroke="#c8b888" stroke-width="1"/>
-    <path d="M28 14 L28 26" stroke="#b8a878" stroke-width="1.4" stroke-linecap="round"/>
-    <path d="M44 14 L44 26" stroke="#b8a878" stroke-width="1.4" stroke-linecap="round"/>
-    <rect x="24" y="38" width="8" height="8" rx="2" fill="#c8b888"/>
-    <rect x="38" y="38" width="8" height="8" rx="2" fill="#c8b888"/>
-  </svg>
-</div>
-<div id="svg-info" style="display:none">
-  <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="36" cy="36" r="22" stroke="#A8A49E" stroke-width="1.2" fill="none"/>
-    <circle cx="36" cy="28" r="2" fill="#A8A49E"/>
-    <path d="M36 34 L36 48" stroke="#A8A49E" stroke-width="1.6" stroke-linecap="round"/>
-  </svg>
-</div>
-
 
 <div id="sp">
   <img class="sp-logo" src="data:image/jpeg;base64,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" alt="HK Clinic"/>
@@ -203,33 +171,25 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
     <div class="nav-grid">
       <div class="ntile" onclick="go('s-menu')">
         <div class="ntile-ico"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="3" y="6" width="20" height="1.4" rx=".7" fill="#b8a878"/><rect x="3" y="12" width="20" height="1.4" rx=".7" fill="#b8a878"/><rect x="3" y="18" width="13" height="1.4" rx=".7" fill="#b8a878"/></svg></div>
-        <div class="ntile-lbl">Menu</div>
-        <div class="ntile-sub">Pedidos</div>
+        <div class="ntile-lbl">Menu</div><div class="ntile-sub">Pedidos</div>
       </div>
       <div class="ntile" onclick="go('s-relax')">
-        <div class="ntile-ico"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 4C13 4 7 8 7 14C7 17.3 9.7 20 13 20C16.3 20 19 17.3 19 14C19 8 13 4 13 4Z" stroke="#b8a878" stroke-width="1" fill="none"/><path d="M13 20L13 23" stroke="#b8a878" stroke-width="1" stroke-linecap="round"/><path d="M9 22L17 22" stroke="#b8a878" stroke-width="1" stroke-linecap="round"/></svg></div>
-        <div class="ntile-lbl">Relaxamento</div>
-        <div class="ntile-sub">Spa &amp; Agenda</div>
+        <div class="ntile-ico"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 4C7 4 7 14 13 20C19 14 19 4 13 4Z" stroke="#b8a878" stroke-width="1" fill="none"/><path d="M13 20L13 23" stroke="#b8a878" stroke-width="1" stroke-linecap="round"/><path d="M9 22L17 22" stroke="#b8a878" stroke-width="1" stroke-linecap="round"/></svg></div>
+        <div class="ntile-lbl">Relaxamento</div><div class="ntile-sub">Spa e Agenda</div>
       </div>
     </div>
-    <div class="nav-wide">
-      <div class="ntile-wide" onclick="go('s-conc')">
-        <div class="ntile-wide-ico"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2a4 4 0 100 8 4 4 0 000-8zm-7 14c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="#b8a878" stroke-width="1.2" stroke-linecap="round"/></svg></div>
-        <div class="ntile-wide-info"><div class="ntile-wide-lbl">Chamar Concierge</div><div class="ntile-wide-sub">Assistencia pessoal</div></div>
-      </div>
-    </div>
-    <div class="nav-wide">
-      <div class="ntile-wide" onclick="go('s-psic')">
-        <div class="ntile-wide-ico"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" stroke="#b8a878" stroke-width="1.2" fill="none"/><path d="M3 18c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="#b8a878" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div>
-        <div class="ntile-wide-info"><div class="ntile-wide-lbl">Psicologia Integrada</div><div class="ntile-wide-sub">Conhecer - Isabela Hasse</div></div>
-      </div>
-    </div>
-    <div class="nav-wide">
-      <div class="ntile-wide" onclick="go('s-wifi')">
-        <div class="ntile-wide-ico"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 8c2.2-2.2 5.2-3.5 8-3.5s5.8 1.3 8 3.5" stroke="#b8a878" stroke-width="1.2" stroke-linecap="round"/><path d="M5 11.5c1.4-1.4 3.1-2.2 5-2.2s3.6.8 5 2.2" stroke="#b8a878" stroke-width="1.2" stroke-linecap="round"/><path d="M7.8 15c.6-.6 1.4-.9 2.2-.9s1.6.3 2.2.9" stroke="#b8a878" stroke-width="1.2" stroke-linecap="round"/><circle cx="10" cy="18" r="1" fill="#b8a878"/></svg></div>
-        <div class="ntile-wide-info"><div class="ntile-wide-lbl">Wi-Fi</div><div class="ntile-wide-sub">Conectar a rede</div></div>
-      </div>
-    </div>
+    <div class="nav-wide"><div class="ntile-wide" onclick="go('s-conc')">
+      <div class="ntile-wide-ico"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" stroke="#b8a878" stroke-width="1.2" fill="none"/><path d="M3 18c0-4 3.1-7 7-7s7 3 7 7" stroke="#b8a878" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div>
+      <div class="ntile-wide-info"><div class="ntile-wide-lbl">Chamar Concierge</div><div class="ntile-wide-sub">Assistencia pessoal</div></div>
+    </div></div>
+    <div class="nav-wide"><div class="ntile-wide" onclick="go('s-psic')">
+      <div class="ntile-wide-ico"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3C7 3 5 5.5 5 8c0 2 1 3.5 2.5 4.5L7 15h6l-.5-2.5C14 11.5 15 10 15 8c0-2.5-2-5-5-5z" stroke="#b8a878" stroke-width="1.1" fill="none" stroke-linecap="round"/><path d="M8 15.5h4" stroke="#b8a878" stroke-width="1" stroke-linecap="round"/></svg></div>
+      <div class="ntile-wide-info"><div class="ntile-wide-lbl">Psicologia Integrada</div><div class="ntile-wide-sub">Conhecer - Isabela Hasse</div></div>
+    </div></div>
+    <div class="nav-wide"><div class="ntile-wide" onclick="go('s-wifi')">
+      <div class="ntile-wide-ico"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 8c2.2-2.2 5-3.5 8-3.5s5.8 1.3 8 3.5" stroke="#b8a878" stroke-width="1.2" stroke-linecap="round"/><path d="M5 11c1.4-1.4 3-2.2 5-2.2s3.6.8 5 2.2" stroke="#b8a878" stroke-width="1.2" stroke-linecap="round"/><path d="M8 14c.6-.6 1.3-.9 2-.9s1.4.3 2 .9" stroke="#b8a878" stroke-width="1.2" stroke-linecap="round"/><circle cx="10" cy="17" r="1" fill="#b8a878"/></svg></div>
+      <div class="ntile-wide-info"><div class="ntile-wide-lbl">Wi-Fi</div><div class="ntile-wide-sub">Conectar a rede</div></div>
+    </div></div>
     <div class="carousel-wrap">
       <div class="carousel-lbl">Conheca nosso espaco</div>
       <div class="carousel">
@@ -243,7 +203,7 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 
 <div id="s-menu" class="scr">
   <div class="hdr">
-    <div class="hdr-back" onclick="go('s-main')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="hdr-back" onclick="go('s-main')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round"/></svg></div>
     <div class="hdr-brand"><img class="hdr-logo" src="data:image/jpeg;base64,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" alt="HK"/><span class="hdr-name">Menu</span></div>
     <div class="hdr-ph"></div>
   </div>
@@ -256,7 +216,7 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 
 <div id="s-relax" class="scr">
   <div class="hdr">
-    <div class="hdr-back" onclick="go('s-main')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="hdr-back" onclick="go('s-main')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round"/></svg></div>
     <div class="hdr-brand"><img class="hdr-logo" src="data:image/jpeg;base64,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" alt="HK"/><span class="hdr-name">Relaxamento</span></div>
     <div class="hdr-ph"></div>
   </div>
@@ -265,7 +225,7 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 
 <div id="s-svc" class="scr">
   <div class="hdr">
-    <div class="hdr-back" onclick="go('s-relax')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="hdr-back" onclick="go('s-relax')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round"/></svg></div>
     <div class="hdr-brand"><img class="hdr-logo" src="data:image/jpeg;base64,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" alt="HK"/><span class="hdr-name">HK Clinic</span></div>
     <div class="hdr-ph"></div>
   </div>
@@ -275,7 +235,7 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 
 <div id="s-sch" class="scr">
   <div class="hdr">
-    <div class="hdr-back" onclick="go('s-svc')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="hdr-back" onclick="go('s-svc')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round"/></svg></div>
     <div class="hdr-brand"><img class="hdr-logo" src="data:image/jpeg;base64,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" alt="HK"/><span class="hdr-name">Agendar</span></div>
     <div class="hdr-ph"></div>
   </div>
@@ -299,14 +259,14 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 
 <div id="s-info" class="scr">
   <div class="hdr">
-    <div class="hdr-back" onclick="go('s-relax')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="hdr-back" onclick="go('s-relax')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round"/></svg></div>
     <div class="hdr-brand"><img class="hdr-logo" src="data:image/jpeg;base64,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" alt="HK"/><span class="hdr-name">Informacoes</span></div>
     <div class="hdr-ph"></div>
   </div>
   <div class="info-body">
     <div class="info-sect"><div class="info-h">Funcionamento</div><div class="info-card">
-      <div class="info-row"><span class="k">Segunda &mdash; Sexta</span><span class="v">08:00 &mdash; 19:00</span></div>
-      <div class="info-row"><span class="k">Sabado</span><span class="v">09:00 &mdash; 17:00</span></div>
+      <div class="info-row"><span class="k">Segunda - Sexta</span><span class="v">08:00 - 19:00</span></div>
+      <div class="info-row"><span class="k">Sabado</span><span class="v">09:00 - 17:00</span></div>
       <div class="info-row"><span class="k">Domingo</span><span class="v">Fechado</span></div>
     </div></div>
     <div class="info-sect"><div class="info-h">Contato</div><div class="info-card">
@@ -321,7 +281,7 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 
 <div id="s-wifi" class="scr">
   <div class="hdr">
-    <div class="hdr-back" onclick="go('s-main')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="hdr-back" onclick="go('s-main')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round"/></svg></div>
     <div class="hdr-brand"><img class="hdr-logo" src="data:image/jpeg;base64,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" alt="HK"/><span class="hdr-name">Wi-Fi</span></div>
     <div class="hdr-ph"></div>
   </div>
@@ -337,9 +297,9 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
     </div>
     <div class="info-h" style="margin-bottom:14px;">Como conectar</div>
     <div class="wifi-steps">
-      <div class="wifi-step"><div class="step-n">1</div><div class="step-t">Abra a camera do celular e aponte para o QR Code</div></div>
+      <div class="wifi-step"><div class="step-n">1</div><div class="step-t">Abra a camera e aponte para o QR Code acima</div></div>
       <div class="wifi-step"><div class="step-n">2</div><div class="step-t">Toque na notificacao que aparecer na tela</div></div>
-      <div class="wifi-step"><div class="step-n">3</div><div class="step-t">Ou va em <strong>Ajustes &rarr; Wi-Fi</strong>, selecione <strong>HK_Clientes</strong> e digite a senha</div></div>
+      <div class="wifi-step"><div class="step-n">3</div><div class="step-t">Ou va em Ajustes, Wi-Fi, selecione HK_Clientes e digite a senha</div></div>
       <div class="wifi-step"><div class="step-n">4</div><div class="step-t">Pronto! Voce ja esta conectado</div></div>
     </div>
   </div>
@@ -347,14 +307,14 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 
 <div id="s-conc" class="scr">
   <div class="hdr">
-    <div class="hdr-back" onclick="go('s-main')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="hdr-back" onclick="go('s-main')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round"/></svg></div>
     <div class="hdr-brand"><img class="hdr-logo" src="data:image/jpeg;base64,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" alt="HK"/><span class="hdr-name">Concierge</span></div>
     <div class="hdr-ph"></div>
   </div>
   <div class="conc-body">
     <div class="conc-ring"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="10" r="5" stroke="#b8a878" stroke-width="1.4" fill="none"/><path d="M6 28c0-5 4.5-9 10-9s10 4 10 9" stroke="#b8a878" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg></div>
     <div class="conc-t">Concierge</div>
-    <div class="conc-m">Nossa equipe esta a disposicao. Toque no botao abaixo para chamar um profissional.</div>
+    <div class="conc-m">Nossa equipe esta a disposicao para tornar sua experiencia especial. Toque abaixo para chamar um profissional.</div>
     <button class="conc-btn" id="conc-btn" onclick="chamarConcierge()">Chamar Concierge</button><br/>
     <button class="conc-back" onclick="go('s-main')">Voltar</button>
   </div>
@@ -362,20 +322,20 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 
 <div id="s-psic" class="scr">
   <div class="hdr">
-    <div class="hdr-back" onclick="go('s-main')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="hdr-back" onclick="go('s-main')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="#888" stroke-width="1.2" stroke-linecap="round"/></svg></div>
     <div class="hdr-brand"><img class="hdr-logo" src="data:image/jpeg;base64,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" alt="HK"/><span class="hdr-name">Psicologia</span></div>
     <div class="hdr-ph"></div>
   </div>
   <div class="psic-hero"><div class="psic-avatar">IH</div></div>
   <div class="psic-body">
     <div class="psic-name">Isabela Hasse</div>
-    <div class="psic-title">Psicologa Clinica &middot; HK Clinic</div>
+    <div class="psic-title">Psicologa Clinica - HK Clinic</div>
     <div class="psic-tags">
-      <div class="psic-tag">TCC &mdash; Terapia Cognitivo Comportamental</div>
-      <div class="psic-tag">DBT &mdash; Dialetica Comportamental</div>
+      <div class="psic-tag">TCC - Terapia Cognitivo Comportamental</div>
+      <div class="psic-tag">DBT - Dialetica Comportamental</div>
     </div>
-    <div class="psic-desc">A Psicologia Integrada da HK Clinic oferece cuidado completo para a saude mental, unindo tecnicas modernas e comprovadas para proporcionar equilibrio emocional e qualidade de vida.</div>
-    <div class="psic-form-h">Quero saber mais &mdash; deixe seus dados</div>
+    <div class="psic-desc">A Psicologia Integrada da HK Clinic oferece cuidado completo para a saude mental, unindo tecnicas modernas para proporcionar equilibrio emocional e qualidade de vida.</div>
+    <div class="psic-form-h">Quero saber mais - deixe seus dados</div>
     <input class="nm-input" id="psic-nome" placeholder="Seu nome completo" oninput="updPsic()"/>
     <input class="nm-input" id="psic-wpp" placeholder="WhatsApp com DDD" type="tel" oninput="updPsic()"/>
     <button class="psic-send" id="psic-btn" disabled onclick="enviarPsic()">Quero ser Contactado</button>
@@ -383,102 +343,81 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 </div>
 
 </div>
-<script type="module">
+<script>
 
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getDatabase, ref, push, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDdPzVk3DVpJ3L_4M8HG2kjEZLaTHJCdmo",
-  authDomain: "hk-clinic.firebaseapp.com",
-  databaseURL: "https://hk-clinic-default-rtdb.firebaseio.com",
-  projectId: "hk-clinic",
-  storageBucket: "hk-clinic.firebasestorage.app",
-  messagingSenderId: "208880180495",
-  appId: "1:208880180495:web:518ac316bd08422daab27a"
-};
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-const MOS=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
-const DS=['Dom','Seg','Ter','Qua','Qui','Sex','Sab'];
-
-const ITEMS=[
-  {id:'agua_nat', cat:'Agua',      name:'Agua Natural',       desc:'Copo',                        bg:'#EAF0F5',fg:'#4A7A9B',abbr:'H2O'},
-  {id:'agua_gas', cat:'Agua',      name:'Agua com Gas',       desc:'Garrafa 500ml',               bg:'#E8F0F8',fg:'#3A6A9B',abbr:'GAS'},
-  {id:'agua_sab', cat:'Agua',      name:'Agua Saborizada',    desc:'Selecao do dia',              bg:'#EDF5EA',fg:'#4A8A5A',abbr:'SAB'},
-  {id:'soda',     cat:'Bebidas',   name:'Soda Italiana',      desc:'Variados sabores',            bg:'#F0EDF8',fg:'#6A5A9B',abbr:'SOD'},
-  {id:'coca',     cat:'Bebidas',   name:'Coca-Cola',          desc:'Lata 350ml',                  bg:'#FAEAE8',fg:'#9B3A2A',abbr:'COC'},
-  {id:'hein',     cat:'Bebidas',   name:'Heineken',           desc:'Long neck 330ml',             bg:'#EAF2EA',fg:'#2A6A2A',abbr:'HNK'},
-  {id:'cafe',     cat:'Cafe',      name:'Cafe',               desc:'Coado tradicional',           bg:'#EDE8E0',fg:'#6B4A2A',abbr:'CAF'},
-  {id:'expforte', cat:'Cafe',      name:'Espresso Forte',     desc:'Encorpado e intenso',         bg:'#E8E0D8',fg:'#5A3A1A',abbr:'EXF'},
-  {id:'expmedio', cat:'Cafe',      name:'Espresso Medio',     desc:'Equilibrio perfeito',         bg:'#EDE8E0',fg:'#6B4A2A',abbr:'EXM'},
-  {id:'expfraco', cat:'Cafe',      name:'Espresso Fraco',     desc:'Suave e aromatico',           bg:'#F2EDE8',fg:'#8A6A4A',abbr:'EXS'},
-  {id:'gelat',    cat:'Sobremesas',name:'Gelatina',           desc:'Sabores variados',            bg:'#F5EAF5',fg:'#8A3A8A',abbr:'GEL'},
-  {id:'sorvete',  cat:'Sobremesas',name:'Sorvete',            desc:'Creme',                       bg:'#F5EAF0',fg:'#9A4A6A',abbr:'SOR'},
-  {id:'mousse',   cat:'Sobremesas',name:'Mousse de Maracuja', desc:'Cremoso e refrescante',       bg:'#F5F0E0',fg:'#9A7A2A',abbr:'MOU'},
-  {id:'castanhas',cat:'Lanches',   name:'Mix de Castanhas',   desc:'Nozes, amendoas e castanhas', bg:'#EDE5D8',fg:'#7A5A2A',abbr:'MIX'},
-  {id:'biscfit',  cat:'Lanches',   name:'Biscoitos Fit',      desc:'Integral e saudavel',         bg:'#EAF2EA',fg:'#4A7A3A',abbr:'FIT'},
-  {id:'bolacha',  cat:'Lanches',   name:'Bolachinhas Gourmet',desc:'Selecao especial',            bg:'#F5EFE0',fg:'#9B7A2A',abbr:'GOU'},
-  {id:'iogurte',  cat:'Lanches',   name:'Iogurte com Granola',desc:'Com mel e granola artesanal', bg:'#EAF5F5',fg:'#2A7A8A',abbr:'IOG'},
-  {id:'frutas',   cat:'Frutas',    name:'Frutas',             desc:'Selecao do dia',              bg:'#F5EAF0',fg:'#8A3A6B',abbr:'FRU'}
+var MOS=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+var DS=['Dom','Seg','Ter','Qua','Qui','Sex','Sab'];
+var ITEMS=[
+  {id:'agua_nat', cat:'Agua',      name:'Agua Natural',        desc:'Copo',                       bg:'#EAF0F5',fg:'#4A7A9B',abbr:'H2O'},
+  {id:'agua_gas', cat:'Agua',      name:'Agua com Gas',        desc:'Garrafa 500ml',              bg:'#E8F0F8',fg:'#3A6A9B',abbr:'GAS'},
+  {id:'agua_sab', cat:'Agua',      name:'Agua Saborizada',     desc:'Selecao do dia',             bg:'#EDF5EA',fg:'#4A8A5A',abbr:'SAB'},
+  {id:'soda',     cat:'Bebidas',   name:'Soda Italiana',       desc:'Variados sabores',           bg:'#F0EDF8',fg:'#6A5A9B',abbr:'SOD'},
+  {id:'coca',     cat:'Bebidas',   name:'Coca-Cola',           desc:'Lata 350ml',                 bg:'#FAEAE8',fg:'#9B3A2A',abbr:'COC'},
+  {id:'hein',     cat:'Bebidas',   name:'Heineken',            desc:'Long neck 330ml',            bg:'#EAF2EA',fg:'#2A6A2A',abbr:'HNK'},
+  {id:'cafe',     cat:'Cafe',      name:'Cafe',                desc:'Coado tradicional',          bg:'#EDE8E0',fg:'#6B4A2A',abbr:'CAF'},
+  {id:'expforte', cat:'Cafe',      name:'Espresso Forte',      desc:'Encorpado e intenso',        bg:'#E8E0D8',fg:'#5A3A1A',abbr:'EXF'},
+  {id:'expmedio', cat:'Cafe',      name:'Espresso Medio',      desc:'Equilibrio perfeito',        bg:'#EDE8E0',fg:'#6B4A2A',abbr:'EXM'},
+  {id:'expfraco', cat:'Cafe',      name:'Espresso Fraco',      desc:'Suave e aromatico',          bg:'#F2EDE8',fg:'#8A6A4A',abbr:'EXS'},
+  {id:'gelat',    cat:'Sobremesas',name:'Gelatina',            desc:'Sabores variados',           bg:'#F5EAF5',fg:'#8A3A8A',abbr:'GEL'},
+  {id:'sorvete',  cat:'Sobremesas',name:'Sorvete',             desc:'Creme',                      bg:'#F5EAF0',fg:'#9A4A6A',abbr:'SOR'},
+  {id:'mousse',   cat:'Sobremesas',name:'Mousse de Maracuja',  desc:'Cremoso e refrescante',      bg:'#F5F0E0',fg:'#9A7A2A',abbr:'MOU'},
+  {id:'castanhas',cat:'Lanches',   name:'Mix de Castanhas',    desc:'Nozes e amendoas',           bg:'#EDE5D8',fg:'#7A5A2A',abbr:'MIX'},
+  {id:'biscfit',  cat:'Lanches',   name:'Biscoitos Fit',       desc:'Integral e saudavel',        bg:'#EAF2EA',fg:'#4A7A3A',abbr:'FIT'},
+  {id:'bolacha',  cat:'Lanches',   name:'Bolachinhas Gourmet', desc:'Selecao especial',           bg:'#F5EFE0',fg:'#9B7A2A',abbr:'GOU'},
+  {id:'iogurte',  cat:'Lanches',   name:'Iogurte com Granola', desc:'Com mel artesanal',          bg:'#EAF5F5',fg:'#2A7A8A',abbr:'IOG'},
+  {id:'frutas',   cat:'Frutas',    name:'Frutas',              desc:'Selecao do dia',             bg:'#F5EAF0',fg:'#8A3A6B',abbr:'FRU'}
 ];
-
-const SVCS=[
-  {id:'massagem',name:'Massagem Relaxante',    sub:'60 min - Terapeutica', color:'#EDE5DC'},
-  {id:'posop',   name:'Pos-operatorio',        sub:'Drenagem - Cicatrizacao',color:'#DDE7EF'},
-  {id:'agenda',  name:'Agendar Horario',       sub:'Reserva - Consulta',   color:'#E8E4DC'},
-  {id:'info',    name:'Mais Informacoes',      sub:'Horarios - Contato',   color:'#EDEAE5'}
+var SVCS=[
+  {id:'massagem',name:'Massagem Relaxante',    sub:'60 min - Terapeutica',   color:'#EDE5DC',
+   feats:['Alivio de tensao muscular','Reducao de estresse','Oleos essenciais','Ambiente climatizado'],
+   desc:'Tecnica de massagem que alivia tensoes musculares e promove relaxamento profundo.'},
+  {id:'posop',   name:'Pos-operatorio',        sub:'Drenagem - Cicatrizacao', color:'#DDE7EF',
+   feats:['Drenagem linfatica manual','Reducao de edema','Acompanhamento especializado','Protocolo personalizado'],
+   desc:'Protocolo especializado de drenagem linfatica para acelerar sua recuperacao.'},
+  {id:'agenda',  name:'Agendar Horario',       sub:'Reserva - Consulta',     color:'#E8E4DC',
+   feats:['Confirmacao imediata','Cancelamento flexivel','Atendimento personalizado'],
+   desc:'Reserve seu horario. Escolha o servico, data e horario de sua preferencia.'},
+  {id:'info',    name:'Mais Informacoes',      sub:'Horarios - Contato',     color:'#EDEAE5',
+   feats:[], desc:'Informacoes sobre funcionamento e contato.'}
 ];
+var SLOTS=['08:30','09:00','09:30','10:00','11:00','11:30','14:00','15:00','15:30','16:00','17:00','18:00'];
+var BUSY={'09:00':1,'11:00':1,'15:00':1};
+var cart={},curSvc=null,selDate=null,selTime=null;
 
-const FEATS = {
-  massagem: ['Alivio de tensao muscular','Reducao de estresse','Oleos essenciais naturais','Ambiente climatizado'],
-  posop:    ['Drenagem linfatica manual','Reducao de edema','Acompanhamento especializado','Protocolo personalizado'],
-  agenda:   ['Confirmacao imediata','Cancelamento flexivel','Atendimento personalizado'],
-  info:     []
-};
-
-const DESC = {
-  massagem: 'Tecnica de massagem que alivia tensoes musculares, reduz o estresse e promove relaxamento profundo.',
-  posop:    'Protocolo especializado de drenagem linfatica e cuidados pos-cirurgicos para acelerar a recuperacao.',
-  agenda:   'Reserve seu horario de forma rapida. Escolha o servico, data e horario de sua preferencia.',
-  info:     'Informacoes sobre funcionamento, localizacao e contato.'
-};
-
-const SLOTS=['08:30','09:00','09:30','10:00','11:00','11:30','14:00','15:00','15:30','16:00','17:00','18:00'];
-const BUSY={'09:00':1,'11:00':1,'15:00':1};
-let cart={},curSvc=null,selDate=null,selTime=null,selName='';
-
-window.go=function(id){
-  document.querySelectorAll('.scr').forEach(function(s){s.classList.remove('on');});
+function go(id){
+  var all=document.querySelectorAll('.scr');
+  for(var i=0;i<all.length;i++) all[i].classList.remove('on');
   document.getElementById(id).classList.add('on');
   window.scrollTo(0,0);
-};
+}
 
 function buildMenu(){
-  var cats=[...new Set(ITEMS.map(function(i){return i.cat;}))];
+  var cats=[];
+  ITEMS.forEach(function(item){if(cats.indexOf(item.cat)<0)cats.push(item.cat);});
   var h='';
   cats.forEach(function(c){
     h+='<div class="cat-h">'+c+'</div>';
     ITEMS.filter(function(i){return i.cat===c;}).forEach(function(item){
       h+='<div class="mitem">'
-        +'<div class="mico" style="background:'+item.bg+';color:'+item.fg+'">'+item.abbr+'</div>'
-        +'<div class="minfo"><div class="mn">'+item.name+'</div><div class="md">'+item.desc+'</div></div>'
-        +'<div class="qty">'
-        +'<button class="qb" onclick="chQ(''+item.id+'',-1)">-</button>'
-        +'<div class="qn" id="q-'+item.id+'">0</div>'
-        +'<button class="qb" onclick="chQ(''+item.id+'',1)">+</button>'
-        +'</div></div>';
+       +'<div class="mico" style="background:'+item.bg+';color:'+item.fg+'">'+item.abbr+'</div>'
+       +'<div class="minfo"><div class="mn">'+item.name+'</div><div class="md">'+item.desc+'</div></div>'
+       +'<div class="qty">'
+       +'<button class="qb" onclick="chQ(''+item.id+'',-1)">-</button>'
+       +'<div class="qn" id="q-'+item.id+'">0</div>'
+       +'<button class="qb" onclick="chQ(''+item.id+'',1)">+</button>'
+       +'</div></div>';
     });
   });
   document.getElementById('menu-body').innerHTML=h;
 }
 
-window.chQ=function(id,d){
+function chQ(id,d){
   cart[id]=Math.max(0,(cart[id]||0)+d);
   if(!cart[id])delete cart[id];
-  document.getElementById('q-'+id).textContent=cart[id]||0;
+  var el=document.getElementById('q-'+id);
+  if(el) el.textContent=cart[id]||0;
   updOrder();
-};
+}
 
 function updOrder(){
   var keys=Object.keys(cart);
@@ -488,182 +427,239 @@ function updOrder(){
     sum.innerHTML='<div class="empty-note">Nenhum item selecionado</div>';
     btn.disabled=true;
   } else {
-    sum.innerHTML=keys.map(function(k){
-      var it=ITEMS.find(function(i){return i.id===k;});
-      return '<div class="oi"><span class="l">'+it.name+'</span><span class="r">x'+cart[k]+'</span></div>';
-    }).join('');
+    var h='';
+    keys.forEach(function(k){
+      var it=null;
+      for(var i=0;i<ITEMS.length;i++){if(ITEMS[i].id===k){it=ITEMS[i];break;}}
+      if(it) h+='<div class="oi"><span class="l">'+it.name+'</span><span class="r">x'+cart[k]+'</span></div>';
+    });
+    sum.innerHTML=h;
     btn.disabled=false;
   }
 }
 
-window.sendOrder=async function(){
+function sendOrder(){
+  var keys=Object.keys(cart);
+  if(!keys.length) return;
   var btn=document.getElementById('pedir-btn');
   btn.textContent='Enviando...';btn.disabled=true;
   var now=new Date();
-  var hora=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
-  var itens=Object.keys(cart).map(function(k){
-    var it=ITEMS.find(function(i){return i.id===k;});
-    return it.name+' x '+cart[k];
+  var hora=pad(now.getHours())+':'+pad(now.getMinutes());
+  var itens=[];
+  keys.forEach(function(k){
+    var it=null;
+    for(var i=0;i<ITEMS.length;i++){if(ITEMS[i].id===k){it=ITEMS[i];break;}}
+    if(it) itens.push(it.name+' x '+cart[k]);
   });
-  try{
-    await push(ref(db,'pedidos'),{tipo:'pedido',itens:itens,hora:hora,status:'novo',timestamp:serverTimestamp()});
-    document.getElementById('ok-t').textContent='Pedido Enviado!';
-    document.getElementById('ok-m').textContent='Sua solicitacao foi enviada para a recepcao. Em breve alguem ira atende-lo aqui.';
-    document.getElementById('ok-note').textContent='';
-    cart={};
-    ITEMS.forEach(function(i){var el=document.getElementById('q-'+i.id);if(el)el.textContent='0';});
-    updOrder();
-    go('s-ok');
-  }catch(e){btn.textContent='Fazer Pedido';btn.disabled=false;alert('Erro ao enviar. Verifique a conexao.');}
-};
-
-window.chamarConcierge=async function(){
-  var btn=document.getElementById('conc-btn');
-  btn.textContent='Chamando...';btn.disabled=true;
-  var now=new Date();
-  var hora=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
-  try{
-    await push(ref(db,'pedidos'),{tipo:'concierge',hora:hora,status:'novo',timestamp:serverTimestamp()});
-    document.getElementById('ok-t').textContent='Concierge Chamado!';
-    document.getElementById('ok-m').textContent='Um profissional estara com voce em instantes na sala de repouso.';
-    document.getElementById('ok-note').textContent='';
-    btn.textContent='Chamar Concierge';btn.disabled=false;
-    go('s-ok');
-  }catch(e){btn.textContent='Chamar Concierge';btn.disabled=false;alert('Erro. Verifique a conexao.');}
-};
-
-window.updPsic=function(){
-  var nome=document.getElementById('psic-nome').value.trim();
-  var wpp=document.getElementById('psic-wpp').value.trim();
-  document.getElementById('psic-btn').disabled=!(nome.length>2&&wpp.length>8);
-};
-
-window.enviarPsic=async function(){
-  var btn=document.getElementById('psic-btn');
-  btn.textContent='Enviando...';btn.disabled=true;
-  var nome=document.getElementById('psic-nome').value.trim();
-  var wpp=document.getElementById('psic-wpp').value.trim();
-  var now=new Date();
-  var hora=now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
-  try{
-    await push(ref(db,'pedidos'),{tipo:'psicologia',nome:nome,whatsapp:wpp,hora:hora,status:'novo',timestamp:serverTimestamp()});
-    document.getElementById('ok-t').textContent='Solicitacao Enviada!';
-    document.getElementById('ok-m').textContent='Ola, '+nome.split(' ')[0]+'! Isabela Hasse entrara em contato pelo seu WhatsApp.';
-    document.getElementById('ok-note').textContent='Psicologia Integrada - HK Clinic';
-    document.getElementById('psic-nome').value='';
-    document.getElementById('psic-wpp').value='';
-    btn.textContent='Quero ser Contactado';btn.disabled=true;
-    go('s-ok');
-  }catch(e){btn.textContent='Quero ser Contactado';btn.disabled=false;alert('Erro ao enviar. Verifique a conexao.');}
-};
+  fbSend({tipo:'pedido',itens:itens,hora:hora,status:'novo'}, function(ok){
+    if(ok){
+      showOk('Pedido Enviado!','Sua solicitacao foi enviada para a recepcao. Em breve alguem ira atende-lo.','');
+      cart={};
+      ITEMS.forEach(function(i){var el=document.getElementById('q-'+i.id);if(el)el.textContent='0';});
+      updOrder();
+    } else {
+      btn.textContent='Fazer Pedido';btn.disabled=false;
+      alert('Erro ao enviar. Verifique a conexao.');
+    }
+  });
+}
 
 function buildRelax(){
-  var h=SVCS.map(function(s){
-    return '<div class="rc" onclick="showSvc(''+s.id+'')">'+
-      '<div class="rc-photo" style="background:'+s.color+';display:flex;align-items:center;justify-content:center;">'+
-      document.getElementById('svg-'+s.id).innerHTML+
-      '</div><div class="rc-foot"><div><div class="rc-name">'+s.name+'</div>'+
-      '<div class="rc-sub">'+s.sub+'</div></div><div class="rc-arr">&#8250;</div></div></div>';
-  }).join('');
+  var h='';
+  SVCS.forEach(function(s){
+    var svgEl=document.getElementById('svg-'+s.id);
+    var svgHtml=svgEl?svgEl.innerHTML:'';
+    h+='<div class="rc" onclick="showSvc(''+s.id+')">'
+     +'<div class="rc-photo" style="background:'+s.color+';display:flex;align-items:center;justify-content:center;">'+svgHtml+'</div>'
+     +'<div class="rc-foot"><div><div class="rc-name">'+s.name+'</div><div class="rc-sub">'+s.sub+'</div></div>'
+     +'<div class="rc-arr">&#8250;</div></div></div>';
+  });
   document.getElementById('relax-body').innerHTML=h;
 }
 
-window.showSvc=function(id){
+function showSvc(id){
   curSvc=id;
   if(id==='info'){go('s-info');return;}
-  var s=SVCS.find(function(x){return x.id===id;});
+  var s=null;
+  for(var i=0;i<SVCS.length;i++){if(SVCS[i].id===id){s=SVCS[i];break;}}
+  if(!s) return;
+  var svgEl=document.getElementById('svg-'+id);
+  var svgHtml=svgEl?svgEl.innerHTML:'';
   document.getElementById('svc-hero').innerHTML=
-    '<div style="width:100%;height:100%;background:'+s.color+';display:flex;align-items:center;justify-content:center;">'+
-    document.getElementById('svg-'+id).innerHTML+'</div>';
-  var feats=FEATS[id]||[];
-  var featsHtml=feats.length?'<div class="svc-feats">'+feats.map(function(f){
-    return '<div class="svc-f"><div class="fdot"></div>'+f+'</div>';
-  }).join('')+'</div>':'';
+    '<div style="width:100%;height:100%;background:'+s.color+';display:flex;align-items:center;justify-content:center;">'+svgHtml+'</div>';
+  var featsHtml='';
+  if(s.feats&&s.feats.length){
+    featsHtml='<div class="svc-feats">';
+    s.feats.forEach(function(f){featsHtml+='<div class="svc-f"><div class="fdot"></div>'+f+'</div>';});
+    featsHtml+='</div>';
+  }
   var cta=id==='agenda'
     ?'<button class="svc-cta" onclick="openSchedule()">Escolher Data e Horario</button>'
-    :'<button class="svc-cta" onclick="openSchedule()">Agendar Horario</button>'+
-     '<button class="svc-sec" onclick="openSchedule()">Solicitar Informacoes</button>';
+    :'<button class="svc-cta" onclick="openSchedule()">Agendar Horario</button>'
+     +'<button class="svc-sec" onclick="openSchedule()">Solicitar Informacoes</button>';
   document.getElementById('svc-body').innerHTML=
-    '<div class="svc-t">'+s.name+'</div>'+
-    '<div class="svc-p">'+DESC[id]+'</div>'+
-    featsHtml+cta;
+    '<div class="svc-t">'+s.name+'</div><div class="svc-p">'+s.desc+'</div>'+featsHtml+cta;
   go('s-svc');
-};
+}
 
-window.openSchedule=function(){
-  selDate=null;selTime=null;selName='';
-  var s=SVCS.find(function(x){return x.id===curSvc;});
+function openSchedule(){
+  selDate=null;selTime=null;
+  var s=null;
+  for(var i=0;i<SVCS.length;i++){if(SVCS[i].id===curSvc){s=SVCS[i];break;}}
   var dh='';
   for(var i=0;i<8;i++){
     var d=new Date();d.setDate(d.getDate()+i);
     var lbl=i===0?'Hj':i===1?'Am':DS[d.getDay()];
     var v=d.toISOString().split('T')[0];
-    dh+='<div class="dchip" onclick="pickDate(''+v+'',this)">'+
-      '<div class="dc-d">'+lbl+'</div>'+
-      '<div class="dc-n">'+d.getDate()+'</div>'+
-      '<div class="dc-m">'+MOS[d.getMonth()]+'</div></div>';
+    dh+='<div class="dchip" onclick="pickDate(''+v+'',this)">'
+       +'<div class="dc-d">'+lbl+'</div><div class="dc-n">'+d.getDate()+'</div>'
+       +'<div class="dc-m">'+MOS[d.getMonth()]+'</div></div>';
   }
-  var th=SLOTS.map(function(t){
-    return '<div class="tchip'+(BUSY[t]?' busy':'')+'" onclick="pickTime(''+t+'',this)">'+t+'</div>';
-  }).join('');
+  var th='';
+  SLOTS.forEach(function(t){
+    th+='<div class="tchip'+(BUSY[t]?' busy':'')+'" onclick="pickTime(''+t+'',this)">'+t+'</div>';
+  });
   document.getElementById('sch-body').innerHTML=
-    '<div class="sch-lbl">Servico</div>'+
-    '<div style="font-size:14px;color:#1a1a1a;margin-bottom:20px;padding:13px 14px;background:#f7f5f2;border-radius:10px;">'+(s?s.name:'')+'</div>'+
-    '<div class="sch-lbl">Data</div><div class="date-row">'+dh+'</div>'+
-    '<div class="sch-lbl">Horario</div><div class="tgrid">'+th+'</div>'+
-    '<div class="sch-lbl">Seu Nome</div>'+
-    '<input class="nm-input" id="nm-inp" placeholder="Como devemos chama-lo?" oninput="selName=this.value;updConf()"/>'+
-    '<button class="conf-btn" id="conf-btn" disabled onclick="confirmSch()">Confirmar Agendamento</button>';
+    '<div class="sch-lbl">Servico</div>'
+   +'<div style="font-size:14px;color:#1a1a1a;margin-bottom:20px;padding:13px;background:#f7f5f2;border-radius:10px;">'+(s?s.name:'')+'</div>'
+   +'<div class="sch-lbl">Data</div><div class="date-row">'+dh+'</div>'
+   +'<div class="sch-lbl">Horario</div><div class="tgrid">'+th+'</div>'
+   +'<div class="sch-lbl">Seu Nome</div>'
+   +'<input class="nm-input" id="nm-inp" placeholder="Como devemos chama-lo?"/>'
+   +'<button class="conf-btn" id="conf-btn" disabled onclick="confirmSch()">Confirmar Agendamento</button>';
+  document.getElementById('nm-inp').addEventListener('input',updConf);
   go('s-sch');
-};
+}
 
-window.pickDate=function(v,el){selDate=v;document.querySelectorAll('.dchip').forEach(function(c){c.classList.remove('on');});el.classList.add('on');updConf();};
-window.pickTime=function(v,el){selTime=v;document.querySelectorAll('.tchip').forEach(function(c){c.classList.remove('on');});el.classList.add('on');updConf();};
-window.updConf=function(){
-  var nm=document.getElementById('nm-inp');if(nm)selName=nm.value;
+function pickDate(v,el){
+  selDate=v;
+  var all=document.querySelectorAll('.dchip');
+  for(var i=0;i<all.length;i++) all[i].classList.remove('on');
+  el.classList.add('on');updConf();
+}
+function pickTime(v,el){
+  selTime=v;
+  var all=document.querySelectorAll('.tchip');
+  for(var i=0;i<all.length;i++) all[i].classList.remove('on');
+  el.classList.add('on');updConf();
+}
+function updConf(){
+  var nm=document.getElementById('nm-inp');
   var btn=document.getElementById('conf-btn');
-  if(btn)btn.disabled=!(selDate&&selTime&&selName.trim().length>1);
-};
+  if(nm&&btn) btn.disabled=!(selDate&&selTime&&nm.value.trim().length>1);
+}
 
-window.confirmSch=async function(){
-  var btn=document.getElementById('conf-btn');btn.textContent='Enviando...';btn.disabled=true;
-  var s=SVCS.find(function(x){return x.id===curSvc;});
+function confirmSch(){
+  var nm=document.getElementById('nm-inp');
+  if(!nm) return;
+  var nome=nm.value.trim();
+  var btn=document.getElementById('conf-btn');
+  btn.textContent='Enviando...';btn.disabled=true;
+  var s=null;
+  for(var i=0;i<SVCS.length;i++){if(SVCS[i].id===curSvc){s=SVCS[i];break;}}
   var d=new Date(selDate+'T12:00:00');
   var dataFmt=d.getDate()+' de '+MOS[d.getMonth()];
-  try{
-    await push(ref(db,'pedidos'),{tipo:'agendamento',servico:s.name,nome:selName.trim(),data:dataFmt,horario:selTime,status:'novo',timestamp:serverTimestamp()});
-    document.getElementById('ok-t').textContent='Agendamento Enviado!';
-    document.getElementById('ok-m').textContent='Ola, '+selName.trim().split(' ')[0]+'! Seu agendamento foi enviado. Em breve entraremos em contato.';
-    document.getElementById('ok-note').textContent=s.name+' - '+dataFmt+' as '+selTime;
-    go('s-ok');
-  }catch(e){btn.textContent='Confirmar Agendamento';btn.disabled=false;alert('Erro ao enviar. Verifique a conexao.');}
+  var now=new Date();
+  var hora=pad(now.getHours())+':'+pad(now.getMinutes());
+  fbSend({tipo:'agendamento',servico:s?s.name:'',nome:nome,data:dataFmt,horario:selTime,hora:hora,status:'novo'},function(ok){
+    if(ok){
+      showOk('Agendamento Enviado!','Ola, '+nome.split(' ')[0]+'! Seu agendamento foi enviado. Em breve entraremos em contato.',s.name+' - '+dataFmt+' as '+selTime);
+    } else {
+      btn.textContent='Confirmar Agendamento';btn.disabled=false;
+      alert('Erro ao enviar. Verifique a conexao.');
+    }
+  });
+}
+
+function chamarConcierge(){
+  var btn=document.getElementById('conc-btn');
+  btn.textContent='Chamando...';btn.disabled=true;
+  var now=new Date();
+  var hora=pad(now.getHours())+':'+pad(now.getMinutes());
+  fbSend({tipo:'concierge',hora:hora,status:'novo'},function(ok){
+    btn.textContent='Chamar Concierge';btn.disabled=false;
+    if(ok){
+      showOk('Concierge Chamado!','Um profissional estara com voce em instantes na sala de repouso.','');
+    } else {
+      alert('Erro. Verifique a conexao.');
+    }
+  });
+}
+
+function updPsic(){
+  var nome=document.getElementById('psic-nome').value.trim();
+  var wpp=document.getElementById('psic-wpp').value.trim();
+  document.getElementById('psic-btn').disabled=!(nome.length>2&&wpp.length>8);
+}
+
+function enviarPsic(){
+  var nome=document.getElementById('psic-nome').value.trim();
+  var wpp=document.getElementById('psic-wpp').value.trim();
+  var btn=document.getElementById('psic-btn');
+  btn.textContent='Enviando...';btn.disabled=true;
+  var now=new Date();
+  var hora=pad(now.getHours())+':'+pad(now.getMinutes());
+  fbSend({tipo:'psicologia',nome:nome,whatsapp:wpp,hora:hora,status:'novo'},function(ok){
+    if(ok){
+      document.getElementById('psic-nome').value='';
+      document.getElementById('psic-wpp').value='';
+      showOk('Solicitacao Enviada!','Ola, '+nome.split(' ')[0]+'! Isabela Hasse entrara em contato pelo seu WhatsApp.','Psicologia Integrada - HK Clinic');
+    } else {
+      btn.textContent='Quero ser Contactado';btn.disabled=false;
+      alert('Erro ao enviar. Verifique a conexao.');
+    }
+  });
+}
+
+function showOk(t,m,n){
+  document.getElementById('ok-t').textContent=t;
+  document.getElementById('ok-m').textContent=m;
+  document.getElementById('ok-note').textContent=n;
+  go('s-ok');
+}
+
+function pad(n){return n.toString().padStart(2,'0');}
+
+// Init
+buildMenu();
+buildRelax();
+
+// Splash
+setTimeout(function(){
+  document.getElementById('sp').classList.add('out');
+  setTimeout(function(){
+    document.getElementById('sp').style.display='none';
+    go('s-main');
+  },700);
+},2500);
+
+</script>
+<script type="module">
+
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getDatabase, ref, push, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+var _db = null;
+try {
+  var _app = initializeApp({
+    apiKey: "AIzaSyDdPzVk3DVpJ3L_4M8HG2kjEZLaTHJCdmo",
+    authDomain: "hk-clinic.firebaseapp.com",
+    databaseURL: "https://hk-clinic-default-rtdb.firebaseio.com",
+    projectId: "hk-clinic",
+    storageBucket: "hk-clinic.firebasestorage.app",
+    messagingSenderId: "208880180495",
+    appId: "1:208880180495:web:518ac316bd08422daab27a"
+  });
+  _db = getDatabase(_app);
+} catch(e) { console.warn('Firebase init failed', e); }
+
+window.fbSend = function(data, cb) {
+  if(!_db){ cb(false); return; }
+  try {
+    data.timestamp = serverTimestamp();
+    push(ref(_db,'pedidos'), data).then(function(){ cb(true); }).catch(function(){ cb(false); });
+  } catch(e){ cb(false); }
 };
 
-buildMenu();buildRelax();
-
 </script>
-
-<script>
-// Splash runs independently - never blocked by Firebase
-window.addEventListener('DOMContentLoaded', function() {
-  setTimeout(function() {
-    var sp = document.getElementById('sp');
-    if(sp) sp.classList.add('out');
-    setTimeout(function() {
-      var sp2 = document.getElementById('sp');
-      if(sp2) sp2.style.display = 'none';
-      // go() might not be defined yet if module failed - define fallback
-      if(typeof window.go === 'function') {
-        window.go('s-main');
-      } else {
-        document.querySelectorAll('.scr').forEach(function(s){s.classList.remove('on');});
-        var main = document.getElementById('s-main');
-        if(main) main.classList.add('on');
-      }
-    }, 700);
-  }, 2500);
-});
-</script>
-
 </body>
 </html>
