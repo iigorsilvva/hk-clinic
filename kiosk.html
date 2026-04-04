@@ -618,40 +618,23 @@ function showOk(t,m,n){
 }
 
 
-// ---- FIREBASE (compat SDK - carrega de forma confiável) ----
-var _fbReady = false;
-var _fbQueue = [];
+// ---- FIREBASE REST API (sem SDK, sem expiração) ----
+var DB = 'https://hk-clinic-default-rtdb.firebaseio.com';
 
-function _doSend(data, cb) {
-  if(!_fbReady){ _fbQueue.push({data:data,cb:cb}); return; }
+window.fbSend = function(data, cb) {
   data.ts_client = Date.now();
-  firebase.database().ref('pedidos').push(data)
-    .then(function(){ cb(true); })
-    .catch(function(e){ console.error('FB send error',e); cb(false); });
-}
-window.fbSend = _doSend;
-
-function _initFirebase() {
-  try {
-    var cfg = {
-      apiKey:"AIzaSyDdPzVk3DVpJ3L_4M8HG2kjEZLaTHJCdmo",
-      authDomain:"hk-clinic.firebaseapp.com",
-      databaseURL:"https://hk-clinic-default-rtdb.firebaseio.com",
-      projectId:"hk-clinic",
-      storageBucket:"hk-clinic.firebasestorage.app",
-      messagingSenderId:"208880180495",
-      appId:"1:208880180495:web:518ac316bd08422daab27a"
-    };
-    if(!firebase.apps.length) firebase.initializeApp(cfg);
-    _fbReady = true;
-    // Process queued sends
-    _fbQueue.forEach(function(item){ _doSend(item.data, item.cb); });
-    _fbQueue = [];
-    console.log('Firebase pronto');
-  } catch(e) {
-    console.error('Firebase init error:', e);
-  }
-}
+  fetch(DB + '/pedidos.json', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(r){
+    if(r && r.name){ cb(true); }
+    else { console.error('FB error:', r); cb(false); }
+  })
+  .catch(function(e){ console.error('FB fetch error:', e); cb(false); });
+};
 
 
 // Init on DOM ready
@@ -670,8 +653,5 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 
 
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-<script>_initFirebase();</script>
 </body>
 </html>
