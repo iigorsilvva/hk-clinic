@@ -12,40 +12,50 @@ body{background:#f5f3f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
 .top-logo{width:36px;height:36px;border-radius:50%;object-fit:cover;}
 .top-name{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#1a1a1a;}
 .top-sub{font-size:10px;color:#b8b4ae;margin-top:2px;}
-.top-right{display:flex;align-items:center;gap:12px;}
 .top-status{display:flex;align-items:center;gap:6px;font-size:12px;color:#888;cursor:pointer;}
 .dot-live{width:7px;height:7px;border-radius:50%;background:#4caf50;animation:pulse 1.5s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
-.main{max-width:900px;margin:0 auto;padding:24px 20px;}
+.main{max-width:960px;margin:0 auto;padding:24px 20px;}
+.tabs{display:flex;gap:0;margin-bottom:20px;background:#fff;border-radius:12px;border:.5px solid #e8e5e0;overflow:hidden;}
+.tab{flex:1;padding:12px;text-align:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;color:#b8b4ae;border:none;background:transparent;font-family:inherit;transition:background .15s;}
+.tab.on{background:#3a3937;color:#fff;}
+.tab-section{display:none;}.tab-section.on{display:block;}
 .sec-h{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#b8b4ae;margin-bottom:14px;}
 .cards{display:flex;flex-direction:column;gap:10px;}
+/* CARD */
 .card{background:#fff;border-radius:14px;border:.5px solid #e8e5e0;overflow:hidden;animation:cIn .3s ease;}
 @keyframes cIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-.card.done{opacity:.4;}
+.card.servido{opacity:.4;}
 .card-main{padding:16px 20px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
 .card-left{flex:1;}
-.card-tipo{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:4px 10px;border-radius:20px;margin-bottom:10px;}
+.card-tipo{display:inline-flex;align-items:center;gap:5px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:4px 10px;border-radius:20px;margin-bottom:10px;}
 .tipo-pedido{background:#f0ede8;color:#8a7a5a;}
-.tipo-agenda{background:#e8eeea;color:#4a7a5a;}
+.tipo-agenda{background:#e8eeea;color:#3a7a5a;}
 .tipo-conc{background:#eae8f0;color:#5a4a8a;}
 .tipo-psic{background:#f0e8ee;color:#8a4a7a;}
 .card-itens{font-size:14px;color:#1a1a1a;line-height:1.8;}
-.card-meta{font-size:11px;color:#b8b4ae;margin-top:8px;}
+.card-meta{font-size:11px;color:#b8b4ae;margin-top:6px;}
+.card-servido-badge{font-size:10px;color:#4caf50;font-weight:500;margin-top:6px;letter-spacing:.06em;}
 .card-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;}
-.card-hora{font-size:22px;font-weight:300;color:#1a1a1a;letter-spacing:.04em;}
-.card-btn{padding:9px 16px;background:#3a3937;color:#fff;border:none;border-radius:8px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;}
-.card-btn:hover{background:#2a2927;}
-.card-btn.done-btn{background:#f5f3f0;color:#b8b4ae;border:.5px solid #e0ddd8;cursor:default;}
-.card-expand{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;}
-.card-expand.open{max-height:300px;padding:0 20px 16px;}
-.expand-inner{background:#f7f5f2;border-radius:10px;padding:14px 16px;}
-.exp-row{display:flex;gap:8px;font-size:13px;padding:5px 0;border-bottom:.5px solid #edeae5;}
+.card-hora{font-size:22px;font-weight:300;color:#1a1a1a;}
+.card-btn{padding:9px 16px;border:none;border-radius:8px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;font-family:inherit;}
+.btn-concluir{background:#3a3937;color:#fff;}
+.btn-concluir:hover{background:#2a2927;}
+.btn-detalhes{background:#f0e8d8;color:#8a7040;border:.5px solid #e0d0b0;}
+.btn-detalhes:hover{background:#e8dcc8;}
+.btn-servido{background:#f5f3f0;color:#b8b4ae;border:.5px solid #e0ddd8;cursor:default;}
+/* EXPAND */
+.card-expand{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.card-expand.open{max-height:400px;}
+.expand-inner{margin:0 20px 16px;background:#f7f5f2;border-radius:10px;padding:14px 16px;}
+.exp-row{display:flex;gap:8px;font-size:13px;padding:6px 0;border-bottom:.5px solid #edeae5;align-items:flex-start;}
 .exp-row:last-child{border-bottom:none;}
-.exp-k{color:#888;min-width:90px;flex-shrink:0;}
-.exp-v{color:#1a1a1a;font-weight:500;}
-.expand-btn{font-size:11px;color:#b8a878;background:none;border:none;cursor:pointer;padding:4px 0;letter-spacing:.06em;text-decoration:underline;}
-.empty{text-align:center;padding:64px 20px;color:#c8c4be;}
-.empty-t{font-size:14px;color:#b8b4ae;}
+.exp-k{color:#888;min-width:100px;flex-shrink:0;font-size:12px;}
+.exp-v{color:#1a1a1a;font-weight:500;word-break:break-word;}
+/* EMPTY */
+.empty{text-align:center;padding:48px 20px;}
+.empty-t{font-size:13px;color:#b8b4ae;}
+/* NOTIF */
 .notif-bar{display:none;position:fixed;top:0;left:0;right:0;background:#3a3937;color:#fff;text-align:center;font-size:13px;padding:14px;z-index:999;animation:slideDown .3s ease;}
 @keyframes slideDown{from{transform:translateY(-100%)}to{transform:translateY(0)}}
 </style>
@@ -60,224 +70,237 @@ body{background:#f5f3f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
       <div class="top-sub">Painel da Recepção</div>
     </div>
   </div>
-  <div class="top-right">
-    <div class="top-status" onclick="unlockAudio()" title="Clique para ativar som">
-      <div class="dot-live"></div>Ao vivo 🔔
-    </div>
+  <div class="top-status" onclick="unlockAudio()" title="Clique para ativar som">
+    <div class="dot-live"></div>Ao vivo 🔔
   </div>
 </div>
 
 <div class="main">
-  <div class="sec-h" id="sec-label">Aguardando pedidos...</div>
-  <div class="cards" id="cards-list">
-    <div class="empty"><div class="empty-t">Nenhum pedido no momento</div></div>
+  <div class="tabs">
+    <button class="tab on" onclick="switchTab('pedidos',this)">☕ Pedidos do Menu</button>
+    <button class="tab"    onclick="switchTab('agenda',this)">📅 Agendamentos</button>
+  </div>
+
+  <!-- ABA PEDIDOS -->
+  <div class="tab-section on" id="tab-pedidos">
+    <div class="sec-h" id="lbl-pedidos">Aguardando pedidos...</div>
+    <div class="cards" id="list-pedidos">
+      <div class="empty"><div class="empty-t">Nenhum pedido no momento</div></div>
+    </div>
+  </div>
+
+  <!-- ABA AGENDAMENTOS -->
+  <div class="tab-section" id="tab-agenda">
+    <div class="sec-h" id="lbl-agenda">Agendamentos e solicitações</div>
+    <div class="cards" id="list-agenda">
+      <div class="empty"><div class="empty-t">Nenhum agendamento ainda</div></div>
+    </div>
   </div>
 </div>
 
 <script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getDatabase, ref, onChildAdded, update, get } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+import { initializeApp }    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getDatabase, ref, onChildAdded, update } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDdPzVk3DVpJ3L_4M8HG2kjEZLaTHJCdmo",
-  authDomain: "hk-clinic.firebaseapp.com",
-  databaseURL: "https://hk-clinic-default-rtdb.firebaseio.com",
-  projectId: "hk-clinic",
-  storageBucket: "hk-clinic.firebasestorage.app",
-  messagingSenderId: "208880180495",
-  appId: "1:208880180495:web:518ac316bd08422daab27a"
-};
-const app = initializeApp(firebaseConfig);
-const db  = getDatabase(app);
+const db = getDatabase(initializeApp({
+  apiKey:"AIzaSyDdPzVk3DVpJ3L_4M8HG2kjEZLaTHJCdmo",
+  authDomain:"hk-clinic.firebaseapp.com",
+  databaseURL:"https://hk-clinic-default-rtdb.firebaseio.com",
+  projectId:"hk-clinic",
+  storageBucket:"hk-clinic.firebasestorage.app",
+  messagingSenderId:"208880180495",
+  appId:"1:208880180495:web:518ac316bd08422daab27a"
+}));
 
-// --- AUDIO ---
-let audioCtx = null;
-function unlockAudio(){
-  if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-  if(audioCtx.state==='suspended') audioCtx.resume();
-}
+/* ---- ÁUDIO ---- */
+let ctx=null;
+function unlockAudio(){if(!ctx)ctx=new(window.AudioContext||window.webkitAudioContext)();if(ctx.state==='suspended')ctx.resume();}
 function playChime(){
   try{
-    if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-    if(audioCtx.state==='suspended') audioCtx.resume();
-    [784,988,1175].forEach((freq,i)=>{
-      const o=audioCtx.createOscillator(), g=audioCtx.createGain(), t=audioCtx.currentTime+i*0.18;
-      o.type='sine'; o.frequency.value=freq;
-      g.gain.setValueAtTime(0,t);
-      g.gain.linearRampToValueAtTime(0.22,t+0.04);
-      g.gain.exponentialRampToValueAtTime(0.001,t+0.5);
-      o.connect(g); g.connect(audioCtx.destination);
-      o.start(t); o.stop(t+0.55);
+    if(!ctx)ctx=new(window.AudioContext||window.webkitAudioContext)();
+    if(ctx.state==='suspended')ctx.resume();
+    [784,988,1175].forEach((f,i)=>{
+      const o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime+i*.18;
+      o.type='sine';o.frequency.value=f;
+      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.2,t+.04);g.gain.exponentialRampToValueAtTime(.001,t+.5);
+      o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+.55);
     });
   }catch(e){}
 }
-document.addEventListener('click', unlockAudio, {once:true});
+document.addEventListener('click',unlockAudio,{once:true});
 
-// --- ESTADO PERSISTENTE ---
-// concluded: Set de IDs marcados como concluídos (persiste no localStorage)
-const DONE_KEY = 'hk_done_ids';
-function getDoneSet(){
-  try{ return new Set(JSON.parse(localStorage.getItem(DONE_KEY)||'[]')); }
-  catch(e){ return new Set(); }
-}
-function saveDone(set){
-  try{ localStorage.setItem(DONE_KEY, JSON.stringify([...set])); }catch(e){}
-}
+/* ---- CONTADORES ---- */
+let cntPedidos=0, cntAgenda=0;
+const TWO_H=2*60*60*1000;
 
-// --- CONTROLE DE TEMPO ---
-// Remove pedidos com mais de 2h automaticamente
-const TWO_HOURS = 2 * 60 * 60 * 1000;
-function isExpired(timestamp){
-  if(!timestamp) return false;
-  return (Date.now() - timestamp) > TWO_HOURS;
+function updLabel(tipo){
+  if(tipo==='pedido'||tipo==='concierge'){
+    const n=document.querySelectorAll('#list-pedidos .card').length;
+    document.getElementById('lbl-pedidos').textContent=n===0?'Aguardando pedidos...':n+(n===1?' pedido':' pedidos')+' ativos';
+  } else {
+    const n=document.querySelectorAll('#list-agenda .card').length;
+    document.getElementById('lbl-agenda').textContent=n===0?'Nenhum agendamento ainda':n+(n===1?' registro':' registros');
+  }
 }
 
-// --- RENDER ---
-let total = 0;
-const seen = new Set();
-const doneSet = getDoneSet();
+function removeEmpty(listId){const e=document.querySelector('#'+listId+' .empty');if(e)e.remove();}
 
-// Limpa IDs antigos do doneSet que não existem mais (limpeza periódica)
-setInterval(()=>{
-  const list = document.querySelectorAll('.card');
-  const activeIds = new Set([...list].map(c=>c.id.replace('card-','')));
-  let changed = false;
-  [...doneSet].forEach(id=>{ if(!activeIds.has(id)){ doneSet.delete(id); changed=true; }});
-  if(changed) saveDone(doneSet);
-}, 60000);
+/* ---- RENDER CARD ---- */
+onChildAdded(ref(db,'pedidos'),(snap)=>{
+  const id=snap.key, d=snap.val();
+  if(!d) return;
 
-onChildAdded(ref(db,'pedidos'), (snapshot)=>{
-  const id  = snapshot.key;
-  const d   = snapshot.val();
-  if(seen.has(id)) return;
-  seen.add(id);
+  const tipo=d.tipo||'pedido';
+  const isServido=(d.status==='concluido'||d.status==='servido');
+  const tsMs=d.ts_client||d.timestamp||null;
 
-  // Ignora pedidos com mais de 2h
-  const tsMs = d.timestamp ? d.timestamp : null;
-  if(tsMs && isExpired(tsMs)) return;
+  // Pedidos do menu e concierge: ignorar se expirado (>2h)
+  const isPedidoTipo=(tipo==='pedido'||tipo==='concierge');
+  if(isPedidoTipo && tsMs && (Date.now()-tsMs)>TWO_H) return;
 
-  total++;
-  document.getElementById('sec-label').textContent =
-    total + (total===1 ? ' pedido recebido' : ' pedidos recebidos');
+  // Labels
+  const tipoMap={
+    pedido:   {cls:'tipo-pedido', label:'☕ Pedido'},
+    concierge:{cls:'tipo-conc',   label:'🛎️ Concierge'},
+    agendamento:{cls:'tipo-agenda',label:'📅 Agendamento'},
+    psicologia:{cls:'tipo-psic',  label:'🧠 Psicologia'}
+  };
+  const t=tipoMap[tipo]||tipoMap.pedido;
 
-  // Remove estado vazio
-  const empty = document.querySelector('.empty');
-  if(empty) empty.remove();
-
-  const isDone = doneSet.has(id);
-  const tipo   = d.tipo || 'pedido';
-
-  // Label e cor
-  let tipoClass='tipo-pedido', tipoLabel='☕ Pedido';
-  if(tipo==='agendamento'){ tipoClass='tipo-agenda'; tipoLabel='📅 Agendamento'; }
-  else if(tipo==='concierge'){ tipoClass='tipo-conc'; tipoLabel='🛎️ Concierge'; }
-  else if(tipo==='psicologia'){ tipoClass='tipo-psic'; tipoLabel='🧠 Psicologia'; }
-
-  // Conteúdo principal
-  let itensHtml='';
+  // Conteúdo resumido
+  let resumo='';
   if(tipo==='pedido'){
-    itensHtml = (d.itens||[]).map(i=>'• '+i).join('<br>');
-  } else if(tipo==='agendamento'){
-    itensHtml = '<strong>'+d.servico+'</strong><br>'+d.nome+' · '+d.data+' às '+d.horario;
+    resumo=(d.itens||[]).map(i=>'• '+i).join('<br>');
   } else if(tipo==='concierge'){
-    itensHtml = 'Solicita atendimento na sala de repouso';
-  } else if(tipo==='psicologia'){
-    itensHtml = '<strong>'+d.nome+'</strong> — interesse em Psicologia';
-  }
-
-  // Detalhes expansíveis (só para psicologia e agendamento)
-  let expandHtml='';
-  let hasExpand=false;
-  if(tipo==='psicologia'){
-    hasExpand=true;
-    expandHtml=
-      '<div class="exp-row"><span class="exp-k">Nome</span><span class="exp-v">'+(d.nome||'—')+'</span></div>'+
-      '<div class="exp-row"><span class="exp-k">WhatsApp</span><span class="exp-v">'+(d.whatsapp||'—')+'</span></div>'+
-      '<div class="exp-row"><span class="exp-k">Horário</span><span class="exp-v">'+(d.hora||'—')+'</span></div>'+
-      '<div class="exp-row"><span class="exp-k">Especialidade</span><span class="exp-v">Psicologia Integrada</span></div>';
+    resumo='Concierge solicitado na sala de repouso';
   } else if(tipo==='agendamento'){
-    hasExpand=true;
-    expandHtml=
-      '<div class="exp-row"><span class="exp-k">Paciente</span><span class="exp-v">'+(d.nome||'—')+'</span></div>'+
-      '<div class="exp-row"><span class="exp-k">Serviço</span><span class="exp-v">'+(d.servico||'—')+'</span></div>'+
-      '<div class="exp-row"><span class="exp-k">Data</span><span class="exp-v">'+(d.data||'—')+'</span></div>'+
-      '<div class="exp-row"><span class="exp-k">Horário</span><span class="exp-v">'+(d.horario||'—')+'</span></div>';
+    const nome=d.nome||'—';
+    const svc=d.servico||'—';
+    const dt=d.data||'—';
+    const hr=d.horario||'—';
+    resumo='<strong>'+nome+'</strong><br>'+svc;
+  } else if(tipo==='psicologia'){
+    resumo='<strong>'+(d.nome||'—')+'</strong> — interesse em Psicologia';
   }
 
-  const card = document.createElement('div');
-  card.className = 'card' + (isDone?' done':'');
-  card.id = 'card-'+id;
+  // Detalhes expandíveis
+  let detalheHtml='';
+  if(tipo==='agendamento'){
+    detalheHtml=
+      row('Paciente', d.nome||'—')+
+      row('Serviço',  d.servico||'—')+
+      row('Data',     d.data||'—')+
+      row('Horário',  d.horario||'—')+
+      row('Enviado às', d.hora||'—');
+  } else if(tipo==='psicologia'){
+    detalheHtml=
+      row('Nome',       d.nome||'—')+
+      row('WhatsApp',   d.whatsapp||'—')+
+      row('Interesse',  'Psicologia Integrada · Isabela Hasse')+
+      row('Enviado às', d.hora||'—');
+  }
+  const hasDetalhe=!!(detalheHtml);
+
+  // Botão direito
+  let btnHtml='';
+  if(isPedidoTipo){
+    if(isServido){
+      btnHtml='<button class="card-btn btn-servido" disabled>Servido ✓</button>';
+    } else {
+      btnHtml='<button class="card-btn btn-concluir" id="btn-'+id+'" onclick="marcar(''+id+'','servido')">Concluir</button>';
+    }
+  } else {
+    // agendamento ou psicologia: só Ver detalhes
+    if(hasDetalhe){
+      btnHtml='<button class="card-btn btn-detalhes" onclick="toggleExp(''+id+'')">Ver detalhes ▾</button>';
+    }
+  }
+
+  // Badge servido
+  const badge=isServido?'<div class="card-servido-badge">✓ Servido</div>':'';
+
+  const card=document.createElement('div');
+  card.id='card-'+id;
+  card.className='card'+(isServido?' servido':'');
   card.innerHTML=
     '<div class="card-main">'+
       '<div class="card-left">'+
-        '<div class="card-tipo '+tipoClass+'">'+tipoLabel+'</div>'+
-        '<div class="card-itens">'+itensHtml+'</div>'+
-        (hasExpand?'<button class="expand-btn" onclick="toggleExpand(''+id+'')">Ver detalhes ▾</button>':'')+
+        '<div class="card-tipo '+t.cls+'">'+t.label+'</div>'+
+        '<div class="card-itens">'+resumo+'</div>'+
+        badge+
         '<div class="card-meta">Sala de Repouso · '+(d.hora||'')+'</div>'+
       '</div>'+
       '<div class="card-right">'+
         '<div class="card-hora">'+(d.hora||'--:--')+'</div>'+
-        '<button class="'+(isDone?'card-btn done-btn':'card-btn')+'" id="btn-'+id+'" '+
-          (isDone?'disabled':'onclick="marcarFeito(''+id+'')"')+'>'+
-          (isDone?'Concluído':'Concluir')+
-        '</button>'+
+        btnHtml+
       '</div>'+
     '</div>'+
-    (hasExpand?'<div class="card-expand" id="exp-'+id+'"><div class="expand-inner">'+expandHtml+'</div></div>':'');
+    (hasDetalhe?'<div class="card-expand" id="exp-'+id+'"><div class="expand-inner">'+detalheHtml+'</div></div>':'');
 
-  document.getElementById('cards-list').prepend(card);
+  // Inserir na lista correta
+  const listId = isPedidoTipo ? 'list-pedidos' : 'list-agenda';
+  removeEmpty(listId);
+  document.getElementById(listId).prepend(card);
+  updLabel(tipo);
 
-  // Auto-remover após 2h
-  if(tsMs){
-    const remaining = TWO_HOURS - (Date.now()-tsMs);
-    if(remaining > 0){
-      setTimeout(()=>{ const c=document.getElementById('card-'+id); if(c) c.remove(); total--; updateLabel(); }, remaining);
-    }
-  } else {
-    // Sem timestamp: remove após 2h a partir de agora
-    setTimeout(()=>{ const c=document.getElementById('card-'+id); if(c) c.remove(); total--; updateLabel(); }, TWO_HOURS);
+  // Auto-remover pedidos do menu após 2h
+  if(isPedidoTipo){
+    const remaining=tsMs?Math.max(0,TWO_H-(Date.now()-tsMs)):TWO_H;
+    setTimeout(()=>{
+      const c=document.getElementById('card-'+id);
+      if(c) c.remove();
+      if(!document.querySelector('#list-pedidos .card')){
+        document.getElementById('list-pedidos').innerHTML='<div class="empty"><div class="empty-t">Nenhum pedido no momento</div></div>';
+      }
+      updLabel('pedido');
+    }, remaining);
   }
 
-  // Notificação e som (só se não for concluído)
-  if(!isDone){
+  // Som e notificação (só para pedidos novos não servidos)
+  if(!isServido){
     playChime();
+    const msgs={pedido:'🛎️ Novo pedido da sala!',concierge:'🛎️ Concierge solicitado!',agendamento:'📅 Novo agendamento!',psicologia:'🧠 Interesse em Psicologia!'};
     const nb=document.getElementById('notif-bar');
-    const msgs={'pedido':'🛎️ Novo pedido da sala de repouso!','agendamento':'📅 Novo agendamento solicitado!','concierge':'🛎️ Concierge solicitado na sala!','psicologia':'🧠 Novo interesse em Psicologia!'};
-    nb.textContent = msgs[tipo]||'Novo pedido!';
+    nb.textContent=msgs[tipo]||'Novo pedido!';
     nb.style.display='block';
-    setTimeout(()=>nb.style.display='none', 4000);
+    setTimeout(()=>nb.style.display='none',4000);
   }
 });
 
-function updateLabel(){
-  const cards=document.querySelectorAll('.card');
-  if(cards.length===0){
-    document.getElementById('cards-list').innerHTML='<div class="empty"><div class="empty-t">Nenhum pedido no momento</div></div>';
-    document.getElementById('sec-label').textContent='Aguardando pedidos...';
-    total=0;
-  } else {
-    document.getElementById('sec-label').textContent=cards.length+(cards.length===1?' pedido recebido':' pedidos recebidos');
-  }
+function row(k,v){
+  return '<div class="exp-row"><span class="exp-k">'+k+'</span><span class="exp-v">'+v+'</span></div>';
 }
 
-window.toggleExpand=function(id){
-  const exp=document.getElementById('exp-'+id);
-  const btn=document.querySelector('#card-'+id+' .expand-btn');
-  if(!exp) return;
-  const isOpen=exp.classList.contains('open');
-  exp.classList.toggle('open');
-  if(btn) btn.textContent=isOpen?'Ver detalhes ▾':'Ocultar detalhes ▴';
+/* ---- AÇÕES ---- */
+window.marcar=function(id,status){
+  // Persiste no Firebase — sobrevive a refresh
+  update(ref(db,'pedidos/'+id),{status:status});
+  const card=document.getElementById('card-'+id);
+  if(card) card.classList.add('servido');
+  const btn=document.getElementById('btn-'+id);
+  if(btn){ btn.className='card-btn btn-servido'; btn.textContent='Servido ✓'; btn.disabled=true; btn.removeAttribute('onclick'); }
+  const left=card?card.querySelector('.card-left'):null;
+  if(left&&!left.querySelector('.card-servido-badge')){
+    const b=document.createElement('div');
+    b.className='card-servido-badge'; b.textContent='✓ Servido';
+    left.insertBefore(b, left.querySelector('.card-meta'));
+  }
 };
 
-window.marcarFeito=function(id){
-  update(ref(db,'pedidos/'+id),{status:'concluido'});
-  const card=document.getElementById('card-'+id);
-  if(card) card.classList.add('done');
-  const btn=document.getElementById('btn-'+id);
-  if(btn){ btn.textContent='Concluído'; btn.className='card-btn done-btn'; btn.disabled=true; btn.removeAttribute('onclick'); }
-  // Persiste no localStorage
-  doneSet.add(id);
-  saveDone(doneSet);
+window.toggleExp=function(id){
+  const exp=document.getElementById('exp-'+id);
+  const btn=document.querySelector('#card-'+id+' .btn-detalhes');
+  if(!exp) return;
+  const open=exp.classList.toggle('open');
+  if(btn) btn.textContent=open?'Fechar ▴':'Ver detalhes ▾';
+};
+
+/* ---- ABAS ---- */
+window.switchTab=function(name,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.tab-section').forEach(s=>s.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('tab-'+name).classList.add('on');
 };
 </script>
 </body>
