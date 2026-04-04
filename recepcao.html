@@ -17,8 +17,6 @@ body{background:#f5f3f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
 .badge.verde{background:#e8f5e8;color:#2a7a2a;border-color:#b0d8b0;}
 .badge.vermelho{background:#fae8e8;color:#8a2a2a;border-color:#d8b0b0;}
 .btn-som{font-size:12px;padding:5px 12px;border-radius:20px;border:.5px solid #e0ddd8;background:#fff;cursor:pointer;color:#888;}
-.alerta{background:#fff3cd;border:.5px solid #ffc107;color:#856404;padding:14px 20px;font-size:13px;text-align:center;display:none;}
-.alerta a{color:#856404;font-weight:500;text-decoration:underline;}
 .main{max-width:960px;margin:0 auto;padding:20px;}
 .tabs{display:flex;margin-bottom:16px;background:#fff;border-radius:12px;border:.5px solid #e8e5e0;overflow:hidden;}
 .tab{flex:1;padding:13px;text-align:center;font-size:12px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:#b8b4ae;border:none;background:transparent;font-family:inherit;}
@@ -27,7 +25,7 @@ body{background:#f5f3f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
 .sec-h{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#b8b4ae;margin-bottom:12px;}
 .cards{display:flex;flex-direction:column;gap:10px;}
 .card{background:#fff;border-radius:14px;border:.5px solid #e8e5e0;overflow:hidden;animation:ci .35s ease;}
-@keyframes ci{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ci{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 .card.servido{opacity:.4;}
 .ctop{padding:16px 20px;display:flex;gap:16px;align-items:flex-start;}
 .cl{flex:1;}
@@ -60,112 +58,101 @@ body{background:#f5f3f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
 </head>
 <body>
 <div class="notif" id="notif"></div>
-
 <div class="top">
   <div class="top-brand">
     <img class="top-logo" src="data:image/jpeg;base64,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" alt="HK"/>
-    <div>
-      <div class="top-name">HK Clinic</div>
-      <div class="top-sub">Painel da Recepção</div>
-    </div>
+    <div><div class="top-name">HK Clinic</div><div class="top-sub">Painel da Recepção</div></div>
   </div>
   <div class="top-right">
     <span class="badge" id="badge">Conectando...</span>
     <button class="btn-som" onclick="soar()">🔔 Som</button>
   </div>
 </div>
-
-<div class="alerta" id="alerta">
-  ⚠️ Sem conexão com o banco de dados.
-  <a href="https://console.firebase.google.com/project/hk-clinic/database/hk-clinic-default-rtdb/rules" target="_blank">
-    Clique aqui para verificar as Regras do Firebase
-  </a>
-  e certifique-se que <strong>.read</strong> e <strong>.write</strong> estão como <strong>true</strong>.
-</div>
-
 <div class="main">
   <div class="tabs">
-    <button class="tab on" id="tb-pedidos" onclick="aba('pedidos')">☕ Pedidos do Menu</button>
-    <button class="tab"    id="tb-agenda"  onclick="aba('agenda')">📅 Agendamentos</button>
+    <button class="tab on" id="tb-ped" onclick="aba('ped')">☕ Pedidos do Menu</button>
+    <button class="tab"    id="tb-age" onclick="aba('age')">📅 Agendamentos</button>
   </div>
-  <div class="tsec on" id="ts-pedidos">
-    <div class="sec-h" id="lbl-pedidos">Aguardando pedidos...</div>
+  <div class="tsec on" id="ts-ped">
+    <div class="sec-h" id="lbl-ped">Aguardando pedidos...</div>
     <div class="cards" id="lp"><div class="empty"><div class="empty-t">Nenhum pedido no momento</div></div></div>
   </div>
-  <div class="tsec" id="ts-agenda">
-    <div class="sec-h" id="lbl-agenda">Agendamentos e solicitações</div>
+  <div class="tsec" id="ts-age">
+    <div class="sec-h" id="lbl-age">Agendamentos e solicitações</div>
     <div class="cards" id="la"><div class="empty"><div class="empty-t">Nenhum agendamento ainda</div></div></div>
   </div>
 </div>
 
 <script>
-var DB      = 'https://hk-clinic-default-rtdb.firebaseio.com';
-var DUAS_H  = 2 * 60 * 60 * 1000;
-var vistos  = {};
-var erros   = 0;
+var DB     = 'https://hk-clinic-default-rtdb.firebaseio.com';
+var DUAS_H = 2 * 60 * 60 * 1000;
+var vistos = {};
+var actx   = null;
 
-// ---- ÁUDIO ----
-var actx = null;
 function soar(){
   try{
-    if(!actx) actx = new(window.AudioContext||window.webkitAudioContext)();
+    if(!actx) actx=new(window.AudioContext||window.webkitAudioContext)();
     if(actx.state==='suspended') actx.resume();
     [784,988,1175].forEach(function(f,i){
-      var o=actx.createOscillator(), g=actx.createGain(), t=actx.currentTime+i*.18;
-      o.type='sine'; o.frequency.value=f;
-      g.gain.setValueAtTime(0,t);
-      g.gain.linearRampToValueAtTime(.2,t+.04);
-      g.gain.exponentialRampToValueAtTime(.001,t+.5);
-      o.connect(g); g.connect(actx.destination); o.start(t); o.stop(t+.55);
+      var o=actx.createOscillator(),g=actx.createGain(),t=actx.currentTime+i*.18;
+      o.type='sine';o.frequency.value=f;
+      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.2,t+.04);g.gain.exponentialRampToValueAtTime(.001,t+.5);
+      o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+.55);
     });
   }catch(e){}
 }
 
-// ---- ABAS ----
 function aba(n){
-  ['pedidos','agenda'].forEach(function(x){
+  ['ped','age'].forEach(function(x){
     document.getElementById('tb-'+x).className='tab'+(x===n?' on':'');
     document.getElementById('ts-'+x).className='tsec'+(x===n?' on':'');
   });
 }
 
-// ---- HELPERS ----
-function dr(k,v){ return '<div class="drow"><span class="dk">'+k+'</span><span class="dv">'+(v||'—')+'</span></div>'; }
-
-function rmEmpty(id){ var e=document.querySelector('#'+id+' .empty'); if(e) e.remove(); }
-
-function updLbl(tipo){
-  var isp=(tipo==='pedido'||tipo==='concierge');
-  var lid=isp?'lp':'la', lbl=isp?'lbl-pedidos':'lbl-agenda';
-  var n=document.querySelectorAll('#'+lid+' .card').length;
-  document.getElementById(lbl).textContent = isp
-    ? (n===0?'Aguardando pedidos...':n+(n===1?' pedido':' pedidos'))
-    : (n===0?'Nenhum agendamento ainda':n+(n===1?' registro':' registros'));
-}
-
 function notif(msg){
   var nb=document.getElementById('notif');
-  nb.textContent=msg; nb.style.display='block';
-  clearTimeout(nb._t); nb._t=setTimeout(function(){nb.style.display='none';},4500);
+  nb.textContent=msg;nb.style.display='block';
+  clearTimeout(nb._t);nb._t=setTimeout(function(){nb.style.display='none';},4500);
 }
 
 function setBadge(txt,cor){
   var el=document.getElementById('badge');
-  el.textContent=txt; el.className='badge '+cor;
+  el.textContent=txt;el.className='badge '+cor;
 }
 
-// ---- TOGGLE DETALHES ----
-function toggleDet(id){
+function dr(k,v){
+  return '<div class="drow"><span class="dk">'+k+'</span><span class="dv">'+(v||'—')+'</span></div>';
+}
+
+function rmEmpty(id){var e=document.querySelector('#'+id+' .empty');if(e)e.remove();}
+
+function updLbl(isPed){
+  var lid=isPed?'lp':'la', lbl=isPed?'lbl-ped':'lbl-age';
+  var n=document.querySelectorAll('#'+lid+' .card').length;
+  document.getElementById(lbl).textContent=isPed
+    ?(n===0?'Aguardando pedidos...':n+(n===1?' pedido':' pedidos'))
+    :(n===0?'Nenhum agendamento ainda':n+(n===1?' registro':' registros'));
+}
+
+// Usar data-id em vez de onclick inline com aspas
+document.addEventListener('click', function(e){
+  // Botão concluir
+  var btnOk = e.target.closest('[data-concluir]');
+  if(btnOk){ marcarServido(btnOk.getAttribute('data-concluir'), btnOk); return; }
+
+  // Botão ver detalhes
+  var btnDet = e.target.closest('[data-detalhe]');
+  if(btnDet){ toggleDet(btnDet.getAttribute('data-detalhe'), btnDet); return; }
+});
+
+function toggleDet(id, btn){
   var el=document.getElementById('d-'+id);
-  var bt=document.getElementById('db-'+id);
   if(!el) return;
   var open=el.classList.toggle('open');
-  if(bt) bt.textContent=open?'Fechar ▴':'Ver detalhes ▾';
+  if(btn) btn.textContent=open?'Fechar ▴':'Ver detalhes ▾';
 }
 
-// ---- MARCAR SERVIDO ----
-function marcarServido(id){
-  var btn=document.getElementById('ob-'+id);
+function marcarServido(id, btn){
   if(btn){ btn.textContent='Salvando...'; btn.disabled=true; }
   fetch(DB+'/pedidos/'+id+'.json',{
     method:'PATCH',
@@ -176,11 +163,11 @@ function marcarServido(id){
     if(!r.ok) throw new Error('HTTP '+r.status);
     var card=document.getElementById('c-'+id);
     if(card) card.classList.add('servido');
-    if(btn){ btn.className='btn b-srv'; btn.textContent='✓ Servido'; btn.onclick=null; btn.disabled=false; }
+    if(btn){ btn.className='btn b-srv'; btn.textContent='✓ Servido'; btn.removeAttribute('data-concluir'); btn.disabled=false; }
     var cl=card?card.querySelector('.cl'):null;
     if(cl&&!cl.querySelector('.tag-srv')){
       var t=document.createElement('div');
-      t.className='tag-srv'; t.textContent='✓ Servido';
+      t.className='tag-srv';t.textContent='✓ Servido';
       var mt=cl.querySelector('.card-meta');
       if(mt) cl.insertBefore(t,mt); else cl.appendChild(t);
     }
@@ -191,21 +178,17 @@ function marcarServido(id){
   });
 }
 
-// ---- RENDERIZAR CARD ----
 function renderCard(id, d){
   if(vistos[id]) return;
   vistos[id]=true;
 
-  var tipo   = d.tipo||'pedido';
-  var status = d.status||'novo';
-  var isSrv  = (status==='servido'||status==='concluido');
-  var tsMs   = d.ts_client||null;
-  var isPed  = (tipo==='pedido'||tipo==='concierge');
+  var tipo  = d.tipo||'pedido';
+  var isSrv = (d.status==='servido'||d.status==='concluido');
+  var tsMs  = d.ts_client||null;
+  var isPed = (tipo==='pedido'||tipo==='concierge');
 
-  // Ignorar pedidos de menu expirados (>2h)
   if(isPed && tsMs && (Date.now()-tsMs)>DUAS_H) return;
 
-  // Chip
   var chips={
     pedido:    {c:'ch-ped',l:'☕ Pedido'},
     concierge: {c:'ch-con',l:'🛎️ Concierge'},
@@ -214,7 +197,6 @@ function renderCard(id, d){
   };
   var chip=chips[tipo]||chips.pedido;
 
-  // Resumo
   var resumo='';
   if(tipo==='pedido'){
     resumo=(d.itens||[]).map(function(i){return '• '+i;}).join('<br>');
@@ -226,7 +208,6 @@ function renderCard(id, d){
     resumo='<strong>'+(d.nome||'—')+'</strong><br>Interesse em Psicologia Integrada';
   }
 
-  // Detalhes expandíveis
   var detHtml='', temDet=false;
   if(tipo==='agendamento'){
     temDet=true;
@@ -236,14 +217,13 @@ function renderCard(id, d){
     detHtml=dr('Nome',d.nome)+dr('WhatsApp',d.whatsapp)+dr('Interesse','Psicologia Integrada · Isabela Hasse')+dr('Enviado às',d.hora);
   }
 
-  // Botão
   var btnHtml='';
   if(isPed){
     btnHtml=isSrv
       ?'<button class="btn b-srv" disabled>✓ Servido</button>'
-      :'<button class="btn b-ok" id="ob-'+id+'" onclick="marcarServido(''+id+'')">Concluir</button>';
+      :'<button class="btn b-ok" data-concluir="'+id+'">Concluir</button>';
   } else if(temDet){
-    btnHtml='<button class="btn b-det" id="db-'+id+'" onclick="toggleDet(''+id+'')">Ver detalhes ▾</button>';
+    btnHtml='<button class="btn b-det" data-detalhe="'+id+'">Ver detalhes ▾</button>';
   }
 
   var card=document.createElement('div');
@@ -267,9 +247,8 @@ function renderCard(id, d){
   var lid=isPed?'lp':'la';
   rmEmpty(lid);
   document.getElementById(lid).prepend(card);
-  updLbl(tipo);
+  updLbl(isPed);
 
-  // Auto-remover pedidos de menu após 2h
   if(isPed){
     var rem=tsMs?Math.max(0,DUAS_H-(Date.now()-tsMs)):DUAS_H;
     setTimeout(function(){
@@ -278,11 +257,10 @@ function renderCard(id, d){
       if(!document.querySelector('#lp .card')){
         document.getElementById('lp').innerHTML='<div class="empty"><div class="empty-t">Nenhum pedido no momento</div></div>';
       }
-      updLbl('pedido');
+      updLbl(true);
     },rem);
   }
 
-  // Som e notificação (só novos)
   if(!isSrv){
     soar();
     var msgs={pedido:'🛎️ Novo pedido!',concierge:'🛎️ Concierge!',agendamento:'📅 Novo agendamento!',psicologia:'🧠 Interesse em Psicologia!'};
@@ -290,8 +268,8 @@ function renderCard(id, d){
   }
 }
 
-// ---- POLLING: busca dados a cada 3 segundos ----
-function buscarDados(){
+var erros=0;
+function buscar(){
   fetch(DB+'/pedidos.json')
   .then(function(r){
     if(!r.ok) throw new Error('HTTP '+r.status);
@@ -300,7 +278,6 @@ function buscarDados(){
   .then(function(dados){
     erros=0;
     setBadge('Conectado ✓','verde');
-    document.getElementById('alerta').style.display='none';
     if(dados && typeof dados==='object'){
       Object.keys(dados).forEach(function(id){
         if(dados[id]) renderCard(id, dados[id]);
@@ -309,15 +286,13 @@ function buscarDados(){
   })
   .catch(function(e){
     erros++;
-    setBadge('Sem conexão','vermelho');
-    if(erros===2) document.getElementById('alerta').style.display='block';
-    console.error('Firebase error:', e);
+    setBadge('Sem conexão ✗','vermelho');
+    console.error('Erro Firebase:', e.message);
   });
 }
 
-// Busca imediata + polling a cada 3s
-buscarDados();
-setInterval(buscarDados, 3000);
+buscar();
+setInterval(buscar, 3000);
 </script>
 </body>
 </html>
