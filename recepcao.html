@@ -12,55 +12,53 @@ body{background:#f5f3f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
 .top-logo{width:36px;height:36px;border-radius:50%;object-fit:cover;}
 .top-name{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#1a1a1a;}
 .top-sub{font-size:10px;color:#b8b4ae;margin-top:2px;}
-.top-right{display:flex;align-items:center;gap:14px;}
-.badge-conn{font-size:11px;padding:5px 12px;border-radius:20px;background:#f5f3f0;color:#888;border:.5px solid #e0ddd8;}
-.badge-conn.verde{background:#e8f5e8;color:#2a7a2a;border-color:#b0d8b0;}
-.badge-conn.vermelho{background:#fae8e8;color:#8a2a2a;border-color:#d8b0b0;}
-.top-som{font-size:12px;color:#888;cursor:pointer;padding:5px 10px;border-radius:20px;border:.5px solid #e0ddd8;background:#fff;}
-.top-som:hover{background:#f5f3f0;}
-.alerta{display:none;background:#fff3cd;border:.5px solid #ffc107;color:#856404;padding:12px 20px;font-size:13px;text-align:center;}
-.alerta a{color:#856404;font-weight:500;}
+.top-right{display:flex;align-items:center;gap:12px;}
+.badge{font-size:11px;padding:5px 12px;border-radius:20px;background:#f5f3f0;color:#888;border:.5px solid #e0ddd8;}
+.badge.verde{background:#e8f5e8;color:#2a7a2a;border-color:#b0d8b0;}
+.badge.vermelho{background:#fae8e8;color:#8a2a2a;border-color:#d8b0b0;}
+.btn-som{font-size:12px;padding:5px 12px;border-radius:20px;border:.5px solid #e0ddd8;background:#fff;cursor:pointer;color:#888;}
+.alerta{background:#fff3cd;border:.5px solid #ffc107;color:#856404;padding:14px 20px;font-size:13px;text-align:center;display:none;}
+.alerta a{color:#856404;font-weight:500;text-decoration:underline;}
 .main{max-width:960px;margin:0 auto;padding:20px;}
-.tabs{display:flex;margin-bottom:18px;background:#fff;border-radius:12px;border:.5px solid #e8e5e0;overflow:hidden;}
-.tab{flex:1;padding:13px;text-align:center;font-size:12px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:#b8b4ae;border:none;background:transparent;font-family:inherit;transition:background .15s;}
+.tabs{display:flex;margin-bottom:16px;background:#fff;border-radius:12px;border:.5px solid #e8e5e0;overflow:hidden;}
+.tab{flex:1;padding:13px;text-align:center;font-size:12px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:#b8b4ae;border:none;background:transparent;font-family:inherit;}
 .tab.on{background:#3a3937;color:#fff;}
 .tsec{display:none;}.tsec.on{display:block;}
 .sec-h{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#b8b4ae;margin-bottom:12px;}
 .cards{display:flex;flex-direction:column;gap:10px;}
-.card{background:#fff;border-radius:14px;border:.5px solid #e8e5e0;overflow:hidden;animation:cIn .3s ease;}
-@keyframes cIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-.card.servido{opacity:.45;}
-.card-top{padding:16px 20px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
-.card-l{flex:1;}
+.card{background:#fff;border-radius:14px;border:.5px solid #e8e5e0;overflow:hidden;animation:ci .35s ease;}
+@keyframes ci{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.card.servido{opacity:.4;}
+.ctop{padding:16px 20px;display:flex;gap:16px;align-items:flex-start;}
+.cl{flex:1;}
 .chip{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:8px;}
-.c-ped{background:#f0ede8;color:#8a7a5a;}
-.c-con{background:#eae8f0;color:#5a4a8a;}
-.c-age{background:#e8f0ea;color:#3a7a5a;}
-.c-psi{background:#f0e8ee;color:#8a4a7a;}
+.ch-ped{background:#f0ede8;color:#8a7a5a;}
+.ch-con{background:#eae8f0;color:#5a4a8a;}
+.ch-age{background:#e8f0ea;color:#3a7a5a;}
+.ch-psi{background:#f0e8ee;color:#8a4a7a;}
 .resumo{font-size:14px;color:#1a1a1a;line-height:1.7;}
 .card-meta{font-size:11px;color:#b8b4ae;margin-top:5px;}
-.tag-servido{font-size:10px;color:#4caf50;font-weight:500;margin-top:4px;}
-.card-r{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;}
+.tag-srv{font-size:10px;color:#4caf50;font-weight:500;margin-top:4px;}
+.cr{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;}
 .hora{font-size:22px;font-weight:300;color:#1a1a1a;}
-.btn{padding:10px 16px;border:none;border-radius:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .15s;}
+.btn{padding:10px 16px;border:none;border-radius:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:inherit;}
 .b-ok{background:#3a3937;color:#fff;}.b-ok:hover{background:#2a2927;}
 .b-det{background:#f0e8d8;color:#8a6830;border:.5px solid #e0c898;}.b-det:hover{background:#e8dcc8;}
 .b-srv{background:#f5f3f0;color:#b8b4ae;border:.5px solid #dddad5;cursor:default;}
 .det{max-height:0;overflow:hidden;transition:max-height .35s ease;}
 .det.open{max-height:600px;}
 .det-inner{margin:0 20px 16px;background:#f7f5f2;border-radius:10px;padding:14px 16px;}
-.det-row{display:flex;gap:8px;padding:6px 0;border-bottom:.5px solid #edeae5;align-items:flex-start;}
-.det-row:last-child{border-bottom:none;}
-.det-k{color:#888;width:110px;flex-shrink:0;font-size:12px;padding-top:1px;}
-.det-v{color:#1a1a1a;font-weight:500;font-size:13px;word-break:break-all;}
+.drow{display:flex;gap:8px;padding:6px 0;border-bottom:.5px solid #edeae5;}
+.drow:last-child{border-bottom:none;}
+.dk{color:#888;width:110px;flex-shrink:0;font-size:12px;}
+.dv{color:#1a1a1a;font-weight:500;font-size:13px;word-break:break-all;}
 .empty{text-align:center;padding:52px 20px;}
 .empty-t{font-size:13px;color:#c8c4be;}
-.notif{display:none;position:fixed;top:0;left:0;right:0;background:#3a3937;color:#fff;text-align:center;font-size:13px;padding:14px;z-index:999;animation:sld .3s ease;}
+.notif{display:none;position:fixed;top:0;left:0;right:0;background:#3a3937;color:#fff;text-align:center;font-size:14px;padding:16px;z-index:999;animation:sld .3s ease;}
 @keyframes sld{from{transform:translateY(-100%)}to{transform:translateY(0)}}
 </style>
 </head>
 <body>
-
 <div class="notif" id="notif"></div>
 
 <div class="top">
@@ -72,50 +70,45 @@ body{background:#f5f3f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
     </div>
   </div>
   <div class="top-right">
-    <span class="badge-conn" id="badge">Conectando...</span>
-    <button class="top-som" onclick="soar()">🔔 Ativar som</button>
+    <span class="badge" id="badge">Conectando...</span>
+    <button class="btn-som" onclick="soar()">🔔 Som</button>
   </div>
 </div>
 
 <div class="alerta" id="alerta">
-  ⚠️ Erro de conexão com o Firebase. Acesse o
+  ⚠️ Sem conexão com o banco de dados.
   <a href="https://console.firebase.google.com/project/hk-clinic/database/hk-clinic-default-rtdb/rules" target="_blank">
-    Firebase Console → Realtime Database → Regras
+    Clique aqui para verificar as Regras do Firebase
   </a>
-  e mude para: <code>{ "rules": { ".read": true, ".write": true } }</code>
+  e certifique-se que <strong>.read</strong> e <strong>.write</strong> estão como <strong>true</strong>.
 </div>
 
 <div class="main">
   <div class="tabs">
-    <button class="tab on" id="tbtn-pedidos" onclick="aba('pedidos')">☕ Pedidos do Menu</button>
-    <button class="tab"    id="tbtn-agenda"  onclick="aba('agenda')">📅 Agendamentos</button>
+    <button class="tab on" id="tb-pedidos" onclick="aba('pedidos')">☕ Pedidos do Menu</button>
+    <button class="tab"    id="tb-agenda"  onclick="aba('agenda')">📅 Agendamentos</button>
   </div>
-
-  <div class="tsec on" id="tsec-pedidos">
+  <div class="tsec on" id="ts-pedidos">
     <div class="sec-h" id="lbl-pedidos">Aguardando pedidos...</div>
-    <div class="cards" id="list-pedidos">
-      <div class="empty"><div class="empty-t">Nenhum pedido no momento</div></div>
-    </div>
+    <div class="cards" id="lp"><div class="empty"><div class="empty-t">Nenhum pedido no momento</div></div></div>
   </div>
-
-  <div class="tsec" id="tsec-agenda">
+  <div class="tsec" id="ts-agenda">
     <div class="sec-h" id="lbl-agenda">Agendamentos e solicitações</div>
-    <div class="cards" id="list-agenda">
-      <div class="empty"><div class="empty-t">Nenhum agendamento ainda</div></div>
-    </div>
+    <div class="cards" id="la"><div class="empty"><div class="empty-t">Nenhum agendamento ainda</div></div></div>
   </div>
 </div>
 
 <script>
-var DB = 'https://hk-clinic-default-rtdb.firebaseio.com';
-var DUAS_H = 2 * 60 * 60 * 1000;
-var vistos = {};
+var DB      = 'https://hk-clinic-default-rtdb.firebaseio.com';
+var DUAS_H  = 2 * 60 * 60 * 1000;
+var vistos  = {};
+var erros   = 0;
 
-// ---- SOM ----
+// ---- ÁUDIO ----
 var actx = null;
 function soar(){
   try{
-    if(!actx) actx = new (window.AudioContext||window.webkitAudioContext)();
+    if(!actx) actx = new(window.AudioContext||window.webkitAudioContext)();
     if(actx.state==='suspended') actx.resume();
     [784,988,1175].forEach(function(f,i){
       var o=actx.createOscillator(), g=actx.createGain(), t=actx.currentTime+i*.18;
@@ -129,42 +122,41 @@ function soar(){
 }
 
 // ---- ABAS ----
-function aba(nome){
-  ['pedidos','agenda'].forEach(function(n){
-    document.getElementById('tbtn-'+n).className='tab'+(n===nome?' on':'');
-    document.getElementById('tsec-'+n).className='tsec'+(n===nome?' on':'');
+function aba(n){
+  ['pedidos','agenda'].forEach(function(x){
+    document.getElementById('tb-'+x).className='tab'+(x===n?' on':'');
+    document.getElementById('ts-'+x).className='tsec'+(x===n?' on':'');
   });
 }
 
 // ---- HELPERS ----
-function det_row(k,v){
-  return '<div class="det-row"><span class="det-k">'+k+'</span><span class="det-v">'+(v||'—')+'</span></div>';
-}
-function rm_empty(lid){var e=document.querySelector('#'+lid+' .empty');if(e)e.remove();}
-function upd_lbl(tipo){
-  var isPed=(tipo==='pedido'||tipo==='concierge');
-  var lid=isPed?'list-pedidos':'list-agenda';
-  var lbl=isPed?'lbl-pedidos':'lbl-agenda';
+function dr(k,v){ return '<div class="drow"><span class="dk">'+k+'</span><span class="dv">'+(v||'—')+'</span></div>'; }
+
+function rmEmpty(id){ var e=document.querySelector('#'+id+' .empty'); if(e) e.remove(); }
+
+function updLbl(tipo){
+  var isp=(tipo==='pedido'||tipo==='concierge');
+  var lid=isp?'lp':'la', lbl=isp?'lbl-pedidos':'lbl-agenda';
   var n=document.querySelectorAll('#'+lid+' .card').length;
-  var txt;
-  if(isPed) txt=n===0?'Aguardando pedidos...':n+(n===1?' pedido':' pedidos');
-  else       txt=n===0?'Nenhum agendamento ainda':n+(n===1?' registro':' registros');
-  document.getElementById(lbl).textContent=txt;
+  document.getElementById(lbl).textContent = isp
+    ? (n===0?'Aguardando pedidos...':n+(n===1?' pedido':' pedidos'))
+    : (n===0?'Nenhum agendamento ainda':n+(n===1?' registro':' registros'));
 }
+
 function notif(msg){
   var nb=document.getElementById('notif');
   nb.textContent=msg; nb.style.display='block';
-  clearTimeout(nb._t);
-  nb._t=setTimeout(function(){nb.style.display='none';},4500);
+  clearTimeout(nb._t); nb._t=setTimeout(function(){nb.style.display='none';},4500);
 }
-function badge(txt,cor){
+
+function setBadge(txt,cor){
   var el=document.getElementById('badge');
-  el.textContent=txt; el.className='badge-conn '+cor;
+  el.textContent=txt; el.className='badge '+cor;
 }
 
 // ---- TOGGLE DETALHES ----
 function toggleDet(id){
-  var el=document.getElementById('det-'+id);
+  var el=document.getElementById('d-'+id);
   var bt=document.getElementById('db-'+id);
   if(!el) return;
   var open=el.classList.toggle('open');
@@ -174,28 +166,28 @@ function toggleDet(id){
 // ---- MARCAR SERVIDO ----
 function marcarServido(id){
   var btn=document.getElementById('ob-'+id);
-  if(btn){btn.textContent='Salvando...';btn.disabled=true;}
+  if(btn){ btn.textContent='Salvando...'; btn.disabled=true; }
   fetch(DB+'/pedidos/'+id+'.json',{
     method:'PATCH',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({status:'servido'})
+    body:'{"status":"servido"}'
   })
   .then(function(r){
     if(!r.ok) throw new Error('HTTP '+r.status);
-    var card=document.getElementById('card-'+id);
+    var card=document.getElementById('c-'+id);
     if(card) card.classList.add('servido');
-    if(btn){btn.className='btn b-srv';btn.textContent='✓ Servido';btn.onclick=null;}
-    var cl=card?card.querySelector('.card-l'):null;
-    if(cl&&!cl.querySelector('.tag-servido')){
-      var tg=document.createElement('div');
-      tg.className='tag-servido';tg.textContent='✓ Servido';
+    if(btn){ btn.className='btn b-srv'; btn.textContent='✓ Servido'; btn.onclick=null; btn.disabled=false; }
+    var cl=card?card.querySelector('.cl'):null;
+    if(cl&&!cl.querySelector('.tag-srv')){
+      var t=document.createElement('div');
+      t.className='tag-srv'; t.textContent='✓ Servido';
       var mt=cl.querySelector('.card-meta');
-      if(mt) cl.insertBefore(tg,mt); else cl.appendChild(tg);
+      if(mt) cl.insertBefore(t,mt); else cl.appendChild(t);
     }
   })
   .catch(function(e){
     alert('Erro ao salvar: '+e.message);
-    if(btn){btn.textContent='Concluir';btn.disabled=false;}
+    if(btn){ btn.textContent='Concluir'; btn.disabled=false; }
   });
 }
 
@@ -204,21 +196,21 @@ function renderCard(id, d){
   if(vistos[id]) return;
   vistos[id]=true;
 
-  var tipo=(d.tipo||'pedido');
-  var status=(d.status||'novo');
-  var isServido=(status==='servido'||status==='concluido');
-  var tsMs=d.ts_client||null;
-  var isPed=(tipo==='pedido'||tipo==='concierge');
+  var tipo   = d.tipo||'pedido';
+  var status = d.status||'novo';
+  var isSrv  = (status==='servido'||status==='concluido');
+  var tsMs   = d.ts_client||null;
+  var isPed  = (tipo==='pedido'||tipo==='concierge');
 
-  // Ignorar pedidos de menu expirados
+  // Ignorar pedidos de menu expirados (>2h)
   if(isPed && tsMs && (Date.now()-tsMs)>DUAS_H) return;
 
   // Chip
   var chips={
-    pedido:    {c:'c-ped',l:'☕ Pedido'},
-    concierge: {c:'c-con',l:'🛎️ Concierge'},
-    agendamento:{c:'c-age',l:'📅 Agendamento'},
-    psicologia: {c:'c-psi',l:'🧠 Psicologia'}
+    pedido:    {c:'ch-ped',l:'☕ Pedido'},
+    concierge: {c:'ch-con',l:'🛎️ Concierge'},
+    agendamento:{c:'ch-age',l:'📅 Agendamento'},
+    psicologia: {c:'ch-psi',l:'🧠 Psicologia'}
   };
   var chip=chips[tipo]||chips.pedido;
 
@@ -234,142 +226,98 @@ function renderCard(id, d){
     resumo='<strong>'+(d.nome||'—')+'</strong><br>Interesse em Psicologia Integrada';
   }
 
-  // Detalhes
+  // Detalhes expandíveis
   var detHtml='', temDet=false;
   if(tipo==='agendamento'){
     temDet=true;
-    detHtml=det_row('Paciente',d.nome)+det_row('Serviço',d.servico)+det_row('Data',d.data)+det_row('Horário',d.horario)+det_row('Enviado às',d.hora);
+    detHtml=dr('Paciente',d.nome)+dr('Serviço',d.servico)+dr('Data',d.data)+dr('Horário',d.horario)+dr('Enviado às',d.hora);
   } else if(tipo==='psicologia'){
     temDet=true;
-    detHtml=det_row('Nome',d.nome)+det_row('WhatsApp',d.whatsapp)+det_row('Interesse','Psicologia Integrada · Isabela Hasse')+det_row('Enviado às',d.hora);
+    detHtml=dr('Nome',d.nome)+dr('WhatsApp',d.whatsapp)+dr('Interesse','Psicologia Integrada · Isabela Hasse')+dr('Enviado às',d.hora);
   }
 
   // Botão
   var btnHtml='';
   if(isPed){
-    if(isServido){
-      btnHtml='<button class="btn b-srv" disabled>✓ Servido</button>';
-    } else {
-      btnHtml='<button class="btn b-ok" id="ob-'+id+'" onclick="marcarServido(''+id+'')">Concluir</button>';
-    }
+    btnHtml=isSrv
+      ?'<button class="btn b-srv" disabled>✓ Servido</button>'
+      :'<button class="btn b-ok" id="ob-'+id+'" onclick="marcarServido(''+id+'')">Concluir</button>';
   } else if(temDet){
     btnHtml='<button class="btn b-det" id="db-'+id+'" onclick="toggleDet(''+id+'')">Ver detalhes ▾</button>';
   }
 
-  var servicoTag=isServido?'<div class="tag-servido">✓ Servido</div>':'';
-
   var card=document.createElement('div');
-  card.id='card-'+id;
-  card.className='card'+(isServido?' servido':'');
+  card.id='c-'+id;
+  card.className='card'+(isSrv?' servido':'');
   card.innerHTML=
-    '<div class="card-top">'+
-      '<div class="card-l">'+
+    '<div class="ctop">'+
+      '<div class="cl">'+
         '<span class="chip '+chip.c+'">'+chip.l+'</span>'+
         '<div class="resumo">'+resumo+'</div>'+
-        servicoTag+
+        (isSrv?'<div class="tag-srv">✓ Servido</div>':'')+
         '<div class="card-meta">Sala de Repouso · '+(d.hora||'')+'</div>'+
       '</div>'+
-      '<div class="card-r">'+
+      '<div class="cr">'+
         '<div class="hora">'+(d.hora||'--:--')+'</div>'+
         btnHtml+
       '</div>'+
     '</div>'+
-    (temDet?'<div class="det" id="det-'+id+'"><div class="det-inner">'+detHtml+'</div></div>':'');
+    (temDet?'<div class="det" id="d-'+id+'"><div class="det-inner">'+detHtml+'</div></div>':'');
 
-  var lid=isPed?'list-pedidos':'list-agenda';
-  rm_empty(lid);
+  var lid=isPed?'lp':'la';
+  rmEmpty(lid);
   document.getElementById(lid).prepend(card);
-  upd_lbl(tipo);
+  updLbl(tipo);
 
-  // Auto-remover pedidos após 2h
+  // Auto-remover pedidos de menu após 2h
   if(isPed){
     var rem=tsMs?Math.max(0,DUAS_H-(Date.now()-tsMs)):DUAS_H;
     setTimeout(function(){
-      var c2=document.getElementById('card-'+id);
+      var c2=document.getElementById('c-'+id);
       if(c2) c2.remove();
-      if(!document.querySelector('#list-pedidos .card')){
-        document.getElementById('list-pedidos').innerHTML='<div class="empty"><div class="empty-t">Nenhum pedido no momento</div></div>';
+      if(!document.querySelector('#lp .card')){
+        document.getElementById('lp').innerHTML='<div class="empty"><div class="empty-t">Nenhum pedido no momento</div></div>';
       }
-      upd_lbl('pedido');
+      updLbl('pedido');
     },rem);
   }
 
-  // Notificação apenas se não servido ainda
-  if(!isServido){
+  // Som e notificação (só novos)
+  if(!isSrv){
     soar();
     var msgs={pedido:'🛎️ Novo pedido!',concierge:'🛎️ Concierge!',agendamento:'📅 Novo agendamento!',psicologia:'🧠 Interesse em Psicologia!'};
     notif(msgs[tipo]||'Novo pedido!');
   }
 }
 
-// ---- CONEXÃO FIREBASE VIA SSE (EventSource) ----
-var evtSrc = null;
-var erros = 0;
-
-function conectar(){
-  badge('Conectando...','');
-  if(evtSrc) evtSrc.close();
-
-  evtSrc = new EventSource(DB+'/pedidos.json');
-
-  evtSrc.addEventListener('put', function(e){
+// ---- POLLING: busca dados a cada 3 segundos ----
+function buscarDados(){
+  fetch(DB+'/pedidos.json')
+  .then(function(r){
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json();
+  })
+  .then(function(dados){
     erros=0;
-    badge('Conectado ✓','verde');
+    setBadge('Conectado ✓','verde');
     document.getElementById('alerta').style.display='none';
-    try{
-      var obj=JSON.parse(e.data);
-      if(obj.data && typeof obj.data==='object'){
-        Object.keys(obj.data).forEach(function(id){
-          renderCard(id, obj.data[id]);
-        });
-      }
-    }catch(err){console.error('put parse error',err);}
-  });
-
-  evtSrc.addEventListener('patch', function(e){
-    erros=0;
-    badge('Conectado ✓','verde');
-    try{
-      var obj=JSON.parse(e.data);
-      // obj.path pode ser "/" (novo pedido) ou "/id" (atualização)
-      var data=obj.data;
-      if(!data) return;
-      var path=obj.path||'/';
-
-      if(path==='/'){
-        // Novo(s) pedido(s)
-        Object.keys(data).forEach(function(id){
-          if(data[id] && typeof data[id]==='object'){
-            renderCard(id, data[id]);
-          }
-        });
-      } else {
-        // Atualização de pedido existente (ex: status=servido)
-        var id=path.replace(/^\/+/,'');
-        var card=document.getElementById('card-'+id);
-        if(card && data.status==='servido'){
-          card.classList.add('servido');
-          var ob=document.getElementById('ob-'+id);
-          if(ob){ob.className='btn b-srv';ob.textContent='✓ Servido';ob.onclick=null;}
-        }
-      }
-    }catch(err){console.error('patch parse error',err);}
-  });
-
-  evtSrc.onerror = function(){
-    erros++;
-    badge('Sem conexão','vermelho');
-    if(erros===1){
-      document.getElementById('alerta').style.display='block';
+    if(dados && typeof dados==='object'){
+      Object.keys(dados).forEach(function(id){
+        if(dados[id]) renderCard(id, dados[id]);
+      });
     }
-    // Reconectar após 5s
-    setTimeout(function(){
-      if(evtSrc.readyState===2) conectar();
-    },5000);
-  };
+  })
+  .catch(function(e){
+    erros++;
+    setBadge('Sem conexão','vermelho');
+    if(erros===2) document.getElementById('alerta').style.display='block';
+    console.error('Firebase error:', e);
+  });
 }
 
-conectar();
+// Busca imediata + polling a cada 3s
+buscarDados();
+setInterval(buscarDados, 3000);
 </script>
 </body>
 </html>
