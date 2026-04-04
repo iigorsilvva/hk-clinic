@@ -656,6 +656,7 @@ window.fbSend = function(data, cb) {
   if(!_db){ cb(false); return; }
   try {
     data.timestamp = serverTimestamp();
+    data.ts_client = Date.now();
     push(ref(_db,'pedidos'), data).then(function(){ cb(true); }).catch(function(){ cb(false); });
   } catch(e){ cb(false); }
 };
