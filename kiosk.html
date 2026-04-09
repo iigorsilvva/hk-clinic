@@ -144,7 +144,24 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 .psic-desc{font-size:13px;color:#777;line-height:1.8;margin-bottom:28px;}
 .psic-form-h{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#b8b4ae;margin-bottom:14px;}
 .psic-send{width:100%;padding:15px;background:#b8a878;color:#fff;border:none;border-radius:11px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;}
-.psic-send:disabled{background:#e0ddd8;color:#b0ada8;}</style>
+.psic-send:disabled{background:#e0ddd8;color:#b0ada8;}
+.proc-grid{display:flex;flex-direction:column;gap:8px;padding:16px 20px;}
+.proc-card{background:#fff;border:.5px solid #e8e5e0;border-radius:14px;padding:14px 16px;cursor:pointer;transition:background .15s;}
+.proc-card:active{background:#f7f5f2;}
+.proc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.proc-name{font-size:13px;font-weight:500;color:#1a1a1a;flex:1;}
+.proc-price{font-size:13px;font-weight:500;color:#b8a878;flex-shrink:0;}
+.proc-arr{color:#c8c4be;font-size:16px;flex-shrink:0;}
+.proc-detail{display:none;margin-top:12px;padding-top:12px;border-top:.5px solid #f2efeb;}
+.proc-detail.open{display:block;}
+.proc-desc{font-size:12px;color:#888;line-height:1.6;margin-bottom:14px;}
+.proc-form-h{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#b8b4ae;margin-bottom:10px;}
+.proc-send{width:100%;padding:13px;background:#b8a878;color:#fff;border:none;border-radius:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-top:6px;}
+.proc-send:disabled{background:#e0ddd8;color:#b0ada8;}
+.relax-tabs{display:flex;border-bottom:.5px solid #eeece8;margin-bottom:4px;}
+.relax-tab{flex:1;padding:11px 8px;text-align:center;font-size:11px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:#b8b4ae;border:none;background:transparent;font-family:inherit;border-bottom:2px solid transparent;}
+.relax-tab.on{color:#1a1a1a;font-weight:500;border-bottom-color:#b8a878;}
+.relax-sec{display:none;}.relax-sec.on{display:block;}</style>
 </head>
 <body>
 <div class="app">
@@ -220,7 +237,16 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
     <div class="hdr-brand"><img class="hdr-logo" src="data:image/jpeg;base64,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" alt="HK"/><span class="hdr-name">Relaxamento</span></div>
     <div class="hdr-ph"></div>
   </div>
-  <div class="relax-body" id="relax-body"></div>
+  <div class="relax-tabs">
+    <button class="relax-tab on" id="rtab-trat" onclick="relaxAba('trat')">Serviços</button>
+    <button class="relax-tab" id="rtab-proc" onclick="relaxAba('proc')">Procedimentos</button>
+  </div>
+  <div class="relax-sec on" id="rsec-trat">
+    <div class="relax-body" id="relax-body"></div>
+  </div>
+  <div class="relax-sec" id="rsec-proc">
+    <div class="proc-grid" id="proc-grid"></div>
+  </div>
 </div>
 
 <div id="s-svc" class="scr">
@@ -637,10 +663,116 @@ window.fbSend = function(data, cb) {
 };
 
 
+var PROCS=[
+  {id:'avaliacao', name:'Avaliação', desc:'Consulta inicial para entender suas necessidades e indicar o tratamento ideal.', price:'R$ 100,00'},
+  {id:'birthday', name:'Birthday', desc:'Experiência especial de relaxamento para celebrar sua data comemorativa com mimo e exclusividade.', price:'R$ 300,00'},
+  {id:'friends', name:'Friends Relax', desc:'Pacote especial para amigas: relaxamento completo e momentos inesquecíveis juntas.', price:'R$ 500,00'},
+  {id:'limpeza_costas', name:'Limpeza de Pele nas Costas', desc:'Limpeza profunda com extração, esfoliação e hidratação para uma pele limpa e saudável.', price:'R$ 350,00'},
+  {id:'limpeza_facial', name:'Limpeza de Pele Facial Anna Pegova', desc:'Protocolo exclusivo Anna Pegova para pele radiante — limpeza, extração e hidratação facial completa.', price:'R$ 200,00'},
+  {id:'radio_corp', name:'Radiofrequência Corporal', desc:'Tecnologia que estimula a produção de colágeno, firmando e remodelando o contorno corporal.', price:'R$ 200,00'},
+  {id:'radio_facial', name:'Radiofrequência Facial', desc:'Rejuvenescimento facial com radiofrequência — combate flacidez e estimula colágeno de forma não invasiva.', price:'R$ 180,00'},
+  {id:'posop_corp', name:'Pós-operatório Corporal', desc:'Protocolo completo que inclui drenagem linfática, tapping e terapia de laser para recuperação ideal.', price:'R$ 200,00'},
+  {id:'posop_facial', name:'Pós-operatório Facial', desc:'Cuidados pós-cirúrgicos faciais com técnicas especializadas para acelerar a recuperação.', price:'R$ 150,00'},
+  {id:'dren_corp', name:'Drenagem Linfática Corporal', desc:'Técnica manual que reduz inchaço, elimina toxinas e melhora a circulação de todo o corpo.', price:'R$ 180,00'},
+  {id:'dren_facial', name:'Drenagem Linfática Facial', desc:'Drenagem delicada para o rosto — reduz inchaço, melhora o contorno e revitaliza a pele.', price:'R$ 100,00'},
+  {id:'criolipo', name:'Criolipólise de Placas', desc:'Tratamento não invasivo para redução de gordura localizada. Valor sob consulta — agende sua avaliação.', price:'Orçamento mediante avaliação'},
+  {id:'microagulha', name:'Microagulhamento', desc:'Estimulação do colágeno com microagulhamento — trata manchas, cicatrizes e rejuvenece a pele.', price:'R$ 300,00'},
+  {id:'spa_maos', name:'Spa das Mãos', desc:'Ritual completo de esfoliação, hidratação e massagem para suas mãos — leveza e cuidado em detalhes.', price:'R$ 70,00'},
+  {id:'escalda', name:'Escalda Pés', desc:'Imersão relaxante com ervas e sais, seguida de esfoliação e massagem — cuide dos seus pés com carinho.', price:'R$ 80,00'},
+  {id:'mass_escalda', name:'Massagem Relaxante com Escalda Pés', desc:'Combinação perfeita: escalda pés aromático + massagem relaxante para relaxamento total do corpo.', price:'R$ 200,00'},
+  {id:'ventosas', name:'Massagem com Ventosas', desc:'Técnica milenar que alivia tensões, melhora a circulação e promove profundo relaxamento muscular.', price:'R$ 200,00'},
+  {id:'pedras', name:'Massagem com Pedras Quentes', desc:'Pedras vulcânicas aquecidas que derretem as tensões e proporcionam relaxamento profundo e duradouro.', price:'R$ 200,00'},
+  {id:'velas', name:'Massagem com Velas', desc:'Massagem sensorial com cera derretida de baixa temperatura — relaxante, hidratante e inesquecível.', price:'R$ 200,00'},
+  {id:'mass_relax', name:'Massagem Relaxante Manual Tradicional', desc:'Massagem clássica com manobras suaves e rítmicas que eliminam tensões e restabelecem o equilíbrio.', price:'R$ 180,00'},
+];
+
+
+function relaxAba(n){
+  ['trat','proc'].forEach(function(x){
+    document.getElementById('rtab-'+x).className='relax-tab'+(x===n?' on':'');
+    document.getElementById('rsec-'+x).className='relax-sec'+(x===n?' on':'');
+  });
+}
+
+function buildProcs(){
+  var grid=document.getElementById('proc-grid');
+  if(!grid) return;
+  var html='';
+  PROCS.forEach(function(p){
+    html+='<div class="proc-card" data-proc="'+p.id+'">'
+      +'<div class="proc-head">'
+      +'<span class="proc-name">'+p.name+'</span>'
+      +'<span class="proc-price">'+p.price+'</span>'
+      +'<span class="proc-arr">&#8250;</span>'
+      +'</div>'
+      +'<div class="proc-detail" id="pd-'+p.id+'">'
+      +'<div class="proc-desc">'+p.desc+'</div>'
+      +'<div class="proc-form-h">Tenho interesse — deixe seus dados</div>'
+      +'<input class="nm-input" id="pnome-'+p.id+'" placeholder="Seu nome completo" oninput="updProc(''+p.id+'')" style="margin-bottom:8px;"/>'
+      +'<input class="nm-input" id="pwpp-'+p.id+'" placeholder="WhatsApp com DDD" type="tel" oninput="updProc(''+p.id+'')" style="margin-bottom:8px;"/>'
+      +'<button class="proc-send" id="pbtn-'+p.id+'" data-proc-send="'+p.id+'" disabled>Quero ser Contactado</button>'
+      +'</div>'
+      +'</div>';
+  });
+  grid.innerHTML=html;
+
+  // Click on card header toggles detail
+  grid.addEventListener('click',function(e){
+    // Send button
+    var sbtn=e.target.closest('[data-proc-send]');
+    if(sbtn){ enviarProc(sbtn.getAttribute('data-proc-send')); return; }
+    // Card toggle (not clicking inside form)
+    var card=e.target.closest('[data-proc]');
+    if(!card) return;
+    // Don't toggle if clicking inside input or button
+    if(e.target.tagName==='INPUT'||e.target.tagName==='BUTTON') return;
+    var pid=card.getAttribute('data-proc');
+    var det=document.getElementById('pd-'+pid);
+    var arr=card.querySelector('.proc-arr');
+    if(!det) return;
+    var open=det.classList.toggle('open');
+    if(arr) arr.textContent=open?'\u2039':'\u203a';
+    // Close others
+    PROCS.forEach(function(p){
+      if(p.id!==pid){
+        var od=document.getElementById('pd-'+p.id);
+        var oa=document.querySelector('[data-proc="'+p.id+'"] .proc-arr');
+        if(od){od.classList.remove('open');}
+        if(oa){oa.textContent='\u203a';}
+      }
+    });
+  });
+}
+
+function updProc(pid){
+  var nome=document.getElementById('pnome-'+pid);
+  var wpp=document.getElementById('pwpp-'+pid);
+  var btn=document.getElementById('pbtn-'+pid);
+  if(nome&&wpp&&btn) btn.disabled=!(nome.value.trim().length>2&&wpp.value.trim().length>8);
+}
+
+function enviarProc(pid){
+  var nome=document.getElementById('pnome-'+pid).value.trim();
+  var wpp=document.getElementById('pwpp-'+pid).value.trim();
+  var btn=document.getElementById('pbtn-'+pid);
+  var proc=null;
+  for(var i=0;i<PROCS.length;i++){if(PROCS[i].id===pid){proc=PROCS[i];break;}}
+  btn.textContent='Enviando...';btn.disabled=true;
+  fbSend({tipo:'procedimento',nome:nome,whatsapp:wpp,procedimento:proc?proc.name:'',preco:proc?proc.price:'',hora:nowHora(),status:'novo'},function(ok){
+    if(ok){
+      showOk('Solicitação Enviada!','Olá, '+nome.split(' ')[0]+'! Seu interesse em '+proc.name+' foi enviado. A equipe entrará em contato pelo seu WhatsApp.','');
+    } else {
+      btn.textContent='Quero ser Contactado';btn.disabled=false;
+      alert('Erro ao enviar. Verifique a conexão.');
+    }
+  });
+}
+
 // Init on DOM ready
 document.addEventListener('DOMContentLoaded',function(){
   buildMenu();
   buildRelax();
+  buildProcs();
   setTimeout(function(){
     document.getElementById('sp').classList.add('out');
     setTimeout(function(){
