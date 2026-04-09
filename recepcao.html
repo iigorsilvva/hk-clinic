@@ -186,14 +186,16 @@ function renderCard(id, d){
   var isSrv = (d.status==='servido'||d.status==='concluido');
   var tsMs  = d.ts_client||null;
   var isPed = (tipo==='pedido'||tipo==='concierge');
+  var isAgenda = (tipo==='agendamento'||tipo==='psicologia'||tipo==='procedimento');
 
   if(isPed && tsMs && (Date.now()-tsMs)>DUAS_H) return;
 
   var chips={
-    pedido:    {c:'ch-ped',l:'☕ Pedido'},
-    concierge: {c:'ch-con',l:'🛎️ Concierge'},
-    agendamento:{c:'ch-age',l:'📅 Agendamento'},
-    psicologia: {c:'ch-psi',l:'🧠 Psicologia'}
+    pedido:      {c:'ch-ped',l:'☕ Pedido'},
+    concierge:   {c:'ch-con',l:'🛎️ Concierge'},
+    agendamento: {c:'ch-age',l:'📅 Agendamento'},
+    psicologia:  {c:'ch-psi',l:'🧠 Psicologia'},
+    procedimento:{c:'ch-psi',l:'💆 Procedimento'}
   };
   var chip=chips[tipo]||chips.pedido;
 
@@ -206,6 +208,8 @@ function renderCard(id, d){
     resumo='<strong>'+(d.nome||'—')+'</strong><br>'+(d.servico||'Serviço não informado');
   } else if(tipo==='psicologia'){
     resumo='<strong>'+(d.nome||'—')+'</strong><br>Interesse em Psicologia Integrada';
+  } else if(tipo==='procedimento'){
+    resumo='<strong>'+(d.nome||'—')+'</strong><br>Interesse em: '+(d.procedimento||'—');
   }
 
   var detHtml='', temDet=false;
@@ -215,6 +219,9 @@ function renderCard(id, d){
   } else if(tipo==='psicologia'){
     temDet=true;
     detHtml=dr('Nome',d.nome)+dr('WhatsApp',d.whatsapp)+dr('Interesse','Psicologia Integrada · Isabela Hasse')+dr('Enviado às',d.hora);
+  } else if(tipo==='procedimento'){
+    temDet=true;
+    detHtml=dr('Nome',d.nome)+dr('WhatsApp',d.whatsapp)+dr('Procedimento',d.procedimento)+dr('Valor',d.preco)+dr('Enviado às',d.hora);
   }
 
   var btnHtml='';
@@ -244,7 +251,7 @@ function renderCard(id, d){
     '</div>'+
     (temDet?'<div class="det" id="d-'+id+'"><div class="det-inner">'+detHtml+'</div></div>':'');
 
-  var lid=isPed?'lp':'la';
+  var lid=isPed?'lp':'la'; // agenda tab for agendamento/psicologia/procedimento
   rmEmpty(lid);
   document.getElementById(lid).prepend(card);
   updLbl(isPed);
@@ -263,7 +270,7 @@ function renderCard(id, d){
 
   if(!isSrv){
     soar();
-    var msgs={pedido:'🛎️ Novo pedido!',concierge:'🛎️ Concierge!',agendamento:'📅 Novo agendamento!',psicologia:'🧠 Interesse em Psicologia!'};
+    var msgs={pedido:'🛎️ Novo pedido!',concierge:'🛎️ Concierge!',agendamento:'📅 Novo agendamento!',psicologia:'🧠 Interesse em Psicologia!',procedimento:'💆 Interesse em procedimento!'};
     notif(msgs[tipo]||'Novo pedido!');
   }
 }
