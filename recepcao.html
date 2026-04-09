@@ -12,11 +12,12 @@ body{background:#f5f3f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
 .top-logo{width:36px;height:36px;border-radius:50%;object-fit:cover;}
 .top-name{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#1a1a1a;}
 .top-sub{font-size:10px;color:#b8b4ae;margin-top:2px;}
-.top-right{display:flex;align-items:center;gap:12px;}
-.badge{font-size:11px;padding:5px 12px;border-radius:20px;background:#f5f3f0;color:#888;border:.5px solid #e0ddd8;}
+.top-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
+.badge{font-size:11px;padding:5px 12px;border-radius:20px;background:#f5f3f0;color:#888;border:.5px solid #e0ddd8;white-space:nowrap;}
 .badge.verde{background:#e8f5e8;color:#2a7a2a;border-color:#b0d8b0;}
 .badge.vermelho{background:#fae8e8;color:#8a2a2a;border-color:#d8b0b0;}
-.btn-som{font-size:12px;padding:5px 12px;border-radius:20px;border:.5px solid #e0ddd8;background:#fff;cursor:pointer;color:#888;}
+.btn-ativar{font-size:11px;padding:5px 12px;border-radius:20px;border:.5px solid #b8a878;background:#f5f0e8;cursor:pointer;color:#8a7040;white-space:nowrap;}
+.btn-ativar:hover{background:#ede5d8;}
 .main{max-width:960px;margin:0 auto;padding:20px;}
 .tabs{display:flex;margin-bottom:16px;background:#fff;border-radius:12px;border:.5px solid #e8e5e0;overflow:hidden;}
 .tab{flex:1;padding:13px;text-align:center;font-size:12px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:#b8b4ae;border:none;background:transparent;font-family:inherit;}
@@ -34,6 +35,7 @@ body{background:#f5f3f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
 .ch-con{background:#eae8f0;color:#5a4a8a;}
 .ch-age{background:#e8f0ea;color:#3a7a5a;}
 .ch-psi{background:#f0e8ee;color:#8a4a7a;}
+.ch-pro{background:#e8f0f5;color:#3a5a7a;}
 .resumo{font-size:14px;color:#1a1a1a;line-height:1.7;}
 .card-meta{font-size:11px;color:#b8b4ae;margin-top:5px;}
 .tag-srv{font-size:10px;color:#4caf50;font-weight:500;margin-top:4px;}
@@ -65,7 +67,7 @@ body{background:#f5f3f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
   </div>
   <div class="top-right">
     <span class="badge" id="badge">Conectando...</span>
-    <button class="btn-som" onclick="soar()">🔔 Som</button>
+    <button class="btn-ativar" id="btn-ativar" onclick="ativarTudo()">🔔 Ativar Notificações</button>
   </div>
 </div>
 <div class="main">
@@ -85,9 +87,41 @@ body{background:#f5f3f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',
 
 <script>
 var DB     = 'https://hk-clinic-default-rtdb.firebaseio.com';
-var DUAS_H = 2 * 60 * 60 * 1000;
+var DUAS_H = 2*60*60*1000;
 var vistos = {};
 var actx   = null;
+var notifOk= false;
+
+/* ---- ATIVAR SOM + NOTIFICAÇÕES ---- */
+function ativarTudo(){
+  // Som
+  try{
+    if(!actx) actx=new(window.AudioContext||window.webkitAudioContext)();
+    if(actx.state==='suspended') actx.resume();
+  }catch(e){}
+
+  // Notificações do sistema operacional
+  if('Notification' in window){
+    if(Notification.permission==='granted'){
+      notifOk=true;
+      document.getElementById('btn-ativar').textContent='🔔 Notificações Ativas';
+      document.getElementById('btn-ativar').style.background='#e8f5e8';
+      document.getElementById('btn-ativar').style.borderColor='#b0d8b0';
+      document.getElementById('btn-ativar').style.color='#2a7a2a';
+    } else if(Notification.permission!=='denied'){
+      Notification.requestPermission().then(function(p){
+        if(p==='granted'){
+          notifOk=true;
+          document.getElementById('btn-ativar').textContent='🔔 Notificações Ativas';
+          document.getElementById('btn-ativar').style.background='#e8f5e8';
+          document.getElementById('btn-ativar').style.borderColor='#b0d8b0';
+          document.getElementById('btn-ativar').style.color='#2a7a2a';
+          new Notification('HK Clinic', {body:'Notificações ativadas! Você receberá alertas de novos pedidos.', icon: ''});
+        }
+      });
+    }
+  }
+}
 
 function soar(){
   try{
@@ -96,12 +130,38 @@ function soar(){
     [784,988,1175].forEach(function(f,i){
       var o=actx.createOscillator(),g=actx.createGain(),t=actx.currentTime+i*.18;
       o.type='sine';o.frequency.value=f;
-      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.2,t+.04);g.gain.exponentialRampToValueAtTime(.001,t+.5);
-      o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+.55);
+      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.25,t+.04);g.gain.exponentialRampToValueAtTime(.001,t+.6);
+      o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+.65);
     });
   }catch(e){}
 }
 
+function notifSistema(titulo, msg){
+  // Banner na tela
+  var nb=document.getElementById('notif');
+  nb.textContent=titulo+' — '+msg;nb.style.display='block';
+  clearTimeout(nb._t);nb._t=setTimeout(function(){nb.style.display='none';},5000);
+  // Notificação do sistema (funciona com aba em segundo plano)
+  if(notifOk && Notification.permission==='granted'){
+    try{
+      new Notification(titulo, {
+        body: msg,
+        requireInteraction: false,
+        silent: true  // Som já tocamos pelo Web Audio
+      });
+    }catch(e){}
+  }
+  // Mudar título da aba para chamar atenção
+  var original = document.title;
+  var count = 0;
+  var blink = setInterval(function(){
+    document.title = (count%2===0) ? '🔔 NOVO PEDIDO!' : original;
+    count++;
+    if(count>8){clearInterval(blink);document.title=original;}
+  },600);
+}
+
+/* ---- ABAS ---- */
 function aba(n){
   ['ped','age'].forEach(function(x){
     document.getElementById('tb-'+x).className='tab'+(x===n?' on':'');
@@ -109,23 +169,9 @@ function aba(n){
   });
 }
 
-function notif(msg){
-  var nb=document.getElementById('notif');
-  nb.textContent=msg;nb.style.display='block';
-  clearTimeout(nb._t);nb._t=setTimeout(function(){nb.style.display='none';},4500);
-}
-
-function setBadge(txt,cor){
-  var el=document.getElementById('badge');
-  el.textContent=txt;el.className='badge '+cor;
-}
-
-function dr(k,v){
-  return '<div class="drow"><span class="dk">'+k+'</span><span class="dv">'+(v||'—')+'</span></div>';
-}
-
+/* ---- HELPERS ---- */
+function dr(k,v){return '<div class="drow"><span class="dk">'+k+'</span><span class="dv">'+(v||'—')+'</span></div>';}
 function rmEmpty(id){var e=document.querySelector('#'+id+' .empty');if(e)e.remove();}
-
 function updLbl(isPed){
   var lid=isPed?'lp':'la', lbl=isPed?'lbl-ped':'lbl-age';
   var n=document.querySelectorAll('#'+lid+' .card').length;
@@ -134,85 +180,64 @@ function updLbl(isPed){
     :(n===0?'Nenhum agendamento ainda':n+(n===1?' registro':' registros'));
 }
 
-// Usar data-id em vez de onclick inline com aspas
-document.addEventListener('click', function(e){
-  // Botão concluir
-  var btnOk = e.target.closest('[data-concluir]');
-  if(btnOk){ marcarServido(btnOk.getAttribute('data-concluir'), btnOk); return; }
-
-  // Botão ver detalhes
-  var btnDet = e.target.closest('[data-detalhe]');
-  if(btnDet){ toggleDet(btnDet.getAttribute('data-detalhe'), btnDet); return; }
+/* ---- TOGGLE DETALHES ---- */
+document.addEventListener('click',function(e){
+  var btnOk=e.target.closest('[data-concluir]');
+  if(btnOk){marcarServido(btnOk.getAttribute('data-concluir'),btnOk);return;}
+  var btnDet=e.target.closest('[data-detalhe]');
+  if(btnDet){toggleDet(btnDet.getAttribute('data-detalhe'),btnDet);return;}
 });
-
-function toggleDet(id, btn){
-  var el=document.getElementById('d-'+id);
-  if(!el) return;
+function toggleDet(id,btn){
+  var el=document.getElementById('d-'+id);if(!el)return;
   var open=el.classList.toggle('open');
-  if(btn) btn.textContent=open?'Fechar ▴':'Ver detalhes ▾';
+  if(btn)btn.textContent=open?'Fechar ▴':'Ver detalhes ▾';
 }
 
-function marcarServido(id, btn){
-  if(btn){ btn.textContent='Salvando...'; btn.disabled=true; }
-  fetch(DB+'/pedidos/'+id+'.json',{
-    method:'PATCH',
-    headers:{'Content-Type':'application/json'},
-    body:'{"status":"servido"}'
-  })
+/* ---- MARCAR SERVIDO ---- */
+function marcarServido(id,btn){
+  if(btn){btn.textContent='Salvando...';btn.disabled=true;}
+  fetch(DB+'/pedidos/'+id+'.json',{method:'PATCH',headers:{'Content-Type':'application/json'},body:'{"status":"servido"}'})
   .then(function(r){
-    if(!r.ok) throw new Error('HTTP '+r.status);
+    if(!r.ok)throw new Error('HTTP '+r.status);
     var card=document.getElementById('c-'+id);
-    if(card) card.classList.add('servido');
-    if(btn){ btn.className='btn b-srv'; btn.textContent='✓ Servido'; btn.removeAttribute('data-concluir'); btn.disabled=false; }
+    if(card)card.classList.add('servido');
+    if(btn){btn.className='btn b-srv';btn.textContent='Servido';btn.removeAttribute('data-concluir');btn.disabled=false;}
     var cl=card?card.querySelector('.cl'):null;
     if(cl&&!cl.querySelector('.tag-srv')){
-      var t=document.createElement('div');
-      t.className='tag-srv';t.textContent='✓ Servido';
-      var mt=cl.querySelector('.card-meta');
-      if(mt) cl.insertBefore(t,mt); else cl.appendChild(t);
+      var t=document.createElement('div');t.className='tag-srv';t.textContent='Servido';
+      var mt=cl.querySelector('.card-meta');if(mt)cl.insertBefore(t,mt);else cl.appendChild(t);
     }
   })
-  .catch(function(e){
-    alert('Erro ao salvar: '+e.message);
-    if(btn){ btn.textContent='Concluir'; btn.disabled=false; }
-  });
+  .catch(function(e){alert('Erro: '+e.message);if(btn){btn.textContent='Concluir';btn.disabled=false;}});
 }
 
-function renderCard(id, d){
-  if(vistos[id]) return;
+/* ---- RENDER CARD ---- */
+function renderCard(id,d){
+  if(vistos[id])return;
   vistos[id]=true;
-
   var tipo  = d.tipo||'pedido';
   var isSrv = (d.status==='servido'||d.status==='concluido');
   var tsMs  = d.ts_client||null;
   var isPed = (tipo==='pedido'||tipo==='concierge');
-  var isAgenda = (tipo==='agendamento'||tipo==='psicologia'||tipo==='procedimento');
-
-  if(isPed && tsMs && (Date.now()-tsMs)>DUAS_H) return;
+  if(isPed&&tsMs&&(Date.now()-tsMs)>DUAS_H)return;
 
   var chips={
-    pedido:      {c:'ch-ped',l:'☕ Pedido'},
-    concierge:   {c:'ch-con',l:'🛎️ Concierge'},
-    agendamento: {c:'ch-age',l:'📅 Agendamento'},
-    psicologia:  {c:'ch-psi',l:'🧠 Psicologia'},
-    procedimento:{c:'ch-psi',l:'💆 Procedimento'}
+    pedido:      {c:'ch-ped',l:'Pedido'},
+    concierge:   {c:'ch-con',l:'Concierge'},
+    agendamento: {c:'ch-age',l:'Agendamento'},
+    psicologia:  {c:'ch-psi',l:'Psicologia'},
+    procedimento:{c:'ch-pro',l:'Procedimento'}
   };
   var chip=chips[tipo]||chips.pedido;
 
   var resumo='';
-  if(tipo==='pedido'){
-    resumo=(d.itens||[]).map(function(i){return '• '+i;}).join('<br>');
-  } else if(tipo==='concierge'){
-    resumo='Concierge solicitado na sala de repouso';
-  } else if(tipo==='agendamento'){
-    resumo='<strong>'+(d.nome||'—')+'</strong><br>'+(d.servico||'Serviço não informado');
-  } else if(tipo==='psicologia'){
-    resumo='<strong>'+(d.nome||'—')+'</strong><br>Interesse em Psicologia Integrada';
-  } else if(tipo==='procedimento'){
-    resumo='<strong>'+(d.nome||'—')+'</strong><br>Interesse em: '+(d.procedimento||'—');
-  }
+  if(tipo==='pedido')           resumo=(d.itens||[]).map(function(i){return'• '+i;}).join('<br>');
+  else if(tipo==='concierge')   resumo='Concierge solicitado na sala de repouso';
+  else if(tipo==='agendamento') resumo='<strong>'+(d.nome||'—')+'</strong><br>'+(d.servico||'Serviço não informado');
+  else if(tipo==='psicologia')  resumo='<strong>'+(d.nome||'—')+'</strong><br>Interesse em Psicologia Integrada';
+  else if(tipo==='procedimento')resumo='<strong>'+(d.nome||'—')+'</strong><br>'+(d.procedimento||'Procedimento');
 
-  var detHtml='', temDet=false;
+  var detHtml='',temDet=false;
   if(tipo==='agendamento'){
     temDet=true;
     detHtml=dr('Paciente',d.nome)+dr('Serviço',d.servico)+dr('Data',d.data)+dr('Horário',d.horario)+dr('Enviado às',d.hora);
@@ -227,7 +252,7 @@ function renderCard(id, d){
   var btnHtml='';
   if(isPed){
     btnHtml=isSrv
-      ?'<button class="btn b-srv" disabled>✓ Servido</button>'
+      ?'<button class="btn b-srv" disabled>Servido</button>'
       :'<button class="btn b-ok" data-concluir="'+id+'">Concluir</button>';
   } else if(temDet){
     btnHtml='<button class="btn b-det" data-detalhe="'+id+'">Ver detalhes ▾</button>';
@@ -237,21 +262,18 @@ function renderCard(id, d){
   card.id='c-'+id;
   card.className='card'+(isSrv?' servido':'');
   card.innerHTML=
-    '<div class="ctop">'+
-      '<div class="cl">'+
-        '<span class="chip '+chip.c+'">'+chip.l+'</span>'+
-        '<div class="resumo">'+resumo+'</div>'+
-        (isSrv?'<div class="tag-srv">✓ Servido</div>':'')+
-        '<div class="card-meta">Sala de Repouso · '+(d.hora||'')+'</div>'+
-      '</div>'+
-      '<div class="cr">'+
-        '<div class="hora">'+(d.hora||'--:--')+'</div>'+
-        btnHtml+
-      '</div>'+
-    '</div>'+
-    (temDet?'<div class="det" id="d-'+id+'"><div class="det-inner">'+detHtml+'</div></div>':'');
+    '<div class="ctop">'
+    +'<div class="cl">'
+    +'<span class="chip '+chip.c+'">'+chip.l+'</span>'
+    +'<div class="resumo">'+resumo+'</div>'
+    +(isSrv?'<div class="tag-srv">Servido</div>':'')
+    +'<div class="card-meta">Sala de Repouso · '+(d.hora||'')+'</div>'
+    +'</div>'
+    +'<div class="cr"><div class="hora">'+(d.hora||'--:--')+'</div>'+btnHtml+'</div>'
+    +'</div>'
+    +(temDet?'<div class="det" id="d-'+id+'"><div class="det-inner">'+detHtml+'</div></div>':'');
 
-  var lid=isPed?'lp':'la'; // agenda tab for agendamento/psicologia/procedimento
+  var lid=isPed?'lp':'la';
   rmEmpty(lid);
   document.getElementById(lid).prepend(card);
   updLbl(isPed);
@@ -259,47 +281,48 @@ function renderCard(id, d){
   if(isPed){
     var rem=tsMs?Math.max(0,DUAS_H-(Date.now()-tsMs)):DUAS_H;
     setTimeout(function(){
-      var c2=document.getElementById('c-'+id);
-      if(c2) c2.remove();
-      if(!document.querySelector('#lp .card')){
-        document.getElementById('lp').innerHTML='<div class="empty"><div class="empty-t">Nenhum pedido no momento</div></div>';
-      }
+      var c2=document.getElementById('c-'+id);if(c2)c2.remove();
+      if(!document.querySelector('#lp .card'))document.getElementById('lp').innerHTML='<div class="empty"><div class="empty-t">Nenhum pedido no momento</div></div>';
       updLbl(true);
     },rem);
   }
 
   if(!isSrv){
     soar();
-    var msgs={pedido:'🛎️ Novo pedido!',concierge:'🛎️ Concierge!',agendamento:'📅 Novo agendamento!',psicologia:'🧠 Interesse em Psicologia!',procedimento:'💆 Interesse em procedimento!'};
-    notif(msgs[tipo]||'Novo pedido!');
+    var msgs={pedido:'Novo pedido!',concierge:'Concierge solicitado!',agendamento:'Novo agendamento!',psicologia:'Interesse em Psicologia!',procedimento:'Interesse em procedimento!'};
+    notifSistema('HK Clinic', msgs[tipo]||'Novo pedido!');
   }
 }
 
+/* ---- POLLING 3s ---- */
 var erros=0;
 function buscar(){
   fetch(DB+'/pedidos.json')
-  .then(function(r){
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    return r.json();
-  })
+  .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
   .then(function(dados){
     erros=0;
-    setBadge('Conectado ✓','verde');
-    if(dados && typeof dados==='object'){
-      Object.keys(dados).forEach(function(id){
-        if(dados[id]) renderCard(id, dados[id]);
-      });
+    var el=document.getElementById('badge');el.textContent='Conectado';el.className='badge verde';
+    if(dados&&typeof dados==='object'){
+      Object.keys(dados).forEach(function(id){if(dados[id])renderCard(id,dados[id]);});
     }
   })
   .catch(function(e){
     erros++;
-    setBadge('Sem conexão ✗','vermelho');
-    console.error('Erro Firebase:', e.message);
+    var el=document.getElementById('badge');el.textContent='Sem conexão';el.className='badge vermelho';
+    console.error('Erro:',e.message);
   });
 }
-
 buscar();
-setInterval(buscar, 3000);
+setInterval(buscar,3000);
+
+// Auto-verificar notificações
+if('Notification' in window && Notification.permission==='granted'){
+  notifOk=true;
+  document.getElementById('btn-ativar').textContent='Notificações Ativas';
+  document.getElementById('btn-ativar').style.background='#e8f5e8';
+  document.getElementById('btn-ativar').style.borderColor='#b0d8b0';
+  document.getElementById('btn-ativar').style.color='#2a7a2a';
+}
 </script>
 </body>
 </html>
