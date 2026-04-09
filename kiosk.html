@@ -145,23 +145,23 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 .psic-form-h{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#b8b4ae;margin-bottom:14px;}
 .psic-send{width:100%;padding:15px;background:#b8a878;color:#fff;border:none;border-radius:11px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;}
 .psic-send:disabled{background:#e0ddd8;color:#b0ada8;}
+.relax-tabs{display:flex;border-bottom:.5px solid #eeece8;margin-bottom:4px;}
+.relax-tab{flex:1;padding:11px 8px;text-align:center;font-size:11px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:#b8b4ae;border:none;background:transparent;font-family:inherit;border-bottom:2px solid transparent;}
+.relax-tab.on{color:#1a1a1a;font-weight:500;border-bottom-color:#b8a878;}
+.relax-sec{display:none;}.relax-sec.on{display:block;}
 .proc-grid{display:flex;flex-direction:column;gap:8px;padding:16px 20px;}
-.proc-card{background:#fff;border:.5px solid #e8e5e0;border-radius:14px;padding:14px 16px;cursor:pointer;transition:background .15s;}
-.proc-card:active{background:#f7f5f2;}
+.proc-card{background:#fff;border:.5px solid #e8e5e0;border-radius:14px;padding:14px 16px;cursor:pointer;}
 .proc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .proc-name{font-size:13px;font-weight:500;color:#1a1a1a;flex:1;}
 .proc-price{font-size:13px;font-weight:500;color:#b8a878;flex-shrink:0;}
-.proc-arr{color:#c8c4be;font-size:16px;flex-shrink:0;}
+.proc-arr{color:#c8c4be;font-size:18px;flex-shrink:0;line-height:1;transition:transform .2s;}
+.proc-arr.open{transform:rotate(90deg);}
 .proc-detail{display:none;margin-top:12px;padding-top:12px;border-top:.5px solid #f2efeb;}
 .proc-detail.open{display:block;}
 .proc-desc{font-size:12px;color:#888;line-height:1.6;margin-bottom:14px;}
 .proc-form-h{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#b8b4ae;margin-bottom:10px;}
 .proc-send{width:100%;padding:13px;background:#b8a878;color:#fff;border:none;border-radius:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;margin-top:6px;}
-.proc-send:disabled{background:#e0ddd8;color:#b0ada8;}
-.relax-tabs{display:flex;border-bottom:.5px solid #eeece8;margin-bottom:4px;}
-.relax-tab{flex:1;padding:11px 8px;text-align:center;font-size:11px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:#b8b4ae;border:none;background:transparent;font-family:inherit;border-bottom:2px solid transparent;}
-.relax-tab.on{color:#1a1a1a;font-weight:500;border-bottom-color:#b8a878;}
-.relax-sec{display:none;}.relax-sec.on{display:block;}</style>
+.proc-send:disabled{background:#e0ddd8;color:#b0ada8;}</style>
 </head>
 <body>
 <div class="app">
@@ -374,37 +374,59 @@ body{background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
 var MOS=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
 var DS=['Dom','Seg','Ter','Qua','Qui','Sex','Sab'];
 var ITEMS=[
-  {id:'agua_nat', cat:'Agua',       name:'Água Natural',        desc:'Copo',                    bg:'#EAF0F5',fg:'#4A7A9B',abbr:'H2O'},
-  {id:'agua_gas', cat:'Agua',       name:'Água com Gás',        desc:'Garrafa 500ml',           bg:'#E8F0F8',fg:'#3A6A9B',abbr:'GAS'},
-  {id:'agua_sab', cat:'Agua',       name:'Água Saborizada',     desc:'Seleção do dia',          bg:'#EDF5EA',fg:'#4A8A5A',abbr:'SAB'},
+  {id:'agua_nat', cat:'Agua',       name:'Agua Natural',        desc:'Copo',                    bg:'#EAF0F5',fg:'#4A7A9B',abbr:'H2O'},
+  {id:'agua_gas', cat:'Agua',       name:'Agua com Gas',        desc:'Garrafa 500ml',           bg:'#E8F0F8',fg:'#3A6A9B',abbr:'GAS'},
+  {id:'agua_sab', cat:'Agua',       name:'Agua Saborizada',     desc:'Selecao do dia',          bg:'#EDF5EA',fg:'#4A8A5A',abbr:'SAB'},
   {id:'soda',     cat:'Bebidas',    name:'Soda Italiana',       desc:'Variados sabores',        bg:'#F0EDF8',fg:'#6A5A9B',abbr:'SOD'},
   {id:'coca',     cat:'Bebidas',    name:'Coca-Cola',           desc:'Lata 350ml',              bg:'#FAEAE8',fg:'#9B3A2A',abbr:'COC'},
   {id:'hein',     cat:'Bebidas',    name:'Heineken',            desc:'Long neck 330ml',         bg:'#EAF2EA',fg:'#2A6A2A',abbr:'HNK'},
-  {id:'cafe',     cat:'Cafe',       name:'Café',                desc:'Coado tradicional',       bg:'#EDE8E0',fg:'#6B4A2A',abbr:'CAF'},
+  {id:'cafe',     cat:'Cafe',       name:'Cafe',                desc:'Coado tradicional',       bg:'#EDE8E0',fg:'#6B4A2A',abbr:'CAF'},
   {id:'expforte', cat:'Cafe',       name:'Espresso Forte',      desc:'Encorpado e intenso',     bg:'#E8E0D8',fg:'#5A3A1A',abbr:'EXF'},
-  {id:'expmedio', cat:'Cafe',       name:'Espresso Médio',      desc:'Equilíbrio perfeito',     bg:'#EDE8E0',fg:'#6B4A2A',abbr:'EXM'},
-  {id:'expfraco', cat:'Cafe',       name:'Espresso Fraco',      desc:'Suave e aromático',       bg:'#F2EDE8',fg:'#8A6A4A',abbr:'EXS'},
+  {id:'expmedio', cat:'Cafe',       name:'Espresso Medio',      desc:'Equilibrio perfeito',     bg:'#EDE8E0',fg:'#6B4A2A',abbr:'EXM'},
+  {id:'expfraco', cat:'Cafe',       name:'Espresso Fraco',      desc:'Suave e aromatico',       bg:'#F2EDE8',fg:'#8A6A4A',abbr:'EXS'},
   {id:'gelat',    cat:'Sobremesas', name:'Gelatina',            desc:'Sabores variados',        bg:'#F5EAF5',fg:'#8A3A8A',abbr:'GEL'},
   {id:'sorvete',  cat:'Sobremesas', name:'Sorvete',             desc:'Creme',                   bg:'#F5EAF0',fg:'#9A4A6A',abbr:'SOR'},
-  {id:'mousse',   cat:'Sobremesas', name:'Mousse de Maracujá',  desc:'Cremoso e refrescante',   bg:'#F5F0E0',fg:'#9A7A2A',abbr:'MOU'},
-  {id:'castanhas',cat:'Lanches',    name:'Mix de Castanhas',    desc:'Nozes e amêndoas',        bg:'#EDE5D8',fg:'#7A5A2A',abbr:'MIX'},
-  {id:'biscfit',  cat:'Lanches',    name:'Biscoitos Fit',       desc:'Integral e saudável',     bg:'#EAF2EA',fg:'#4A7A3A',abbr:'FIT'},
+  {id:'mousse',   cat:'Sobremesas', name:'Mousse de Maracuja',  desc:'Cremoso e refrescante',   bg:'#F5F0E0',fg:'#9A7A2A',abbr:'MOU'},
+  {id:'castanhas',cat:'Lanches',    name:'Mix de Castanhas',    desc:'Nozes e amendoas',        bg:'#EDE5D8',fg:'#7A5A2A',abbr:'MIX'},
+  {id:'biscfit',  cat:'Lanches',    name:'Biscoitos Fit',       desc:'Integral e saudavel',     bg:'#EAF2EA',fg:'#4A7A3A',abbr:'FIT'},
   {id:'bolacha',  cat:'Lanches',    name:'Bolachinhas Gourmet', desc:'Selecao especial',        bg:'#F5EFE0',fg:'#9B7A2A',abbr:'GOU'},
   {id:'iogurte',  cat:'Lanches',    name:'Iogurte com Granola', desc:'Com mel artesanal',       bg:'#EAF5F5',fg:'#2A7A8A',abbr:'IOG'},
-  {id:'frutas',   cat:'Frutas',     name:'Frutas',              desc:'Seleção do dia',          bg:'#F5EAF0',fg:'#8A3A6B',abbr:'FRU'}
+  {id:'frutas',   cat:'Frutas',     name:'Frutas',              desc:'Selecao do dia',          bg:'#F5EAF0',fg:'#8A3A6B',abbr:'FRU'}
 ];
 var SVCS=[
-  {id:'massagem', name:'Massagem Relaxante',  sub:'60 min · Terapêutica',    color:'#EDE5DC',
-   feats:['Alívio de tensão muscular','Redução de estresse','Óleos essenciais','Ambiente climatizado'],
-   desc:'Técnica de massagem que alivia tensões e promove relaxamento profundo.'},
-  {id:'posop',    name:'Pós-operatório',       sub:'Drenagem · Cicatrização', color:'#DDE7EF',
-   feats:['Drenagem linfática manual','Redução de edema','Acompanhamento especializado','Protocolo personalizado'],
-   desc:'Protocolo especializado de drenagem linfática para acelerar sua recuperação.'},
-  {id:'agenda',   name:'Agendar Horário',      sub:'Reserva · Consulta',      color:'#E8E4DC',
-   feats:['Confirmação imediata','Cancelamento flexível','Atendimento personalizado'],
-   desc:'Reserve seu horário. Escolha o serviço, data e horário de sua preferência.'},
-  {id:'info',     name:'Mais Informações',     sub:'Horários · Contato',      color:'#EDEAE5',
-   feats:[], desc:'Informações sobre funcionamento e contato.'}
+  {id:'massagem',name:'Massagem Relaxante',   sub:'60 min - Terapeutica',    color:'#EDE5DC',
+   feats:['Alivio de tensao muscular','Reducao de estresse','Oleos essenciais','Ambiente climatizado'],
+   desc:'Tecnica de massagem que alivia tensoes e promove relaxamento profundo.'},
+  {id:'posop',   name:'Pos-operatorio',        sub:'Drenagem - Cicatrizacao', color:'#DDE7EF',
+   feats:['Drenagem linfatica manual','Reducao de edema','Acompanhamento especializado','Protocolo personalizado'],
+   desc:'Protocolo especializado de drenagem linfatica para acelerar sua recuperacao.'},
+  {id:'agenda',  name:'Agendar Horario',       sub:'Reserva - Consulta',      color:'#E8E4DC',
+   feats:['Confirmacao imediata','Cancelamento flexivel','Atendimento personalizado'],
+   desc:'Reserve seu horario. Escolha o servico, data e horario de sua preferencia.'},
+  {id:'info',    name:'Mais Informacoes',      sub:'Horarios - Contato',      color:'#EDEAE5',
+   feats:[], desc:'Informacoes sobre funcionamento e contato.'}
+];
+var PROCS=[
+  {id:'avaliacao',    name:'Avaliacao',                          price:'R$ 100,00',  desc:'Consulta inicial para entender suas necessidades e indicar o tratamento ideal.'},
+  {id:'birthday',     name:'Birthday',                          price:'R$ 300,00',  desc:'Experiencia especial de relaxamento para celebrar sua data comemorativa.'},
+  {id:'friends',      name:'Friends Relax',                     price:'R$ 500,00',  desc:'Pacote especial para amigas: relaxamento completo e momentos inesqueciveis juntas.'},
+  {id:'limpeza_costas',name:'Limpeza de Pele nas Costas',       price:'R$ 350,00',  desc:'Limpeza profunda com extracao, esfoliacao e hidratacao para uma pele limpa e saudavel.'},
+  {id:'limpeza_facial',name:'Limpeza Facial Anna Pegova',       price:'R$ 200,00',  desc:'Protocolo exclusivo Anna Pegova — limpeza, extracao e hidratacao facial completa.'},
+  {id:'radio_corp',   name:'Radiofrequencia Corporal',          price:'R$ 200,00',  desc:'Tecnologia que estimula a producao de colageno, firmando e remodelando o contorno corporal.'},
+  {id:'radio_facial', name:'Radiofrequencia Facial',            price:'R$ 180,00',  desc:'Rejuvenescimento facial com radiofrequencia — combate flacidez e estimula colageno.'},
+  {id:'posop_corp',   name:'Pos-operatorio Corporal',           price:'R$ 200,00',  desc:'Protocolo completo: drenagem linfatica, tapping e terapia de laser para recuperacao ideal.'},
+  {id:'posop_facial', name:'Pos-operatorio Facial',             price:'R$ 150,00',  desc:'Cuidados pos-cirurgicos faciais com tecnicas especializadas para acelerar a recuperacao.'},
+  {id:'dren_corp',    name:'Drenagem Linfatica Corporal',       price:'R$ 180,00',  desc:'Tecnica manual que reduz inchaco, elimina toxinas e melhora a circulacao do corpo.'},
+  {id:'dren_facial',  name:'Drenagem Linfatica Facial',         price:'R$ 100,00',  desc:'Drenagem delicada para o rosto — reduz inchaco, melhora o contorno e revitaliza a pele.'},
+  {id:'criolipo',     name:'Criolipólise de Placas',            price:'Orcamento',  desc:'Tratamento nao invasivo para reducao de gordura localizada. Valor mediante avaliacao.'},
+  {id:'microagulha',  name:'Microagulhamento',                  price:'R$ 300,00',  desc:'Estimulacao do colageno — trata manchas, cicatrizes e rejuvenece a pele.'},
+  {id:'spa_maos',     name:'Spa das Maos',                      price:'R$ 70,00',   desc:'Ritual de esfoliacao, hidratacao e massagem para suas maos — leveza e cuidado.'},
+  {id:'escalda',      name:'Escalda Pes',                       price:'R$ 80,00',   desc:'Imersao relaxante com ervas e sais, esfoliacao e massagem para seus pes.'},
+  {id:'mass_escalda', name:'Massagem com Escalda Pes',          price:'R$ 200,00',  desc:'Combinacao: escalda pes aromatico + massagem relaxante para relaxamento total.'},
+  {id:'ventosas',     name:'Massagem com Ventosas',             price:'R$ 200,00',  desc:'Tecnica milenar que alivia tensoes, melhora a circulacao e promove relaxamento muscular.'},
+  {id:'pedras',       name:'Massagem com Pedras Quentes',       price:'R$ 200,00',  desc:'Pedras vulcanicas aquecidas que derretem tensoes e proporcionam relaxamento profundo.'},
+  {id:'velas',        name:'Massagem com Velas',                price:'R$ 200,00',  desc:'Massagem sensorial com cera de baixa temperatura — relaxante, hidratante e inesquecivel.'},
+  {id:'mass_relax',   name:'Massagem Relaxante Tradicional',    price:'R$ 180,00',  desc:'Massagem classica com manobras suaves que eliminam tensoes e restabelecem o equilibrio.'}
 ];
 var SLOTS=['08:30','09:00','09:30','10:00','11:00','11:30','14:00','15:00','15:30','16:00','17:00','18:00'];
 var BUSY={'09:00':true,'11:00':true,'15:00':true};
@@ -416,12 +438,12 @@ function go(id){
   document.getElementById(id).classList.add('on');
   window.scrollTo(0,0);
 }
+function findItem(id){for(var i=0;i<ITEMS.length;i++){if(ITEMS[i].id===id)return ITEMS[i];}return null;}
+function findSvc(id){for(var i=0;i<SVCS.length;i++){if(SVCS[i].id===id)return SVCS[i];}return null;}
+function pad(n){return ('0'+n).slice(-2);}
+function nowHora(){var n=new Date();return pad(n.getHours())+':'+pad(n.getMinutes());}
 
-function findItem(id){ for(var i=0;i<ITEMS.length;i++){if(ITEMS[i].id===id)return ITEMS[i];} return null; }
-function findSvc(id){  for(var i=0;i<SVCS.length;i++) {if(SVCS[i].id===id) return SVCS[i];}  return null; }
-function pad(n){ return ('0'+n).slice(-2); }
-function nowHora(){ var n=new Date(); return pad(n.getHours())+':'+pad(n.getMinutes()); }
-
+/* ---- MENU ---- */
 function buildMenu(){
   var cats=[];
   ITEMS.forEach(function(item){if(cats.indexOf(item.cat)<0)cats.push(item.cat);});
@@ -429,264 +451,54 @@ function buildMenu(){
   cats.forEach(function(c){
     rows.push('<div class="cat-h">'+c+'</div>');
     ITEMS.filter(function(i){return i.cat===c;}).forEach(function(item){
-      rows.push(
-        '<div class="mitem">'
+      rows.push('<div class="mitem">'
         +'<div class="mico" style="background:'+item.bg+';color:'+item.fg+'">'+item.abbr+'</div>'
         +'<div class="minfo"><div class="mn">'+item.name+'</div><div class="md">'+item.desc+'</div></div>'
         +'<div class="qty">'
         +'<button class="qb" data-qid="'+item.id+'" data-qd="-1">-</button>'
         +'<div class="qn" id="q-'+item.id+'">0</div>'
         +'<button class="qb" data-qid="'+item.id+'" data-qd="1">+</button>'
-        +'</div></div>'
-      );
+        +'</div></div>');
     });
   });
   var mb=document.getElementById('menu-body');
   mb.innerHTML=rows.join('');
   mb.addEventListener('click',function(e){
     var btn=e.target.closest('[data-qid]');
-    if(btn) chQ(btn.getAttribute('data-qid'), parseInt(btn.getAttribute('data-qd')));
+    if(btn) chQ(btn.getAttribute('data-qid'),parseInt(btn.getAttribute('data-qd')));
   });
 }
-
 function chQ(id,d){
   cart[id]=Math.max(0,(cart[id]||0)+d);
-  if(!cart[id]) delete cart[id];
+  if(!cart[id])delete cart[id];
   var el=document.getElementById('q-'+id);
-  if(el) el.textContent=cart[id]||0;
+  if(el)el.textContent=cart[id]||0;
   updOrder();
 }
-
 function updOrder(){
   var keys=Object.keys(cart);
   var sum=document.getElementById('order-sum');
   var btn=document.getElementById('pedir-btn');
-  if(!keys.length){
-    sum.innerHTML='<div class="empty-note">Nenhum item selecionado</div>';
-    btn.disabled=true;
-  } else {
-    var rows=[];
-    keys.forEach(function(k){
-      var it=findItem(k);
-      if(it) rows.push('<div class="oi"><span class="l">'+it.name+'</span><span class="r">x'+cart[k]+'</span></div>');
-    });
-    sum.innerHTML=rows.join('');
+  if(!keys.length){sum.innerHTML='<div class="empty-note">Nenhum item selecionado</div>';btn.disabled=true;}
+  else{
+    sum.innerHTML=keys.map(function(k){var it=findItem(k);return it?'<div class="oi"><span class="l">'+it.name+'</span><span class="r">x'+cart[k]+'</span></div>':'';}).join('');
     btn.disabled=false;
   }
 }
-
 function sendOrder(){
-  var keys=Object.keys(cart);
-  if(!keys.length) return;
+  var keys=Object.keys(cart);if(!keys.length)return;
   var btn=document.getElementById('pedir-btn');
-  btn.textContent='Enviando...'; btn.disabled=true;
-  var itens=keys.map(function(k){ var it=findItem(k); return it?it.name+' x '+cart[k]:''; });
+  btn.textContent='Enviando...';btn.disabled=true;
+  var itens=keys.map(function(k){var it=findItem(k);return it?it.name+' x '+cart[k]:'';});
   fbSend({tipo:'pedido',itens:itens,hora:nowHora(),status:'novo'},function(ok){
     if(ok){
-      showOk('Pedido Enviado!','Sua solicitação foi enviada. Em breve alguém irá atendê-lo aqui.','');
-      cart={};
-      ITEMS.forEach(function(i){var el=document.getElementById('q-'+i.id);if(el)el.textContent='0';});
-      updOrder();
-    } else {
-      btn.textContent='Fazer Pedido'; btn.disabled=false;
-      alert('Erro ao enviar. Verifique a conexão.');
-    }
+      showOk('Pedido Enviado!','Sua solicitacao foi enviada. Em breve alguem ira atende-lo aqui.','');
+      cart={};ITEMS.forEach(function(i){var el=document.getElementById('q-'+i.id);if(el)el.textContent='0';});updOrder();
+    } else {btn.textContent='Fazer Pedido';btn.disabled=false;alert('Erro ao enviar.');}
   });
 }
 
-function buildRelax(){
-  var rows=[];
-  SVCS.forEach(function(s){
-    var svgEl=document.getElementById('svg-'+s.id);
-    var svgHtml=svgEl?svgEl.innerHTML:'';
-    rows.push(
-      '<div class="rc" data-svc="'+s.id+'">'
-      +'<div class="rc-photo" style="background:'+s.color+';display:flex;align-items:center;justify-content:center;">'+svgHtml+'</div>'
-      +'<div class="rc-foot">'
-      +'<div><div class="rc-name">'+s.name+'</div><div class="rc-sub">'+s.sub+'</div></div>'
-      +'<div class="rc-arr">&#8250;</div>'
-      +'</div></div>'
-    );
-  });
-  var rb=document.getElementById('relax-body');
-  rb.innerHTML=rows.join('');
-  rb.addEventListener('click',function(e){
-    var rc=e.target.closest('[data-svc]');
-    if(rc) showSvc(rc.getAttribute('data-svc'));
-  });
-}
-
-function showSvc(id){
-  curSvc=id;
-  if(id==='info'){ go('s-info'); return; }
-  var s=findSvc(id); if(!s) return;
-  var svgEl=document.getElementById('svg-'+id);
-  var svgHtml=svgEl?svgEl.innerHTML:'';
-  document.getElementById('svc-hero').innerHTML=
-    '<div style="width:100%;height:100%;background:'+s.color+';display:flex;align-items:center;justify-content:center;">'+svgHtml+'</div>';
-  var featsHtml='';
-  if(s.feats&&s.feats.length){
-    featsHtml='<div class="svc-feats">'+s.feats.map(function(f){
-      return '<div class="svc-f"><div class="fdot"></div>'+f+'</div>';
-    }).join('')+'</div>';
-  }
-  var cta = id==='agenda'
-    ? '<button class="svc-cta" onclick="openSchedule()">Escolher Data e Horário</button>'
-    : '<button class="svc-cta" onclick="openSchedule()">Agendar Horario</button>'
-      +'<button class="svc-sec" onclick="openSchedule()">Solicitar Informacoes</button>';
-  document.getElementById('svc-body').innerHTML=
-    '<div class="svc-t">'+s.name+'</div><div class="svc-p">'+s.desc+'</div>'+featsHtml+cta;
-  go('s-svc');
-}
-
-function openSchedule(){
-  selDate=null; selTime=null;
-  var s=findSvc(curSvc);
-  var dRows=[];
-  for(var i=0;i<8;i++){
-    var d=new Date(); d.setDate(d.getDate()+i);
-    var lbl=i===0?'Hj':i===1?'Am':DS[d.getDay()];
-    var v=d.toISOString().split('T')[0];
-    dRows.push('<div class="dchip" data-date="'+v+'"><div class="dc-d">'+lbl+'</div><div class="dc-n">'+d.getDate()+'</div><div class="dc-m">'+MOS[d.getMonth()]+'</div></div>');
-  }
-  var tRows=SLOTS.map(function(t){
-    return '<div class="tchip'+(BUSY[t]?' busy':'')+'" data-time="'+t+'">'+t+'</div>';
-  });
-  var body=document.getElementById('sch-body');
-  body.innerHTML=
-    '<div class="sch-lbl">Serviço</div>'
-    +'<div style="font-size:14px;color:#1a1a1a;margin-bottom:20px;padding:13px;background:#f7f5f2;border-radius:10px;">'+(s?s.name:'')+'</div>'
-    +'<div class="sch-lbl">Data</div><div class="date-row" id="date-row">'+dRows.join('')+'</div>'
-    +'<div class="sch-lbl">Horário</div><div class="tgrid" id="time-grid">'+tRows.join('')+'</div>'
-    +'<div class="sch-lbl">Seu Nome</div>'
-    +'<input class="nm-input" id="nm-inp" placeholder="Como devemos chama-lo?"/>'
-    +'<button class="conf-btn" id="conf-btn" disabled onclick="confirmSch()">Confirmar Agendamento</button>';
-  document.getElementById('date-row').addEventListener('click',function(e){
-    var chip=e.target.closest('[data-date]');
-    if(!chip) return;
-    selDate=chip.getAttribute('data-date');
-    document.querySelectorAll('.dchip').forEach(function(c){c.classList.remove('on');});
-    chip.classList.add('on'); updConf();
-  });
-  document.getElementById('time-grid').addEventListener('click',function(e){
-    var chip=e.target.closest('[data-time]');
-    if(!chip||chip.classList.contains('busy')) return;
-    selTime=chip.getAttribute('data-time');
-    document.querySelectorAll('.tchip').forEach(function(c){c.classList.remove('on');});
-    chip.classList.add('on'); updConf();
-  });
-  document.getElementById('nm-inp').addEventListener('input',updConf);
-  go('s-sch');
-}
-
-function updConf(){
-  var nm=document.getElementById('nm-inp');
-  var btn=document.getElementById('conf-btn');
-  if(nm&&btn) btn.disabled=!(selDate&&selTime&&nm.value.trim().length>1);
-}
-
-function confirmSch(){
-  var nm=document.getElementById('nm-inp'); if(!nm) return;
-  var nome=nm.value.trim();
-  var btn=document.getElementById('conf-btn');
-  btn.textContent='Enviando...'; btn.disabled=true;
-  var s=findSvc(curSvc);
-  var d=new Date(selDate+'T12:00:00');
-  var dataFmt=d.getDate()+' de '+MOS[d.getMonth()];
-  fbSend({tipo:'agendamento',servico:s?s.name:'',nome:nome,data:dataFmt,horario:selTime,hora:nowHora(),status:'novo'},function(ok){
-    if(ok){
-      showOk('Agendamento Enviado!','Olá, '+nome.split(' ')[0]+'! Seu agendamento foi enviado. Em breve entraremos em contato.',s.name+' - '+dataFmt+' as '+selTime);
-    } else {
-      btn.textContent='Confirmar Agendamento'; btn.disabled=false;
-      alert('Erro ao enviar. Verifique a conexão.');
-    }
-  });
-}
-
-function chamarConcierge(){
-  var btn=document.getElementById('conc-btn');
-  btn.textContent='Chamando...'; btn.disabled=true;
-  fbSend({tipo:'concierge',hora:nowHora(),status:'novo'},function(ok){
-    btn.textContent='Chamar Concierge'; btn.disabled=false;
-    if(ok) showOk('Concierge Chamado!','Um profissional estará com você em instantes na sala de repouso.','');
-    else alert('Erro. Verifique a conexão.');
-  });
-}
-
-function updPsic(){
-  var nome=document.getElementById('psic-nome').value.trim();
-  var wpp=document.getElementById('psic-wpp').value.trim();
-  document.getElementById('psic-btn').disabled=!(nome.length>2&&wpp.length>8);
-}
-
-function enviarPsic(){
-  var nome=document.getElementById('psic-nome').value.trim();
-  var wpp=document.getElementById('psic-wpp').value.trim();
-  var btn=document.getElementById('psic-btn');
-  btn.textContent='Enviando...'; btn.disabled=true;
-  fbSend({tipo:'psicologia',nome:nome,whatsapp:wpp,hora:nowHora(),status:'novo'},function(ok){
-    if(ok){
-      document.getElementById('psic-nome').value='';
-      document.getElementById('psic-wpp').value='';
-      showOk('Solicitação Enviada!','Olá, '+nome.split(' ')[0]+'! Isabela Hasse entrará em contato pelo seu WhatsApp.','Psicologia Integrada · HK Clinic');
-    } else {
-      btn.textContent='Quero ser Contatado'; btn.disabled=false;
-      alert('Erro ao enviar. Verifique a conexão.');
-    }
-  });
-}
-
-function showOk(t,m,n){
-  document.getElementById('ok-t').textContent=t;
-  document.getElementById('ok-m').textContent=m;
-  document.getElementById('ok-note').textContent=n;
-  go('s-ok');
-}
-
-
-// ---- FIREBASE REST API (sem SDK, sem expiração) ----
-var DB = 'https://hk-clinic-default-rtdb.firebaseio.com';
-
-window.fbSend = function(data, cb) {
-  data.ts_client = Date.now();
-  fetch(DB + '/pedidos.json', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(data)
-  })
-  .then(function(r){ return r.json(); })
-  .then(function(r){
-    if(r && r.name){ cb(true); }
-    else { console.error('FB error:', r); cb(false); }
-  })
-  .catch(function(e){ console.error('FB fetch error:', e); cb(false); });
-};
-
-
-var PROCS=[
-  {id:'avaliacao', name:'Avaliação', desc:'Consulta inicial para entender suas necessidades e indicar o tratamento ideal.', price:'R$ 100,00'},
-  {id:'birthday', name:'Birthday', desc:'Experiência especial de relaxamento para celebrar sua data comemorativa com mimo e exclusividade.', price:'R$ 300,00'},
-  {id:'friends', name:'Friends Relax', desc:'Pacote especial para amigas: relaxamento completo e momentos inesquecíveis juntas.', price:'R$ 500,00'},
-  {id:'limpeza_costas', name:'Limpeza de Pele nas Costas', desc:'Limpeza profunda com extração, esfoliação e hidratação para uma pele limpa e saudável.', price:'R$ 350,00'},
-  {id:'limpeza_facial', name:'Limpeza de Pele Facial Anna Pegova', desc:'Protocolo exclusivo Anna Pegova para pele radiante — limpeza, extração e hidratação facial completa.', price:'R$ 200,00'},
-  {id:'radio_corp', name:'Radiofrequência Corporal', desc:'Tecnologia que estimula a produção de colágeno, firmando e remodelando o contorno corporal.', price:'R$ 200,00'},
-  {id:'radio_facial', name:'Radiofrequência Facial', desc:'Rejuvenescimento facial com radiofrequência — combate flacidez e estimula colágeno de forma não invasiva.', price:'R$ 180,00'},
-  {id:'posop_corp', name:'Pós-operatório Corporal', desc:'Protocolo completo que inclui drenagem linfática, tapping e terapia de laser para recuperação ideal.', price:'R$ 200,00'},
-  {id:'posop_facial', name:'Pós-operatório Facial', desc:'Cuidados pós-cirúrgicos faciais com técnicas especializadas para acelerar a recuperação.', price:'R$ 150,00'},
-  {id:'dren_corp', name:'Drenagem Linfática Corporal', desc:'Técnica manual que reduz inchaço, elimina toxinas e melhora a circulação de todo o corpo.', price:'R$ 180,00'},
-  {id:'dren_facial', name:'Drenagem Linfática Facial', desc:'Drenagem delicada para o rosto — reduz inchaço, melhora o contorno e revitaliza a pele.', price:'R$ 100,00'},
-  {id:'criolipo', name:'Criolipólise de Placas', desc:'Tratamento não invasivo para redução de gordura localizada. Valor sob consulta — agende sua avaliação.', price:'Orçamento mediante avaliação'},
-  {id:'microagulha', name:'Microagulhamento', desc:'Estimulação do colágeno com microagulhamento — trata manchas, cicatrizes e rejuvenece a pele.', price:'R$ 300,00'},
-  {id:'spa_maos', name:'Spa das Mãos', desc:'Ritual completo de esfoliação, hidratação e massagem para suas mãos — leveza e cuidado em detalhes.', price:'R$ 70,00'},
-  {id:'escalda', name:'Escalda Pés', desc:'Imersão relaxante com ervas e sais, seguida de esfoliação e massagem — cuide dos seus pés com carinho.', price:'R$ 80,00'},
-  {id:'mass_escalda', name:'Massagem Relaxante com Escalda Pés', desc:'Combinação perfeita: escalda pés aromático + massagem relaxante para relaxamento total do corpo.', price:'R$ 200,00'},
-  {id:'ventosas', name:'Massagem com Ventosas', desc:'Técnica milenar que alivia tensões, melhora a circulação e promove profundo relaxamento muscular.', price:'R$ 200,00'},
-  {id:'pedras', name:'Massagem com Pedras Quentes', desc:'Pedras vulcânicas aquecidas que derretem as tensões e proporcionam relaxamento profundo e duradouro.', price:'R$ 200,00'},
-  {id:'velas', name:'Massagem com Velas', desc:'Massagem sensorial com cera derretida de baixa temperatura — relaxante, hidratante e inesquecível.', price:'R$ 200,00'},
-  {id:'mass_relax', name:'Massagem Relaxante Manual Tradicional', desc:'Massagem clássica com manobras suaves e rítmicas que eliminam tensões e restabelecem o equilíbrio.', price:'R$ 180,00'},
-];
-
-
+/* ---- RELAX TABS ---- */
 function relaxAba(n){
   ['trat','proc'].forEach(function(x){
     document.getElementById('rtab-'+x).className='relax-tab'+(x===n?' on':'');
@@ -694,81 +506,215 @@ function relaxAba(n){
   });
 }
 
+/* ---- SERVICOS ---- */
+function buildRelax(){
+  var rows=[];
+  SVCS.forEach(function(s){
+    var svgEl=document.getElementById('svg-'+s.id);
+    var svgHtml=svgEl?svgEl.innerHTML:'';
+    rows.push('<div class="rc" data-svc="'+s.id+'">'
+      +'<div class="rc-photo" style="background:'+s.color+';display:flex;align-items:center;justify-content:center;">'+svgHtml+'</div>'
+      +'<div class="rc-foot"><div><div class="rc-name">'+s.name+'</div><div class="rc-sub">'+s.sub+'</div></div>'
+      +'<div class="rc-arr">&#8250;</div></div></div>');
+  });
+  var rb=document.getElementById('relax-body');
+  rb.innerHTML=rows.join('');
+  rb.addEventListener('click',function(e){
+    var rc=e.target.closest('[data-svc]');
+    if(rc)showSvc(rc.getAttribute('data-svc'));
+  });
+}
+function showSvc(id){
+  curSvc=id;
+  if(id==='info'){go('s-info');return;}
+  var s=findSvc(id);if(!s)return;
+  var svgEl=document.getElementById('svg-'+id);
+  var svgHtml=svgEl?svgEl.innerHTML:'';
+  document.getElementById('svc-hero').innerHTML='<div style="width:100%;height:100%;background:'+s.color+';display:flex;align-items:center;justify-content:center;">'+svgHtml+'</div>';
+  var featsHtml='';
+  if(s.feats&&s.feats.length){
+    featsHtml='<div class="svc-feats">'+s.feats.map(function(f){return'<div class="svc-f"><div class="fdot"></div>'+f+'</div>';}).join('')+'</div>';
+  }
+  var cta=id==='agenda'
+    ?'<button class="svc-cta" onclick="openSchedule()">Escolher Data e Horario</button>'
+    :'<button class="svc-cta" onclick="openSchedule()">Agendar Horario</button><button class="svc-sec" onclick="openSchedule()">Solicitar Informacoes</button>';
+  document.getElementById('svc-body').innerHTML='<div class="svc-t">'+s.name+'</div><div class="svc-p">'+s.desc+'</div>'+featsHtml+cta;
+  go('s-svc');
+}
+function openSchedule(){
+  selDate=null;selTime=null;
+  var s=findSvc(curSvc);
+  var dh='';
+  for(var i=0;i<8;i++){
+    var d=new Date();d.setDate(d.getDate()+i);
+    var lbl=i===0?'Hj':i===1?'Am':DS[d.getDay()];
+    var v=d.toISOString().split('T')[0];
+    dh+='<div class="dchip" data-date="'+v+'"><div class="dc-d">'+lbl+'</div><div class="dc-n">'+d.getDate()+'</div><div class="dc-m">'+MOS[d.getMonth()]+'</div></div>';
+  }
+  var th=SLOTS.map(function(t){return'<div class="tchip'+(BUSY[t]?' busy':'')+'" data-time="'+t+'">'+t+'</div>';}).join('');
+  var body=document.getElementById('sch-body');
+  body.innerHTML='<div class="sch-lbl">Servico</div>'
+    +'<div style="font-size:14px;color:#1a1a1a;margin-bottom:20px;padding:13px;background:#f7f5f2;border-radius:10px;">'+(s?s.name:'')+'</div>'
+    +'<div class="sch-lbl">Data</div><div class="date-row" id="date-row">'+dh+'</div>'
+    +'<div class="sch-lbl">Horario</div><div class="tgrid" id="time-grid">'+th+'</div>'
+    +'<div class="sch-lbl">Seu Nome</div><input class="nm-input" id="nm-inp" placeholder="Como devemos chama-lo?"/>'
+    +'<button class="conf-btn" id="conf-btn" disabled onclick="confirmSch()">Confirmar Agendamento</button>';
+  document.getElementById('date-row').addEventListener('click',function(e){
+    var chip=e.target.closest('[data-date]');if(!chip)return;
+    selDate=chip.getAttribute('data-date');
+    document.querySelectorAll('.dchip').forEach(function(c){c.classList.remove('on');});
+    chip.classList.add('on');updConf();
+  });
+  document.getElementById('time-grid').addEventListener('click',function(e){
+    var chip=e.target.closest('[data-time]');if(!chip||chip.classList.contains('busy'))return;
+    selTime=chip.getAttribute('data-time');
+    document.querySelectorAll('.tchip').forEach(function(c){c.classList.remove('on');});
+    chip.classList.add('on');updConf();
+  });
+  document.getElementById('nm-inp').addEventListener('input',updConf);
+  go('s-sch');
+}
+function updConf(){
+  var nm=document.getElementById('nm-inp');
+  var btn=document.getElementById('conf-btn');
+  if(nm&&btn)btn.disabled=!(selDate&&selTime&&nm.value.trim().length>1);
+}
+function confirmSch(){
+  var nm=document.getElementById('nm-inp');if(!nm)return;
+  var nome=nm.value.trim();
+  var btn=document.getElementById('conf-btn');
+  btn.textContent='Enviando...';btn.disabled=true;
+  var s=findSvc(curSvc);
+  var d=new Date(selDate+'T12:00:00');
+  var dataFmt=d.getDate()+' de '+MOS[d.getMonth()];
+  fbSend({tipo:'agendamento',servico:s?s.name:'',nome:nome,data:dataFmt,horario:selTime,hora:nowHora(),status:'novo'},function(ok){
+    if(ok){showOk('Agendamento Enviado!','Ola, '+nome.split(' ')[0]+'! Seu agendamento foi enviado. Em breve entraremos em contato.',s.name+' - '+dataFmt+' as '+selTime);}
+    else{btn.textContent='Confirmar Agendamento';btn.disabled=false;alert('Erro ao enviar.');}
+  });
+}
+
+/* ---- CONCIERGE ---- */
+function chamarConcierge(){
+  var btn=document.getElementById('conc-btn');
+  btn.textContent='Chamando...';btn.disabled=true;
+  fbSend({tipo:'concierge',hora:nowHora(),status:'novo'},function(ok){
+    btn.textContent='Chamar Concierge';btn.disabled=false;
+    if(ok)showOk('Concierge Chamado!','Um profissional estara com voce em instantes.','');
+    else alert('Erro. Verifique a conexao.');
+  });
+}
+
+/* ---- PSICOLOGIA ---- */
+function updPsic(){
+  var nome=document.getElementById('psic-nome').value.trim();
+  var wpp=document.getElementById('psic-wpp').value.trim();
+  document.getElementById('psic-btn').disabled=!(nome.length>2&&wpp.length>8);
+}
+function enviarPsic(){
+  var nome=document.getElementById('psic-nome').value.trim();
+  var wpp=document.getElementById('psic-wpp').value.trim();
+  var btn=document.getElementById('psic-btn');
+  btn.textContent='Enviando...';btn.disabled=true;
+  fbSend({tipo:'psicologia',nome:nome,whatsapp:wpp,hora:nowHora(),status:'novo'},function(ok){
+    if(ok){
+      document.getElementById('psic-nome').value='';
+      document.getElementById('psic-wpp').value='';
+      showOk('Solicitacao Enviada!','Ola, '+nome.split(' ')[0]+'! Isabela Hasse entrara em contato pelo seu WhatsApp.','Psicologia Integrada - HK Clinic');
+    } else {btn.textContent='Quero ser Contatado';btn.disabled=false;alert('Erro ao enviar.');}
+  });
+}
+
+/* ---- PROCEDIMENTOS ---- */
 function buildProcs(){
   var grid=document.getElementById('proc-grid');
-  if(!grid) return;
+  if(!grid)return;
   var html='';
   PROCS.forEach(function(p){
     html+='<div class="proc-card" data-proc="'+p.id+'">'
       +'<div class="proc-head">'
       +'<span class="proc-name">'+p.name+'</span>'
       +'<span class="proc-price">'+p.price+'</span>'
-      +'<span class="proc-arr">&#8250;</span>'
+      +'<span class="proc-arr" id="parr-'+p.id+'">&#8250;</span>'
       +'</div>'
       +'<div class="proc-detail" id="pd-'+p.id+'">'
       +'<div class="proc-desc">'+p.desc+'</div>'
-      +'<div class="proc-form-h">Tenho interesse — deixe seus dados</div>'
-      +'<input class="nm-input" id="pnome-'+p.id+'" placeholder="Seu nome completo" oninput="updProc(''+p.id+'')" style="margin-bottom:8px;"/>'
-      +'<input class="nm-input" id="pwpp-'+p.id+'" placeholder="WhatsApp com DDD" type="tel" oninput="updProc(''+p.id+'')" style="margin-bottom:8px;"/>'
-      +'<button class="proc-send" id="pbtn-'+p.id+'" data-proc-send="'+p.id+'" disabled>Quero ser Contactado</button>'
-      +'</div>'
-      +'</div>';
+      +'<div class="proc-form-h">Tenho interesse - deixe seus dados</div>'
+      +'<input class="nm-input" id="pnome-'+p.id+'" placeholder="Seu nome completo" style="margin-bottom:8px;"/>'
+      +'<input class="nm-input" id="pwpp-'+p.id+'" placeholder="WhatsApp com DDD" type="tel" style="margin-bottom:8px;"/>'
+      +'<button class="proc-send" id="pbtn-'+p.id+'" data-proc-send="'+p.id+'" disabled>Quero ser Contatado</button>'
+      +'</div></div>';
   });
   grid.innerHTML=html;
 
-  // Click on card header toggles detail
+  // Input listeners
+  PROCS.forEach(function(p){
+    var ni=document.getElementById('pnome-'+p.id);
+    var wi=document.getElementById('pwpp-'+p.id);
+    if(ni) ni.addEventListener('input',function(){updProc(p.id);});
+    if(wi) wi.addEventListener('input',function(){updProc(p.id);});
+  });
+
+  // Click delegation
   grid.addEventListener('click',function(e){
-    // Send button
     var sbtn=e.target.closest('[data-proc-send]');
-    if(sbtn){ enviarProc(sbtn.getAttribute('data-proc-send')); return; }
-    // Card toggle (not clicking inside form)
+    if(sbtn){enviarProc(sbtn.getAttribute('data-proc-send'));return;}
+    if(e.target.tagName==='INPUT') return;
     var card=e.target.closest('[data-proc]');
-    if(!card) return;
-    // Don't toggle if clicking inside input or button
-    if(e.target.tagName==='INPUT'||e.target.tagName==='BUTTON') return;
+    if(!card)return;
     var pid=card.getAttribute('data-proc');
     var det=document.getElementById('pd-'+pid);
-    var arr=card.querySelector('.proc-arr');
-    if(!det) return;
+    var arr=document.getElementById('parr-'+pid);
+    if(!det)return;
     var open=det.classList.toggle('open');
-    if(arr) arr.textContent=open?'\u2039':'\u203a';
+    if(arr)arr.className=open?'proc-arr open':'proc-arr';
     // Close others
     PROCS.forEach(function(p){
       if(p.id!==pid){
         var od=document.getElementById('pd-'+p.id);
-        var oa=document.querySelector('[data-proc="'+p.id+'"] .proc-arr');
-        if(od){od.classList.remove('open');}
-        if(oa){oa.textContent='\u203a';}
+        var oa=document.getElementById('parr-'+p.id);
+        if(od)od.classList.remove('open');
+        if(oa)oa.className='proc-arr';
       }
     });
   });
 }
-
 function updProc(pid){
-  var nome=document.getElementById('pnome-'+pid);
-  var wpp=document.getElementById('pwpp-'+pid);
+  var ni=document.getElementById('pnome-'+pid);
+  var wi=document.getElementById('pwpp-'+pid);
   var btn=document.getElementById('pbtn-'+pid);
-  if(nome&&wpp&&btn) btn.disabled=!(nome.value.trim().length>2&&wpp.value.trim().length>8);
+  if(ni&&wi&&btn)btn.disabled=!(ni.value.trim().length>2&&wi.value.trim().length>8);
 }
-
 function enviarProc(pid){
   var nome=document.getElementById('pnome-'+pid).value.trim();
   var wpp=document.getElementById('pwpp-'+pid).value.trim();
   var btn=document.getElementById('pbtn-'+pid);
-  var proc=null;
-  for(var i=0;i<PROCS.length;i++){if(PROCS[i].id===pid){proc=PROCS[i];break;}}
+  var proc=null;for(var i=0;i<PROCS.length;i++){if(PROCS[i].id===pid){proc=PROCS[i];break;}}
   btn.textContent='Enviando...';btn.disabled=true;
   fbSend({tipo:'procedimento',nome:nome,whatsapp:wpp,procedimento:proc?proc.name:'',preco:proc?proc.price:'',hora:nowHora(),status:'novo'},function(ok){
-    if(ok){
-      showOk('Solicitação Enviada!','Olá, '+nome.split(' ')[0]+'! Seu interesse em '+proc.name+' foi enviado. A equipe entrará em contato pelo seu WhatsApp.','');
-    } else {
-      btn.textContent='Quero ser Contactado';btn.disabled=false;
-      alert('Erro ao enviar. Verifique a conexão.');
-    }
+    if(ok){showOk('Solicitacao Enviada!','Ola, '+nome.split(' ')[0]+'! Seu interesse em '+proc.name+' foi enviado. Entraremos em contato pelo seu WhatsApp.','');}
+    else{btn.textContent='Quero ser Contatado';btn.disabled=false;alert('Erro ao enviar.');}
   });
 }
 
-// Init on DOM ready
+/* ---- HELPERS ---- */
+function showOk(t,m,n){
+  document.getElementById('ok-t').textContent=t;
+  document.getElementById('ok-m').textContent=m;
+  document.getElementById('ok-note').textContent=n;
+  go('s-ok');
+}
+
+/* ---- FIREBASE REST ---- */
+var DB='https://hk-clinic-default-rtdb.firebaseio.com';
+window.fbSend=function(data,cb){
+  data.ts_client=Date.now();
+  fetch(DB+'/pedidos.json',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  .then(function(r){return r.json();})
+  .then(function(r){if(r&&r.name)cb(true);else cb(false);})
+  .catch(function(){cb(false);});
+};
+
+/* ---- INIT ---- */
 document.addEventListener('DOMContentLoaded',function(){
   buildMenu();
   buildRelax();
@@ -783,7 +729,5 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 
 </script>
-
-
 </body>
 </html>
